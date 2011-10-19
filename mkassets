@@ -1,0 +1,8 @@
+#!/bin/sh
+
+for i in `find renders -type f -iname \*.png`; do
+	convert -resize 64x $i \
+		`echo $i | sed 's/renders/assets/g'`
+	convert -resize 128x $i \
+		`echo $i | sed 's/renders/assets/g' | sed 's/.png/@2x.png/g'`
+done
