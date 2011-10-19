@@ -1,8 +1,25 @@
 #!/bin/sh
 
 for i in `find renders -type f -iname \*.png`; do
-	convert -resize 64x $i \
-		`echo $i | sed 's/renders/assets/g'`
-	convert -resize 128x $i \
-		`echo $i | sed 's/renders/assets/g' | sed 's/.png/@2x.png/g'`
+	regular="`echo $i | sed 's/renders/assets/g'`"
+	regularselected="`echo $i | sed 's/renders/assets/g' \
+		| sed 's/.png/-selected.png/g'`"
+	twotime="`echo $i | sed 's/renders/assets/g' \
+		| sed 's/.png/@2x.png/g'`"
+	twotimeselected="`echo $i | sed 's/renders/assets/g' \
+		| sed 's/.png/-selected@2x.png/g'`"
+	convert -resize 64x "$i" "$regular"
+	convert -resize 128x "$i" "$twotime"
+	convert -channel A -blur 8 \
+		-channel RGB -modulate 0,0 \
+		-channel R -brightness-contrast 100 \
+		-channel A -gamma 2 \
+		-channel A -brightness-contrast 25,50 \
+		"$regular" "$regularselected"
+	convert -channel A -blur 16 \
+		-channel RGB -modulate 0,0 \
+		-channel R -brightness-contrast 100 \
+		-channel A -gamma 2 \
+		-channel A -brightness-contrast 25,50 \
+		"$twotime" "$twotimeselected"
 done
