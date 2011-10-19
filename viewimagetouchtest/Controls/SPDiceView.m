@@ -88,6 +88,7 @@
 -(void) updateDice: (NSArray*) oldDice;
 -(void) updateSelection;
 -(CacheImage*) imageCacheForDie: (SPDie*) die;
+-(int) diePositionForLocation: (CGPoint) loc;
 @end
 
 @implementation SPDiceView (Private)
@@ -178,6 +179,15 @@
 	}
 	return (cache);
 }
+
+-(int) diePositionForLocation: (CGPoint) loc
+{
+	float fwidth= self.frame.size.width;
+	int col = loc.x / (fwidth/dicePerRow);
+	int row = loc.y / rowHeight;
+	int pos = row*dicePerRow + col;
+	return (pos);
+}
 @end
 
 static NSMutableDictionary* globalImageCache = nil;
@@ -263,11 +273,16 @@ static int globalImageCacheRefCount = 0;
 {
 	UITouch* touch = [touches anyObject];
 	CGPoint loc = [touch locationInView: self];
-	float fwidth= self.frame.size.width;
-	int col = loc.x / (fwidth/dicePerRow);
-	int row = loc.y / rowHeight;
-	int pos = row*dicePerRow + col;
-	if (pos < [selectedDice count]) {
+	int pos = [self diePositionForLocation: loc];
+	touchBeganPos = pos;
+}
+
+-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	UITouch* touch = [touches anyObject];
+	CGPoint loc = [touch locationInView: self];
+	int pos = [self diePositionForLocation: loc];
+	if (pos == touchBeganPos && pos < [selectedDice count]) {
 		NSNumber* selected = [selectedDice objectAtIndex: pos];
 		[selectedDice replaceObjectAtIndex: pos withObject:
 			[NSNumber numberWithBool: ![selected boolValue]]];

@@ -34,6 +34,9 @@
 	/** Array of NSInteger objects marking which die is selected.  The
 	 * indicies correspond to the indicies in the dice array. */
 	NSMutableArray* selectedDice;
+
+	/** Marks where a touch began. */
+	int touchBeganPos;
 }
 
 @property (nonatomic, retain) NSArray* dice;

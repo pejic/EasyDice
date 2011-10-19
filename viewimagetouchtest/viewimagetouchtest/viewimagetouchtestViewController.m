@@ -48,7 +48,7 @@
 	
 	diceView = [[SPDiceView alloc]
 		    initWithFrame: CGRectMake(0, 0, 320, 240)];
-	diceView.dicePerRow = 4;
+	diceView.dicePerRow = 5;
 	diceView.rowHeight = 42;
 	diceView.dice = [NSArray arrayWithObjects:
 			 [SPDie dieWithSize: 10 andFacingValue: 1],
