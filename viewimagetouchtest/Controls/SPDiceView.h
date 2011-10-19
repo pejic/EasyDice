@@ -21,11 +21,19 @@
 	 * die Images. */
 	NSMutableArray* imageViews;
 
+	/** Array of UIImageView objects.  These views are used to display the
+	 * red highlight behind the dice. */
+	NSMutableArray* selectedViews;
+
 	/** Number of dice to display per row. */
 	int dicePerRow;
 
 	/** Height of each row of dice. */
 	float rowHeight;
+
+	/** Array of NSInteger objects marking which die is selected.  The
+	 * indicies correspond to the indicies in the dice array. */
+	NSMutableArray* selectedDice;
 }
 
 @property (nonatomic, retain) NSArray* dice;
