@@ -48,10 +48,21 @@
 	
 	diceView = [[SPDiceView alloc]
 		    initWithFrame: CGRectMake(0, 0, 320, 240)];
+	diceView.dicePerRow = 4;
+	diceView.rowHeight = 42;
 	diceView.dice = [NSArray arrayWithObjects:
 			 [SPDie dieWithSize: 10 andFacingValue: 1],
 			 [SPDie dieWithSize:  8 andFacingValue: 8],
 			 [SPDie dieWithSize:  6 andFacingValue: 4],
+			 [SPDie dieWithSize: 10 andFacingValue: 10],
+			 [SPDie dieWithSize:  8 andFacingValue: 2],
+			 [SPDie dieWithSize:  6 andFacingValue: 6],
+			 [SPDie dieWithSize: 10 andFacingValue: 1],
+			 [SPDie dieWithSize:  8 andFacingValue: 8],
+			 [SPDie dieWithSize:  6 andFacingValue: 4],
+			 [SPDie dieWithSize: 10 andFacingValue: 10],
+			 [SPDie dieWithSize:  8 andFacingValue: 2],
+			 [SPDie dieWithSize:  6 andFacingValue: 6],
 			 nil];
 	[self.view addSubview: diceView];
 }
@@ -74,6 +85,43 @@
 	UITouch* touch = [touches anyObject];
 	CGPoint loc = [touch locationInView: self.view];
 	textout.text = [NSString stringWithFormat: @"(%f, %f)", loc.x, loc.y];
+
+	static int testnum = 0;
+	if (testnum == 0) {
+		diceView.dice = [NSArray arrayWithObjects:
+				 [SPDie dieWithSize:  8 andFacingValue: 3],
+				 [SPDie dieWithSize: 10 andFacingValue: 2],
+				 [SPDie dieWithSize:  6 andFacingValue: 5],
+				 [SPDie dieWithSize: 10 andFacingValue: 10],
+				 [SPDie dieWithSize: 10 andFacingValue: 3],
+				 [SPDie dieWithSize:  6 andFacingValue: 6],
+				 [SPDie dieWithSize:  6 andFacingValue: 2],
+				 [SPDie dieWithSize:  8 andFacingValue: 1],
+				 [SPDie dieWithSize:  6 andFacingValue: 4],
+				 nil];
+	}
+	else {
+		diceView.dice = [NSArray arrayWithObjects:
+				 [SPDie dieWithSize:  8 andFacingValue: 5],
+				 [SPDie dieWithSize: 10 andFacingValue: 1],
+				 [SPDie dieWithSize:  6 andFacingValue: 4],
+				 [SPDie dieWithSize: 10 andFacingValue: 2],
+				 [SPDie dieWithSize: 10 andFacingValue: 7],
+				 [SPDie dieWithSize:  6 andFacingValue: 1],
+				 [SPDie dieWithSize:  6 andFacingValue: 1],
+				 [SPDie dieWithSize:  8 andFacingValue: 1],
+				 [SPDie dieWithSize:  6 andFacingValue: 4],
+				 [SPDie dieWithSize:  6 andFacingValue: 5],
+				 [SPDie dieWithSize: 10 andFacingValue: 10],
+				 [SPDie dieWithSize: 10 andFacingValue: 3],
+				 [SPDie dieWithSize:  6 andFacingValue: 6],
+				 [SPDie dieWithSize:  6 andFacingValue: 2],
+				 [SPDie dieWithSize:  8 andFacingValue: 1],
+				 [SPDie dieWithSize:  6 andFacingValue: 4],
+				 nil];
+	}
+	testnum = (testnum + 1) % 2;
+
 }
 
 @end

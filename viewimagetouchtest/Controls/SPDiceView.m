@@ -8,7 +8,7 @@
 
 #import "SPDiceView.h"
 
-@interface ImageCache : NSObject {
+@interface CacheImage : NSObject {
 	@private
 	int refcount;
 	UIImage* image;
@@ -24,14 +24,14 @@
 
 @end
 
-@implementation ImageCache
+@implementation CacheImage
 
 -(id) initWithImage: (UIImage*) image_
 {
 	if (![super init]) {
 		return nil;
 	}
-	image = image_;
+	image = [image_ retain];
 	refcount = 0;
 	return self;
 }
@@ -44,8 +44,8 @@
 
 -(BOOL) isEqual: (id) other
 {
-	if ([other isMemberOfClass: [ImageCache class]]) {
-		ImageCache* o = other;
+	if ([other isMemberOfClass: [CacheImage class]]) {
+		CacheImage* o = other;
 		if (o->refcount == self->refcount
 		    && o->image == self->image) {
 			return YES;
@@ -70,10 +70,78 @@
 	refcount--;
 }
 	
-
-
 @end
 
+
+@interface SPDiceView (Private)
+-(void) updateDice: (NSArray*) oldDice;
+
+-(CacheImage*) imageCacheForDie: (SPDie*) die;
+@end
+
+@implementation SPDiceView (Private)
+-(void) updateDice: (NSArray*) oldDice
+{
+	int numdice = [dice count];
+	while (numdice > [imageViews count]) {
+		UIImageView* imgview = [[UIImageView alloc]
+					initWithImage: nil];
+		[imageViews addObject: imgview];
+		[self addSubview: imgview];
+		[imgview release];
+	}
+	int pos;
+	for (pos = 0; pos < [imageViews count]; pos++) {
+		SPDie* oldDie = nil;
+		if (pos < [oldDice count]) {
+			oldDie = [oldDice objectAtIndex: pos];
+		}
+		SPDie* die = nil;
+		if (pos < [dice count]) {
+			die = [dice objectAtIndex: pos];
+		}
+		if ([oldDie isEqual: die]) {
+			continue;
+		}
+		UIImageView* imgview = [imageViews objectAtIndex: pos];
+		CacheImage* oldcache = [self imageCacheForDie: oldDie];
+		CacheImage* cache = [self imageCacheForDie: die];
+		UIImage* img = [cache imageRetain];
+		imgview.image = img;
+		[oldcache imageRelease];
+		imgview.bounds = CGRectMake(0, 0,
+					    img.size.width, img.size.height);
+		int row = pos % dicePerRow;
+		int col = pos / dicePerRow;
+		float width = self.bounds.size.width;
+		imgview.center = CGPointMake(
+					     (width/dicePerRow)*(row+0.5),
+					     (rowHeight)*(col + 0.5));
+	}
+}
+
+-(CacheImage*) imageCacheForDie: (SPDie*) die
+{
+	if (!die) {
+		return nil;
+	}
+	NSString* path = [NSString stringWithFormat: @"assets/%@.png",
+			  [die toString]];
+	CacheImage* cache = [imageCache objectForKey: path];
+	if (!cache) {
+		cache = [[CacheImage alloc]
+			 initWithImage: [UIImage imageNamed: path]];
+		if (cache) {
+			[imageCache setObject: cache forKey: path];
+		}
+		[cache release];
+	}
+	return (cache);
+}
+@end
+
+static NSMutableDictionary* globalImageCache = nil;
+static int globalImageCacheRefCount = 0;
 
 @implementation SPDiceView
 
@@ -81,7 +149,11 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		imageCache = [[NSMutableDictionary alloc] init];
+		if (globalImageCacheRefCount == 0) {
+			globalImageCache = [[NSMutableDictionary alloc] init];
+		}
+		imageCache = globalImageCache;
+		globalImageCacheRefCount++;
 		dice = nil;
 		imageViews = [[NSMutableArray alloc] init];
 	}
@@ -97,8 +169,32 @@
 -(void) setDice: (NSArray*) dice_
 {
 	[dice_ retain];
-	[dice release];
+	NSArray* oldDice = dice;
 	dice = dice_;
+	[self updateDice: oldDice];
+	[oldDice release];
+}
+
+-(int) dicePerRow
+{
+	return (dicePerRow);
+}
+
+-(void) setDicePerRow: (int) dpr
+{
+	dicePerRow = dpr;
+	[self updateDice: dice];
+}
+
+-(float) rowHeight
+{
+	return (rowHeight);
+}
+
+-(void) setRowHeight:(float)rowHeight_
+{
+	rowHeight = rowHeight_;
+	[self updateDice: dice];
 }
 
 /*
@@ -112,7 +208,11 @@
 
 - (void)dealloc
 {
-	[imageCache release];
+	imageCache = nil;
+	globalImageCacheRefCount--;
+	if (globalImageCacheRefCount == 0) {
+		[globalImageCache release];
+	}
 	[dice release];
 	[super dealloc];
 }
