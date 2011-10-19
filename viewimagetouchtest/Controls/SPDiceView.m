@@ -227,11 +227,17 @@ static int globalImageCacheRefCount = 0;
 	id* carray = malloc(sizeof(id) * dicecount);
 	int i;
 	for (i = 0; i < dicecount; i++) {
-		carray[i] = [NSNumber numberWithBool: 0];
+		if (i < [selectedDice count]) {
+			carray[i] = [selectedDice objectAtIndex: i];
+		}
+		else {
+			carray[i] = [NSNumber numberWithBool: 0];
+		}
 	}
-	[selectedDice release];
+	NSMutableArray* oldSelectedDice = selectedDice;
 	selectedDice = [[NSMutableArray alloc] initWithObjects: carray
 							 count: [dice count]];
+	[oldSelectedDice release];
 	free(carray);
 	[self updateDice: oldDice];
 	[self updateSelection];
