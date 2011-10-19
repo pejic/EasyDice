@@ -2,3 +2,5 @@ assets/
 renders/
 *.blend1
 .*.swp
+._*
+viewimagetouchtest/viewimagetouchtest.xcodeproj/
