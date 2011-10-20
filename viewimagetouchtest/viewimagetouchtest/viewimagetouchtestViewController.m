@@ -14,6 +14,7 @@
 
 - (void)dealloc
 {
+	[dice release];
 	[diceView release];
 	[textout release];
 	[super dealloc];
@@ -46,24 +47,14 @@
 	[self.textout setText: @"text"];
 	[self.view addSubview: self.textout];
 	
+	dice = [[SPSelectableDice alloc] init];
+	[dice addDie: [SPDie dieWithSize: 6 andFacingValue: 6]];
+
 	diceView = [[SPDiceView alloc]
 		    initWithFrame: CGRectMake(0, 0, 320, 240)];
 	diceView.dicePerRow = 5;
 	diceView.rowHeight = 42;
-	diceView.dice = [NSArray arrayWithObjects:
-			 [SPDie dieWithSize: 10 andFacingValue: 1],
-			 [SPDie dieWithSize:  8 andFacingValue: 8],
-			 [SPDie dieWithSize:  6 andFacingValue: 4],
-			 [SPDie dieWithSize: 10 andFacingValue: 10],
-			 [SPDie dieWithSize:  8 andFacingValue: 2],
-			 [SPDie dieWithSize:  6 andFacingValue: 6],
-			 [SPDie dieWithSize: 10 andFacingValue: 1],
-			 [SPDie dieWithSize:  8 andFacingValue: 8],
-			 [SPDie dieWithSize:  6 andFacingValue: 4],
-			 [SPDie dieWithSize: 10 andFacingValue: 10],
-			 [SPDie dieWithSize:  8 andFacingValue: 2],
-			 [SPDie dieWithSize:  6 andFacingValue: 6],
-			 nil];
+	diceView.dice = dice;
 	[self.view addSubview: diceView];
 }
 
@@ -88,37 +79,15 @@
 
 	static int testnum = 0;
 	if (testnum == 0) {
-		diceView.dice = [NSArray arrayWithObjects:
-				 [SPDie dieWithSize:  8 andFacingValue: 3],
-				 [SPDie dieWithSize: 10 andFacingValue: 2],
-				 [SPDie dieWithSize:  6 andFacingValue: 5],
-				 [SPDie dieWithSize: 10 andFacingValue: 10],
-				 [SPDie dieWithSize: 10 andFacingValue: 3],
-				 [SPDie dieWithSize:  6 andFacingValue: 6],
-				 [SPDie dieWithSize:  6 andFacingValue: 2],
-				 [SPDie dieWithSize:  8 andFacingValue: 1],
-				 [SPDie dieWithSize:  6 andFacingValue: 4],
-				 nil];
+		[dice addDie: [SPDie dieWithSize: 10 andFacingValue: 2]];
+		[dice addDie: [SPDie dieWithSize: 10 andFacingValue: 4]];
+		[dice addDie: [SPDie dieWithSize: 10 andFacingValue: 5]];
+		[dice addDie: [SPDie dieWithSize: 10 andFacingValue: 1]];
 	}
 	else {
-		diceView.dice = [NSArray arrayWithObjects:
-				 [SPDie dieWithSize:  8 andFacingValue: 5],
-				 [SPDie dieWithSize: 10 andFacingValue: 1],
-				 [SPDie dieWithSize:  6 andFacingValue: 4],
-				 [SPDie dieWithSize: 10 andFacingValue: 2],
-				 [SPDie dieWithSize: 10 andFacingValue: 7],
-				 [SPDie dieWithSize:  6 andFacingValue: 1],
-				 [SPDie dieWithSize:  6 andFacingValue: 1],
-				 [SPDie dieWithSize:  8 andFacingValue: 1],
-				 [SPDie dieWithSize:  6 andFacingValue: 4],
-				 [SPDie dieWithSize:  6 andFacingValue: 5],
-				 [SPDie dieWithSize: 10 andFacingValue: 10],
-				 [SPDie dieWithSize: 10 andFacingValue: 3],
-				 [SPDie dieWithSize:  6 andFacingValue: 6],
-				 [SPDie dieWithSize:  6 andFacingValue: 2],
-				 [SPDie dieWithSize:  8 andFacingValue: 1],
-				 [SPDie dieWithSize:  6 andFacingValue: 4],
-				 nil];
+		[dice removeDieAtIndex: [dice count] - 1];
+		[dice removeDieAtIndex: [dice count] - 1];
+		[dice removeDieAtIndex: [dice count] - 1];
 	}
 	testnum = (testnum + 1) % 2;
 

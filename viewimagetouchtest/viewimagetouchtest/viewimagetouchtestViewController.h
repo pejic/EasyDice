@@ -12,6 +12,7 @@
 @interface viewimagetouchtestViewController : UIViewController {
 	@private
 	SPDiceView* diceView;
+	SPSelectableDice* dice;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField* textout;

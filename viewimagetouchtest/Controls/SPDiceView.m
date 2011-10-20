@@ -85,14 +85,15 @@
 
 
 @interface SPDiceView (Private)
--(void) updateDice: (NSArray*) oldDice;
+-(void) updateDice;
 -(void) updateSelection;
 -(CacheImage*) imageCacheForDie: (SPDie*) die;
 -(int) diePositionForLocation: (CGPoint) loc;
+-(void) onChangeNotification: (NSNotification*) note;
 @end
 
 @implementation SPDiceView (Private)
--(void) updateDice: (NSArray*) oldDice
+-(void) updateDice
 {
 	int numdice = [dice count];
 	while (numdice > [imageViews count]) {
@@ -110,27 +111,37 @@
 	}
 	int pos;
 	for (pos = 0; pos < [imageViews count]; pos++) {
-		SPDie* oldDie = nil;
-		if (pos < [oldDice count]) {
-			oldDie = [oldDice objectAtIndex: pos];
-		}
 		SPDie* die = nil;
 		if (pos < [dice count]) {
-			die = [dice objectAtIndex: pos];
+			die = [dice getDieAtIndex: pos];
 		}
-		if ([oldDie isEqual: die]) {
+		CacheImage* oldcache = nil;
+		if (pos < [dieImageCache count]) {
+			oldcache = [dieImageCache objectAtIndex: pos];
+		}
+		CacheImage* cache = [self imageCacheForDie: die];
+		if (oldcache == cache) {
 			continue;
 		}
 		UIImageView* imgview = [imageViews objectAtIndex: pos];
 		UIImageView* selview = [selectedViews objectAtIndex: pos];
-		CacheImage* oldcache = [self imageCacheForDie: oldDie];
-		CacheImage* cache = [self imageCacheForDie: die];
 		[cache imageRetain];
 		UIImage* img = [cache image];
 		UIImage* sel = [cache selected];
 		imgview.image = img;
 		selview.image = sel;
 		[oldcache imageRelease];
+		if (pos < [dieImageCache count] && cache) {
+			[dieImageCache replaceObjectAtIndex: pos
+						 withObject: cache];
+		}
+		else if (pos < [dieImageCache count] && !cache) {
+			[dieImageCache removeObjectAtIndex: pos];
+		}
+		else {
+			assert(pos == [dieImageCache count]);
+			[dieImageCache addObject: cache];
+		}
 		imgview.bounds = CGRectMake(0, 0,
 					    img.size.width, img.size.height);
 		selview.bounds = CGRectMake(0, 0,
@@ -151,9 +162,8 @@
 	int pos;
 	for (pos = 0; pos < [imageViews count]; pos++) {
 		UIImageView* selview = [selectedViews objectAtIndex: pos];
-		if (pos < [selectedDice count]) {
-			NSNumber* selected = [selectedDice objectAtIndex: pos];
-			selview.hidden = ![selected boolValue];
+		if (pos < [dice count]) {
+			selview.hidden = ![dice getSelectedAtIndex: pos];
 		}
 	}
 }
@@ -188,6 +198,12 @@
 	int pos = row*dicePerRow + col;
 	return (pos);
 }
+
+-(void) onChangeNotification: (NSNotification*) note
+{
+	[self updateDice];
+	[self updateSelection];
+}
 @end
 
 static NSMutableDictionary* globalImageCache = nil;
@@ -205,43 +221,44 @@ static int globalImageCacheRefCount = 0;
 		imageCache = globalImageCache;
 		globalImageCacheRefCount++;
 		dice = nil;
+		dieImageCache = [[NSMutableArray alloc] init];
 		imageViews = [[NSMutableArray alloc] init];
 		selectedViews = [[NSMutableArray alloc] init];
-		selectedDice = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
 
 
--(NSArray*) dice
+-(SPSelectableDice*) dice
 {
 	return dice;
 }
 
--(void) setDice: (NSArray*) dice_
+-(void) setDice: (SPSelectableDice*) dice_
 {
+	NSNotificationCenter* noteCenter = [NSNotificationCenter defaultCenter];
 	[dice_ retain];
-	NSArray* oldDice = dice;
+	SPSelectableDice* oldDice = dice;
 	dice = dice_;
-	int dicecount = [dice count];
-	id* carray = malloc(sizeof(id) * dicecount);
-	int i;
-	for (i = 0; i < dicecount; i++) {
-		if (i < [selectedDice count]) {
-			carray[i] = [selectedDice objectAtIndex: i];
-		}
-		else {
-			carray[i] = [NSNumber numberWithBool: 0];
-		}
-	}
-	NSMutableArray* oldSelectedDice = selectedDice;
-	selectedDice = [[NSMutableArray alloc] initWithObjects: carray
-							 count: [dice count]];
-	[oldSelectedDice release];
-	free(carray);
-	[self updateDice: oldDice];
+	[self updateDice];
 	[self updateSelection];
+	[noteCenter removeObserver: self name: @"added" object: oldDice];
+	[noteCenter removeObserver: self name: @"removed" object: oldDice];
+	[noteCenter removeObserver: self name: @"selectedChanged"
+			    object: oldDice];
 	[oldDice release];
+	[noteCenter addObserver: self
+		       selector: @selector(onChangeNotification:)
+			   name: @"added"
+			 object: dice];
+	[noteCenter addObserver: self
+		       selector: @selector(onChangeNotification:)
+			   name: @"removed"
+			 object: dice];
+	[noteCenter addObserver: self
+		       selector: @selector(onChangeNotification:)
+			   name: @"selectedChanged"
+			 object: dice];
 }
 
 -(int) dicePerRow
@@ -252,7 +269,7 @@ static int globalImageCacheRefCount = 0;
 -(void) setDicePerRow: (int) dpr
 {
 	dicePerRow = dpr;
-	[self updateDice: dice];
+	[self updateDice];
 }
 
 -(float) rowHeight
@@ -263,7 +280,7 @@ static int globalImageCacheRefCount = 0;
 -(void) setRowHeight:(float)rowHeight_
 {
 	rowHeight = rowHeight_;
-	[self updateDice: dice];
+	[self updateDice];
 }
 
 /*
@@ -288,10 +305,8 @@ static int globalImageCacheRefCount = 0;
 	UITouch* touch = [touches anyObject];
 	CGPoint loc = [touch locationInView: self];
 	int pos = [self diePositionForLocation: loc];
-	if (pos == touchBeganPos && pos < [selectedDice count]) {
-		NSNumber* selected = [selectedDice objectAtIndex: pos];
-		[selectedDice replaceObjectAtIndex: pos withObject:
-			[NSNumber numberWithBool: ![selected boolValue]]];
+	if (pos == touchBeganPos && pos < [dice count]) {
+		[dice setSelected: ![dice getSelectedAtIndex:pos] atIndex:pos];
 		[self updateSelection];
 	}
 }
@@ -304,7 +319,7 @@ static int globalImageCacheRefCount = 0;
 		[globalImageCache release];
 	}
 	[dice release];
-	[selectedDice release];
+	[dieImageCache release];
 	[super dealloc];
 }
 

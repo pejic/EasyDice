@@ -19,6 +19,7 @@
 		8F1E0547144F307000727902 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 8F1E0546144F307000727902 /* assets */; };
 		8F1E054B144F351F00727902 /* SPDiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E054A144F351F00727902 /* SPDiceView.m */; };
 		8F1E054F144F374900727902 /* SPDie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E054E144F374900727902 /* SPDie.m */; };
+		8F1E0552144F90DC00727902 /* SPSelectableDice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E0551144F90DC00727902 /* SPSelectableDice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		8F1E054A144F351F00727902 /* SPDiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPDiceView.m; path = Controls/SPDiceView.m; sourceTree = "<group>"; };
 		8F1E054D144F374900727902 /* SPDie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPDie.h; path = Model/SPDie.h; sourceTree = "<group>"; };
 		8F1E054E144F374900727902 /* SPDie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPDie.m; path = Model/SPDie.m; sourceTree = "<group>"; };
+		8F1E0550144F90DC00727902 /* SPSelectableDice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPSelectableDice.h; path = Model/SPSelectableDice.h; sourceTree = "<group>"; };
+		8F1E0551144F90DC00727902 /* SPSelectableDice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPSelectableDice.m; path = Model/SPSelectableDice.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,8 @@
 			children = (
 				8F1E054D144F374900727902 /* SPDie.h */,
 				8F1E054E144F374900727902 /* SPDie.m */,
+				8F1E0550144F90DC00727902 /* SPSelectableDice.h */,
+				8F1E0551144F90DC00727902 /* SPSelectableDice.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 				8F1E053C144F304F00727902 /* viewimagetouchtestViewController.m in Sources */,
 				8F1E054B144F351F00727902 /* SPDiceView.m in Sources */,
 				8F1E054F144F374900727902 /* SPDie.m in Sources */,
+				8F1E0552144F90DC00727902 /* SPSelectableDice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

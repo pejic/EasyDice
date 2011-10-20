@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "../Model/SPDie.h"
+#import "../Model/SPSelectableDice.h"
 
 @interface SPDiceView : UIView {
 	@private
@@ -15,7 +16,10 @@
 	NSMutableDictionary* imageCache;
 
 	/** Array of SPDie objects indicating which are to be displayed. */
-	NSArray* dice;
+	SPSelectableDice* dice;
+
+	/** Mapping from die index to imageCache */
+	NSMutableArray* dieImageCache;
 
 	/** Array of UIImageView objects.  These views are used to display the
 	 * die Images. */
@@ -31,15 +35,11 @@
 	/** Height of each row of dice. */
 	float rowHeight;
 
-	/** Array of NSInteger objects marking which die is selected.  The
-	 * indicies correspond to the indicies in the dice array. */
-	NSMutableArray* selectedDice;
-
 	/** Marks where a touch began. */
 	int touchBeganPos;
 }
 
-@property (nonatomic, retain) NSArray* dice;
+@property (nonatomic, retain) SPSelectableDice* dice;
 @property (nonatomic) int dicePerRow;
 @property (nonatomic) float rowHeight;
 
