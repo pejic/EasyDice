@@ -11,7 +11,7 @@
 
 /** \brief Keeps track of an array of dice and their selection.
  *
- * Sends notifications "added", "removed", "selectedChanged".
+ * Sends notifications "added", "removed", "replaced", "selectedChanged".
  */
 @interface SPSelectableDice : NSObject {
 	@private
@@ -29,5 +29,7 @@
 	    atIndex: (int) i;
 -(SPDie*) getDieAtIndex: (int) i;
 -(BOOL) getSelectedAtIndex: (int) i;
+-(void) setFacingValue: (int) value
+	       atIndex: (int) i;
 
 @end

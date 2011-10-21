@@ -12,6 +12,7 @@
 
 -(void) onAvailableDiePushed: (id) sender
 			 die: (NSNumber*) pos;
+-(void) onRollTouchedUpInside: (id) sender;
 
 @end
 
@@ -25,6 +26,21 @@
 	[rdice addDie: [adice getDieAtIndex: [pos intValue]]];
 }
 
+-(void) onRollTouchedUpInside: (id) sender
+{
+	SPSelectableDice* dice = rollingView.dice;
+	int i;
+	for (i = 0; i < [dice count]; i++) {
+		if (![dice getSelectedAtIndex: i]) {
+			continue;
+		}
+		SPDie* die = [dice getDieAtIndex: i];
+		int value = (random() >> 5) % [die dieSize] + 1;
+		[dice setFacingValue: value
+			     atIndex: i];
+	}
+}
+
 @end
 
 
@@ -34,6 +50,7 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
+		[self setBackgroundColor: [UIColor whiteColor]];
 		rollingView = [[SPDiceView alloc] initWithFrame: frame];
 		[self addSubview: rollingView];
 		availableView = [[SPDiceView alloc] initWithFrame: frame];
@@ -42,6 +59,14 @@
 					       andAction:
 				@selector(onAvailableDiePushed:die:)];
 		rollingView.selectionEnabled = YES;
+		roll = [[UIButton buttonWithType: UIButtonTypeRoundedRect]
+				retain];;
+		[self addSubview: roll];
+		[roll addTarget: self
+			 action: @selector(onRollTouchedUpInside:)
+	       forControlEvents: UIControlEventTouchUpInside];
+		[roll setTitle: @"Roll"
+		      forState: UIControlStateNormal];
 	}
 	return self;
 }
@@ -59,6 +84,7 @@
 {
 	[rollingView release];
 	[availableView release];
+	[roll release];
 	[super dealloc];
 }
 
@@ -74,8 +100,15 @@
 	aframe.origin.x = 0;
 	aframe.origin.y = rframe.size.height;
 	aframe.size.height = rowHeight;
+	CGRect rbframe = frame;
+	rbframe.origin.x = frame.size.width - 100;
+	rbframe.origin.y = aframe.origin.y - 32;
+	rbframe.size.width = 100;
+	rbframe.size.height = 32;
+	
 	rollingView.frame = rframe;
 	availableView.frame = aframe;
+	roll.frame = rbframe;
 	
 	int numPerRow = frame.size.width / dieDim.width;
 	rollingView.dicePerRow = numPerRow;

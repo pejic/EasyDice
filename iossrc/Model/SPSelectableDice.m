@@ -91,4 +91,20 @@
 	return ([sel boolValue]);
 }
 
+-(void) setFacingValue: (int) value
+	       atIndex: (int) i
+{
+	if (i < 0 || i >= [dice count]) {
+		return;
+	}
+	else {
+		SPDie* olddie = [dice objectAtIndex: i];
+		SPDie* newdie = [SPDie dieWithSize: [olddie dieSize]
+				    andFacingValue: value];
+		[dice replaceObjectAtIndex: i
+				withObject: newdie];
+		[self postNotification: @"replaced" index: i];
+	}
+}
+
 @end

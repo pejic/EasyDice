@@ -260,6 +260,7 @@ static int globalImageCacheRefCount = 0;
 	[self updateSelection];
 	[noteCenter removeObserver: self name: @"added" object: oldDice];
 	[noteCenter removeObserver: self name: @"removed" object: oldDice];
+	[noteCenter removeObserver: self name: @"replaced" object: oldDice];
 	[noteCenter removeObserver: self name: @"selectedChanged"
 			    object: oldDice];
 	[oldDice release];
@@ -270,6 +271,10 @@ static int globalImageCacheRefCount = 0;
 	[noteCenter addObserver: self
 		       selector: @selector(onChangeNotification:)
 			   name: @"removed"
+			 object: dice];
+	[noteCenter addObserver: self
+		       selector: @selector(onChangeNotification:)
+			   name: @"replaced"
 			 object: dice];
 	[noteCenter addObserver: self
 		       selector: @selector(onChangeNotification:)
