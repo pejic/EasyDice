@@ -21,11 +21,15 @@
 	UIScreen* screen = [UIScreen mainScreen];
 	CGRect scBounds = screen.bounds;
 	self.window = [[UIWindow alloc] initWithFrame: scBounds];
+	[self.window setBackgroundColor: [UIColor whiteColor]];
 	[self.window makeKeyAndVisible];
 	
+	static const int MARGIN = 15;
 	CGRect viewBounds = scBounds;
-	viewBounds.origin.y = 20;
-	viewBounds.size.height -= 20;
+	viewBounds.origin.y = 20 + MARGIN;
+	viewBounds.size.height -= 20 + MARGIN * 2;
+	viewBounds.origin.x = MARGIN;
+	viewBounds.size.width -= MARGIN * 2;
 	
 	SPDiceRoller* diceView = [[SPDiceRoller alloc]
 				  initWithFrame: viewBounds];

@@ -50,7 +50,6 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		[self setBackgroundColor: [UIColor whiteColor]];
 		rollingView = [[SPDiceView alloc] initWithFrame: frame];
 		[self addSubview: rollingView];
 		availableView = [[SPDiceView alloc] initWithFrame: frame];
