@@ -163,7 +163,8 @@
 	for (pos = 0; pos < [imageViews count]; pos++) {
 		UIImageView* selview = [selectedViews objectAtIndex: pos];
 		if (pos < [dice count]) {
-			selview.hidden = ![dice getSelectedAtIndex: pos];
+			selview.hidden = !selectionEnabled
+					|| ![dice getSelectedAtIndex: pos];
 		}
 	}
 }
@@ -227,10 +228,22 @@ static int globalImageCacheRefCount = 0;
 		dicePerRow = 1;
 		rowHeight = 20;
 		touchBeganPos = 0;
+		selectionEnabled = NO;
 	}
 	return self;
 }
 
+- (void)dealloc
+{
+	imageCache = nil;
+	globalImageCacheRefCount--;
+	if (globalImageCacheRefCount == 0) {
+		[globalImageCache release];
+	}
+	[dice release];
+	[dieImageCache release];
+	[super dealloc];
+}
 
 -(SPSelectableDice*) dice
 {
@@ -280,9 +293,20 @@ static int globalImageCacheRefCount = 0;
 	return (rowHeight);
 }
 
--(void) setRowHeight:(float)rowHeight_
+-(void) setRowHeight: (float) rowHeight_
 {
 	rowHeight = rowHeight_;
+	[self updateDice];
+}
+
+-(BOOL) selectionEnabled
+{
+	return selectionEnabled;
+}
+
+-(void) setSelectionEnabled: (BOOL) selectionEnabled_
+{
+	selectionEnabled = selectionEnabled_;
 	[self updateDice];
 }
 
@@ -311,19 +335,18 @@ static int globalImageCacheRefCount = 0;
 	if (pos == touchBeganPos && pos < [dice count]) {
 		[dice setSelected: ![dice getSelectedAtIndex:pos] atIndex:pos];
 		[self updateSelection];
+		NSNumber* posnumber = [NSNumber numberWithInt: pos];
+		[touchUpInsideTarget performSelector: touchUpInsideAction
+					  withObject: self
+					  withObject: posnumber];
 	}
 }
 
-- (void)dealloc
+-(void) setTouchUpInsideDieTarget: (id) target
+			andAction: (SEL) action
 {
-	imageCache = nil;
-	globalImageCacheRefCount--;
-	if (globalImageCacheRefCount == 0) {
-		[globalImageCache release];
-	}
-	[dice release];
-	[dieImageCache release];
-	[super dealloc];
+	touchUpInsideTarget = target;
+	touchUpInsideAction = action;
 }
 
 @end

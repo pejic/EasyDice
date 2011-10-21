@@ -8,6 +8,25 @@
 
 #import "SPDiceRoller.h"
 
+@interface SPDiceRoller (Private)
+
+-(void) onAvailableDiePushed: (id) sender
+			 die: (NSNumber*) pos;
+
+@end
+
+@implementation SPDiceRoller (Private)
+
+-(void) onAvailableDiePushed: (id) sender
+			 die: (NSNumber*) pos
+{
+	SPSelectableDice* rdice = rollingView.dice;
+	SPSelectableDice* adice = availableView.dice;
+	[rdice addDie: [adice getDieAtIndex: [pos intValue]]];
+}
+
+@end
+
 
 @implementation SPDiceRoller
 
@@ -19,6 +38,10 @@
 		[self addSubview: rollingView];
 		availableView = [[SPDiceView alloc] initWithFrame: frame];
 		[self addSubview: availableView];
+		[availableView setTouchUpInsideDieTarget: self
+					       andAction:
+				@selector(onAvailableDiePushed:die:)];
+		rollingView.selectionEnabled = YES;
 	}
 	return self;
 }

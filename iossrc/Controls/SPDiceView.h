@@ -37,10 +37,33 @@
 
 	/** Marks where a touch began. */
 	int touchBeganPos;
+
+	/** Whether dice can be selected. */
+	BOOL selectionEnabled;
+
+	/** Target for touch up inside die. */
+	id touchUpInsideTarget;
+
+	/** Action on touch up inside target. */
+	SEL touchUpInsideAction;
 }
 
 @property (nonatomic, retain) SPSelectableDice* dice;
 @property (nonatomic) int dicePerRow;
 @property (nonatomic) float rowHeight;
+@property (nonatomic) BOOL selectionEnabled;
+
+/**
+ * Adds an event listener for touch up inside on dice.  The event is triggered
+ * when the user touches down and up in the same die.
+ *
+ * \param target The target object that the action is called on.
+ * \param action A method that takes an SPDiceView* (the sender) and an
+ *	NSNumber (the index of the die that was pushed). E.g.
+ *	[target onTouchUpInsideDie: (SPDiceView*) sender
+ *			     index: (NSNumber) dieIndex];
+ */
+-(void) setTouchUpInsideDieTarget: (id) target
+			andAction: (SEL) action;
 
 @end
