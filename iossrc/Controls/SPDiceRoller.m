@@ -13,6 +13,7 @@
 -(void) onAvailableDiePushed: (id) sender
 			 die: (NSNumber*) pos;
 -(void) onRollTouchedUpInside: (id) sender;
+-(void) onRemoveTouchedUpInside: (id) sender;
 
 @end
 
@@ -28,8 +29,12 @@
 
 -(void) onRollTouchedUpInside: (id) sender
 {
-	SPSelectableDice* dice = rollingView.dice;
-	[dice rollSelected];
+	[rollingView.dice rollSelected];
+}
+
+-(void) onRemoveTouchedUpInside: (id) sender
+{
+	[rollingView.dice removeUnselected];
 }
 
 @end
@@ -49,6 +54,7 @@
 					       andAction:
 				@selector(onAvailableDiePushed:die:)];
 		rollingView.selectionEnabled = YES;
+		
 		roll = [[UIButton buttonWithType: UIButtonTypeRoundedRect]
 				retain];;
 		[self addSubview: roll];
@@ -57,6 +63,15 @@
 	       forControlEvents: UIControlEventTouchUpInside];
 		[roll setTitle: @"Roll"
 		      forState: UIControlStateNormal];
+		
+		remove = [[UIButton buttonWithType: UIButtonTypeRoundedRect]
+				retain];
+		[self addSubview: remove];
+		[remove addTarget: self
+			   action: @selector(onRemoveTouchedUpInside:)
+		 forControlEvents: UIControlEventTouchUpInside];
+		[remove setTitle: @"Remove"
+			forState: UIControlStateNormal];
 	}
 	return self;
 }
@@ -90,15 +105,21 @@
 	aframe.origin.x = 0;
 	aframe.origin.y = rframe.size.height;
 	aframe.size.height = rowHeight;
-	CGRect rbframe = frame;
-	rbframe.origin.x = frame.size.width - 100;
-	rbframe.origin.y = aframe.origin.y - 32;
-	rbframe.size.width = 100;
-	rbframe.size.height = 32;
+	CGRect rbframe = CGRectMake(
+				    frame.size.width - 100,
+				    aframe.origin.y - 32,
+				    100,
+				    32);
+	CGRect remframe = CGRectMake(
+				     0,
+				     rbframe.origin.y,
+				     100,
+				     32);
 	
 	rollingView.frame = rframe;
 	availableView.frame = aframe;
 	roll.frame = rbframe;
+	remove.frame = remframe;
 	
 	int numPerRow = frame.size.width / dieDim.width;
 	rollingView.dicePerRow = numPerRow;

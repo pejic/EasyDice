@@ -117,4 +117,15 @@
 	}
 }
 
+-(void) removeUnselected
+{
+	int i;
+	for (i = [self count]-1; i >= 0; i--) {
+		if ([self getSelectedAtIndex: i]) {
+			continue;
+		}
+		[self removeDieAtIndex: i];
+	}
+}
+
 @end

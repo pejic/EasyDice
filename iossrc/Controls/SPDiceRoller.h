@@ -19,6 +19,8 @@
 	CGSize dieDim;
 	/** Button for rolling dice. */
 	UIButton* roll;
+	/** Button for removing dice. */
+	UIButton* remove;
 }
 
 @property (nonatomic, retain) SPSelectableDice* rollingDice;

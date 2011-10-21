@@ -32,5 +32,6 @@
 -(void) setDie: (SPDie*) die
        atIndex: (int) i;
 -(void) rollSelected;
+-(void) removeUnselected;
 
 @end
