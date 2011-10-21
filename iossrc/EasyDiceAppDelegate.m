@@ -1,29 +1,43 @@
 //
-//  viewimagetouchtestAppDelegate.m
-//  viewimagetouchtest
+//  Easy_DiceAppDelegate.m
+//  Easy Dice
 //
-//  Created by Slobodan Pejic on 11-10-19.
+//  Created by Slobodan Pejic on 11-10-20.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "viewimagetouchtestAppDelegate.h"
+#import "EasyDiceAppDelegate.h"
+#import "Controls/SPDiceRoller.h"
+#import "Model/AppModel.h"
 
-#import "viewimagetouchtestViewController.h"
-
-@implementation viewimagetouchtestAppDelegate
+@implementation EasyDiceAppDelegate
 
 
 @synthesize window=_window;
 
-@synthesize viewController=_viewController;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Override point for customization after application launch.
-	 
-	self.window.rootViewController = self.viewController;
+	UIScreen* screen = [UIScreen mainScreen];
+	CGRect scBounds = screen.bounds;
+	self.window = [[UIWindow alloc] initWithFrame: scBounds];
 	[self.window makeKeyAndVisible];
-    return YES;
+	
+	CGRect viewBounds = scBounds;
+	viewBounds.origin.y = 20;
+	viewBounds.size.height -= 20;
+	
+	SPDiceRoller* diceView = [[SPDiceRoller alloc]
+				  initWithFrame: viewBounds];
+	[diceView setDieDim: CGSizeMake(48, 48)];
+	[self.window addSubview: diceView];
+	
+	AppModel* model = [AppModel sharedAppModel];
+	
+	diceView.rollingDice = model.dice;
+	diceView.availableDice = model.availableDice;
+	
+	return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -68,8 +82,7 @@
 - (void)dealloc
 {
 	[_window release];
-	[_viewController release];
-    [super dealloc];
+	[super dealloc];
 }
 
 @end

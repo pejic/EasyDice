@@ -224,6 +224,9 @@ static int globalImageCacheRefCount = 0;
 		dieImageCache = [[NSMutableArray alloc] init];
 		imageViews = [[NSMutableArray alloc] init];
 		selectedViews = [[NSMutableArray alloc] init];
+		dicePerRow = 1;
+		rowHeight = 20;
+		touchBeganPos = 0;
 	}
 	return self;
 }

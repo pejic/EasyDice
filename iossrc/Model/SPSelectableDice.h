@@ -22,6 +22,8 @@
 -(id) init;
 -(int) count;
 -(void) addDie: (SPDie*) die;
+-(void) addDie: (SPDie*) die
+      selected: (BOOL) selected;
 -(void) removeDieAtIndex: (int) i;
 -(void) setSelected: (BOOL) selected
 	    atIndex: (int) i;

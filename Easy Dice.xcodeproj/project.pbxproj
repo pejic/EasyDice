@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8F1E05631450D47C00727902 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1E05621450D47C00727902 /* UIKit.framework */; };
+		8F1E05651450D47C00727902 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1E05641450D47C00727902 /* Foundation.framework */; };
+		8F1E05671450D47C00727902 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1E05661450D47C00727902 /* CoreGraphics.framework */; };
+		8F1E056D1450D47D00727902 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F1E056B1450D47D00727902 /* InfoPlist.strings */; };
+		8F1E05701450D47D00727902 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E056F1450D47D00727902 /* main.m */; };
+		8F1E05731450D47D00727902 /* EasyDiceAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05721450D47D00727902 /* EasyDiceAppDelegate.m */; };
+		8F1E057D1450D6A700727902 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 8F1E057C1450D6A700727902 /* assets */; };
+		8F1E05971450DA3F00727902 /* SPDiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05901450DA3F00727902 /* SPDiceView.m */; };
+		8F1E05981450DA3F00727902 /* SPSelectableDice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05931450DA3F00727902 /* SPSelectableDice.m */; };
+		8F1E05991450DA3F00727902 /* SPDie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05951450DA3F00727902 /* SPDie.m */; };
+		8F1E05A01450E05500727902 /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E059F1450E05500727902 /* AppModel.m */; };
+		8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05A21450E34F00727902 /* SPDiceRoller.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8F1E055E1450D47C00727902 /* Easy Dice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Easy Dice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F1E05621450D47C00727902 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8F1E05641450D47C00727902 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8F1E05661450D47C00727902 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8F1E056A1450D47D00727902 /* Easy Dice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Easy Dice-Info.plist"; sourceTree = "<group>"; };
+		8F1E056C1450D47D00727902 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8F1E056F1450D47D00727902 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8F1E05711450D47D00727902 /* EasyDiceAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyDiceAppDelegate.h; sourceTree = "<group>"; };
+		8F1E05721450D47D00727902 /* EasyDiceAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EasyDiceAppDelegate.m; sourceTree = "<group>"; };
+		8F1E057C1450D6A700727902 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		8F1E05901450DA3F00727902 /* SPDiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDiceView.m; sourceTree = "<group>"; };
+		8F1E05911450DA3F00727902 /* SPDiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDiceView.h; sourceTree = "<group>"; };
+		8F1E05931450DA3F00727902 /* SPSelectableDice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSelectableDice.m; sourceTree = "<group>"; };
+		8F1E05941450DA3F00727902 /* SPDie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDie.h; sourceTree = "<group>"; };
+		8F1E05951450DA3F00727902 /* SPDie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDie.m; sourceTree = "<group>"; };
+		8F1E05961450DA3F00727902 /* SPSelectableDice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSelectableDice.h; sourceTree = "<group>"; };
+		8F1E059E1450E05500727902 /* AppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppModel.h; sourceTree = "<group>"; };
+		8F1E059F1450E05500727902 /* AppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppModel.m; sourceTree = "<group>"; };
+		8F1E05A11450E34F00727902 /* SPDiceRoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDiceRoller.h; sourceTree = "<group>"; };
+		8F1E05A21450E34F00727902 /* SPDiceRoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDiceRoller.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8F1E055B1450D47C00727902 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F1E05631450D47C00727902 /* UIKit.framework in Frameworks */,
+				8F1E05651450D47C00727902 /* Foundation.framework in Frameworks */,
+				8F1E05671450D47C00727902 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8F1E05531450D47C00727902 = {
+			isa = PBXGroup;
+			children = (
+				8F1E05921450DA3F00727902 /* Model */,
+				8F1E058F1450DA3F00727902 /* Controls */,
+				8F1E057C1450D6A700727902 /* assets */,
+				8F1E05681450D47C00727902 /* iossrc */,
+				8F1E05611450D47C00727902 /* Frameworks */,
+				8F1E055F1450D47C00727902 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8F1E055F1450D47C00727902 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F1E055E1450D47C00727902 /* Easy Dice.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8F1E05611450D47C00727902 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F1E05621450D47C00727902 /* UIKit.framework */,
+				8F1E05641450D47C00727902 /* Foundation.framework */,
+				8F1E05661450D47C00727902 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8F1E05681450D47C00727902 /* iossrc */ = {
+			isa = PBXGroup;
+			children = (
+				8F1E05711450D47D00727902 /* EasyDiceAppDelegate.h */,
+				8F1E05721450D47D00727902 /* EasyDiceAppDelegate.m */,
+				8F1E05691450D47D00727902 /* Supporting Files */,
+			);
+			path = iossrc;
+			sourceTree = "<group>";
+		};
+		8F1E05691450D47D00727902 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8F1E056A1450D47D00727902 /* Easy Dice-Info.plist */,
+				8F1E056B1450D47D00727902 /* InfoPlist.strings */,
+				8F1E056F1450D47D00727902 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8F1E058F1450DA3F00727902 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				8F1E05911450DA3F00727902 /* SPDiceView.h */,
+				8F1E05901450DA3F00727902 /* SPDiceView.m */,
+				8F1E05A11450E34F00727902 /* SPDiceRoller.h */,
+				8F1E05A21450E34F00727902 /* SPDiceRoller.m */,
+			);
+			name = Controls;
+			path = iossrc/Controls;
+			sourceTree = "<group>";
+		};
+		8F1E05921450DA3F00727902 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8F1E05941450DA3F00727902 /* SPDie.h */,
+				8F1E05951450DA3F00727902 /* SPDie.m */,
+				8F1E05961450DA3F00727902 /* SPSelectableDice.h */,
+				8F1E05931450DA3F00727902 /* SPSelectableDice.m */,
+				8F1E059E1450E05500727902 /* AppModel.h */,
+				8F1E059F1450E05500727902 /* AppModel.m */,
+			);
+			name = Model;
+			path = iossrc/Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8F1E055D1450D47C00727902 /* Easy Dice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F1E05791450D47D00727902 /* Build configuration list for PBXNativeTarget "Easy Dice" */;
+			buildPhases = (
+				8F1E055A1450D47C00727902 /* Sources */,
+				8F1E055B1450D47C00727902 /* Frameworks */,
+				8F1E055C1450D47C00727902 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Easy Dice";
+			productName = "Easy Dice";
+			productReference = 8F1E055E1450D47C00727902 /* Easy Dice.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8F1E05551450D47C00727902 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 8F1E05581450D47C00727902 /* Build configuration list for PBXProject "Easy Dice" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8F1E05531450D47C00727902;
+			productRefGroup = 8F1E055F1450D47C00727902 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8F1E055D1450D47C00727902 /* Easy Dice */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8F1E055C1450D47C00727902 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F1E056D1450D47D00727902 /* InfoPlist.strings in Resources */,
+				8F1E057D1450D6A700727902 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8F1E055A1450D47C00727902 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F1E05701450D47D00727902 /* main.m in Sources */,
+				8F1E05731450D47D00727902 /* EasyDiceAppDelegate.m in Sources */,
+				8F1E05971450DA3F00727902 /* SPDiceView.m in Sources */,
+				8F1E05981450DA3F00727902 /* SPSelectableDice.m in Sources */,
+				8F1E05991450DA3F00727902 /* SPDie.m in Sources */,
+				8F1E05A01450E05500727902 /* AppModel.m in Sources */,
+				8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8F1E056B1450D47D00727902 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F1E056C1450D47D00727902 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8F1E05771450D47D00727902 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8F1E05781450D47D00727902 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		8F1E057A1450D47D00727902 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "iossrc/Easy Dice-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8F1E057B1450D47D00727902 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "iossrc/Easy Dice-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8F1E05581450D47C00727902 /* Build configuration list for PBXProject "Easy Dice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F1E05771450D47D00727902 /* Debug */,
+				8F1E05781450D47D00727902 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F1E05791450D47D00727902 /* Build configuration list for PBXNativeTarget "Easy Dice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F1E057A1450D47D00727902 /* Debug */,
+				8F1E057B1450D47D00727902 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8F1E05551450D47C00727902 /* Project object */;
+}

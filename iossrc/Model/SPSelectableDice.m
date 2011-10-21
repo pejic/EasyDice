@@ -58,6 +58,13 @@
 	[self postNotification: @"added" index: [dice count] - 1];
 }
 
+-(void) addDie: (SPDie*) die
+      selected: (BOOL) selected_
+{
+	[self addDie: die];
+	[self setSelected: selected_ atIndex: [dice count] - 1];
+}
+
 -(void) removeDieAtIndex: (int) i
 {
 	[dice removeObjectAtIndex: i];
