@@ -21,7 +21,11 @@
 	UIScreen* screen = [UIScreen mainScreen];
 	CGRect scBounds = screen.bounds;
 	self.window = [[UIWindow alloc] initWithFrame: scBounds];
-	[self.window setBackgroundColor: [UIColor whiteColor]];
+	[self.window setBackgroundColor: [UIColor blackColor]];
+	UIImageView* background =[[UIImageView alloc] initWithImage:
+			[UIImage imageNamed: @"assets/background.png"]];
+	background.frame = scBounds;
+	[self.window addSubview: background];
 	[self.window makeKeyAndVisible];
 	
 	static const int MARGIN = 15;

@@ -86,6 +86,7 @@
 		
 		metaData = [[UITextField alloc] initWithFrame: frame];
 		[self addSubview: metaData];
+		[metaData setTextColor: [UIColor whiteColor]];
 		[metaData setContentMode: UIViewContentModeCenter];
 	}
 	return self;
