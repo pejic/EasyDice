@@ -70,6 +70,8 @@
 	       forControlEvents: UIControlEventTouchUpInside];
 		[roll setTitle: @"Roll"
 		      forState: UIControlStateNormal];
+		[roll setImage: [UIImage imageNamed: @"assets/roll.png"]
+		      forState: UIControlStateNormal];
 		
 		remove = [[UIButton buttonWithType: UIButtonTypeRoundedRect]
 				retain];
@@ -78,6 +80,8 @@
 			   action: @selector(onRemoveTouchedUpInside:)
 		 forControlEvents: UIControlEventTouchUpInside];
 		[remove setTitle: @"Remove"
+			forState: UIControlStateNormal];
+		[remove setImage: [UIImage imageNamed: @"assets/remove.png"]
 			forState: UIControlStateNormal];
 		
 		metaData = [[UITextField alloc] initWithFrame: frame];

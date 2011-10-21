@@ -23,3 +23,24 @@ for i in `find renders -type f -iname \*.png`; do
 		-channel A -brightness-contrast 25,50 \
 		"$twotime" "$twotimeselected"
 done
+
+cd assets
+
+convert -resize 32x ../renders/d6-6.png roll-top.png
+convert -resize 64x ../renders/d6-6.png roll-top@2x.png
+convert -channel A -blur 8 \
+	-channel RGB -modulate 0,0 \
+	-channel R -brightness-contrast 100 \
+	-channel A -gamma 2 \
+	-channel A -brightness-contrast 25,50 \
+	roll-top.png roll-selected.png
+convert -channel A -blur 16 \
+	-channel RGB -modulate 0,0 \
+	-channel R -brightness-contrast 100 \
+	-channel A -gamma 2 \
+	-channel A -brightness-contrast 25,50 \
+	roll-top@2x.png roll-selected@2x.png
+composite -compose atop roll-top.png roll-selected.png roll.png
+composite -compose atop roll-top@2x.png roll-selected@2x.png roll@2x.png
+rm roll-top.png roll-selected.png
+rm roll-top@2x.png roll-selected@2x.png
