@@ -91,19 +91,29 @@
 	return ([sel boolValue]);
 }
 
--(void) setFacingValue: (int) value
-	       atIndex: (int) i
+-(void) setDie: (SPDie*) die
+       atIndex: (int) i
 {
 	if (i < 0 || i >= [dice count]) {
 		return;
 	}
 	else {
-		SPDie* olddie = [dice objectAtIndex: i];
-		SPDie* newdie = [SPDie dieWithSize: [olddie dieSize]
-				    andFacingValue: value];
 		[dice replaceObjectAtIndex: i
-				withObject: newdie];
+				withObject: die];
 		[self postNotification: @"replaced" index: i];
+	}
+}
+
+-(void) rollSelected
+{
+	int i;
+	for (i = 0; i < [self count]; i++) {
+		if (![self getSelectedAtIndex: i]) {
+			continue;
+		}
+		SPDie* die = [self getDieAtIndex: i];
+		[self setDie: [SPDie dieWithRollDie: die]
+		     atIndex: i];
 	}
 }
 

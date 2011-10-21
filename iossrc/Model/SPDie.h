@@ -24,6 +24,10 @@
 +(id) dieWithSize: (int) size
    andFacingValue: (int) facing;
 
+-(id) initWithRollDie: (SPDie*) die;
+
++(id) dieWithRollDie: (SPDie*) die;
+
 -(int) dieSize;
 -(int) numFacing;
 

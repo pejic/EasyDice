@@ -29,7 +29,8 @@
 	    atIndex: (int) i;
 -(SPDie*) getDieAtIndex: (int) i;
 -(BOOL) getSelectedAtIndex: (int) i;
--(void) setFacingValue: (int) value
-	       atIndex: (int) i;
+-(void) setDie: (SPDie*) die
+       atIndex: (int) i;
+-(void) rollSelected;
 
 @end

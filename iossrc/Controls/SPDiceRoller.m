@@ -29,16 +29,7 @@
 -(void) onRollTouchedUpInside: (id) sender
 {
 	SPSelectableDice* dice = rollingView.dice;
-	int i;
-	for (i = 0; i < [dice count]; i++) {
-		if (![dice getSelectedAtIndex: i]) {
-			continue;
-		}
-		SPDie* die = [dice getDieAtIndex: i];
-		int value = (random() >> 5) % [die dieSize] + 1;
-		[dice setFacingValue: value
-			     atIndex: i];
-	}
+	[dice rollSelected];
 }
 
 @end

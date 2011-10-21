@@ -29,6 +29,21 @@
 			      andFacingValue: facing] autorelease]);
 }
 
+-(id) initWithRollDie: (SPDie*) die
+{
+	int size = [die dieSize];
+	int value = (random() >> 5) % size + 1;
+	if (![self initWithSize: size andFacingValue: value]) {
+		return nil;
+	}
+	return self;
+}
+
++(id) dieWithRollDie: (SPDie*) die
+{
+	return ([[[SPDie alloc] initWithRollDie: die] autorelease]);
+}
+
 -(BOOL) isEqual: (id) other
 {
 	if ([other isKindOfClass: [SPDie class]]) {
