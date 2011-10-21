@@ -8,8 +8,8 @@ for i in `find renders -type f -iname \*.png`; do
 		| sed 's/.png/@2x.png/g'`"
 	twotimeselected="`echo $i | sed 's/renders/assets/g' \
 		| sed 's/.png/-selected@2x.png/g'`"
-	convert -resize 64x "$i" "$regular"
-	convert -resize 128x "$i" "$twotime"
+	convert -resize 64x -filter Lanczos "$i" "$regular"
+	convert -resize 128x -filter Lanczos "$i" "$twotime"
 	convert -channel A -blur 8 \
 		-channel RGB -modulate 0,0 \
 		-channel R -brightness-contrast 100 \
