@@ -1,0 +1,16 @@
+#!/bin/bash
+
+cd icons
+
+FILE=iTunesArtwork.png
+
+function scaleTo {
+	convert -filter Lanczos -resize "$1" "$2" "$3";
+}
+
+scaleTo "57x57" "$FILE" "Icon.png"
+scaleTo "72x72" "$FILE" "Icon-72.png"
+scaleTo "114x114" "$FILE" "Icon@2x.png"
+scaleTo "29x29" "$FILE" "Icon-Small.png"
+scaleTo "50x50" "$FILE" "Icon-Small-50.png"
+scaleTo "58x58" "$FILE" "Icon-Small@2x.png"

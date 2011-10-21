@@ -19,6 +19,7 @@
 		8F1E05991450DA3F00727902 /* SPDie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05951450DA3F00727902 /* SPDie.m */; };
 		8F1E05A01450E05500727902 /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E059F1450E05500727902 /* AppModel.m */; };
 		8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05A21450E34F00727902 /* SPDiceRoller.m */; };
+		8F1E05BF145206A800727902 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 8F1E05BE145206A800727902 /* icons */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		8F1E059F1450E05500727902 /* AppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppModel.m; sourceTree = "<group>"; };
 		8F1E05A11450E34F00727902 /* SPDiceRoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDiceRoller.h; sourceTree = "<group>"; };
 		8F1E05A21450E34F00727902 /* SPDiceRoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDiceRoller.m; sourceTree = "<group>"; };
+		8F1E05BE145206A800727902 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				8F1E05921450DA3F00727902 /* Model */,
 				8F1E058F1450DA3F00727902 /* Controls */,
 				8F1E057C1450D6A700727902 /* assets */,
+				8F1E05BE145206A800727902 /* icons */,
 				8F1E05681450D47C00727902 /* iossrc */,
 				8F1E05611450D47C00727902 /* Frameworks */,
 				8F1E055F1450D47C00727902 /* Products */,
@@ -183,6 +186,7 @@
 			files = (
 				8F1E056D1450D47D00727902 /* InfoPlist.strings in Resources */,
 				8F1E057D1450D6A700727902 /* assets in Resources */,
+				8F1E05BF145206A800727902 /* icons in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
