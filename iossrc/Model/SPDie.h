@@ -15,14 +15,25 @@
 	@private
 	int dieSize;
 	int numFacing;
+	int multiplier;
+	int valueOffset;
 }
 
-
 -(id) initWithSize: (int) size
-    andFacingValue: (int) facing;
+     andFacingSide: (int) facing;
 
 +(id) dieWithSize: (int) size
-   andFacingValue: (int) facing;
+    andFacingSide: (int) facing;
+
+-(id) initWithSize: (int) size
+     andFacingSide: (int) facing
+     andMultiplier: (int) multiplier
+    andValueOffset: (int) offset;
+
++(id) dieWithSize: (int) size
+    andFacingSide: (int) facing
+    andMultiplier: (int) multiplier
+   andValueOffset: (int) offset;
 
 -(id) initWithRollDie: (SPDie*) die;
 
@@ -30,6 +41,7 @@
 
 -(int) dieSize;
 -(int) numFacing;
+-(int) value;
 
 -(NSString*) toString;
 

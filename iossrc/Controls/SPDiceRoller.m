@@ -14,6 +14,7 @@
 			 die: (NSNumber*) pos;
 -(void) onRollTouchedUpInside: (id) sender;
 -(void) onRemoveTouchedUpInside: (id) sender;
+-(void) updateMetaData;
 
 @end
 
@@ -30,11 +31,17 @@
 -(void) onRollTouchedUpInside: (id) sender
 {
 	[rollingView.dice rollSelected];
+	[self updateMetaData];
 }
 
 -(void) onRemoveTouchedUpInside: (id) sender
 {
 	[rollingView.dice removeUnselected];
+}
+-(void) updateMetaData
+{
+	metaData.text = [NSString stringWithFormat: @"Sum: %d",
+			 [rollingView.dice sum]];
 }
 
 @end
@@ -72,6 +79,10 @@
 		 forControlEvents: UIControlEventTouchUpInside];
 		[remove setTitle: @"Remove"
 			forState: UIControlStateNormal];
+		
+		metaData = [[UITextField alloc] initWithFrame: frame];
+		[self addSubview: metaData];
+		[metaData setContentMode: UIViewContentModeCenter];
 	}
 	return self;
 }
@@ -115,11 +126,22 @@
 				     rbframe.origin.y,
 				     100,
 				     32);
+	static const int mdvmargin = 6;
+	static const int mdhmargin = 3;
+	CGRect mdframe = CGRectMake(
+				    remframe.origin.x + remframe.size.width
+				      + mdhmargin,
+				    remframe.origin.y + mdvmargin,
+				    rbframe.origin.x
+				      -(remframe.origin.x + remframe.size.width)
+				      - mdhmargin * 2,
+				    32 - mdvmargin * 2);
 	
 	rollingView.frame = rframe;
 	availableView.frame = aframe;
 	roll.frame = rbframe;
 	remove.frame = remframe;
+	metaData.frame = mdframe;
 	
 	int numPerRow = frame.size.width / dieDim.width;
 	rollingView.dicePerRow = numPerRow;

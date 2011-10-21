@@ -25,13 +25,13 @@
 		return nil;
 	}
 	dice = [[SPSelectableDice alloc] init];
-	[dice addDie: [SPDie dieWithSize: 6 andFacingValue: 1]];
+	[dice addDie: [SPDie dieWithSize: 6 andFacingSide: 1]];
 	availableDice = [[SPSelectableDice alloc] init];
-	[availableDice addDie: [SPDie dieWithSize: 6 andFacingValue: 6]
+	[availableDice addDie: [SPDie dieWithSize: 6 andFacingSide: 6]
 		     selected: NO];
-	[availableDice addDie: [SPDie dieWithSize: 8 andFacingValue: 8]
+	[availableDice addDie: [SPDie dieWithSize: 8 andFacingSide: 8]
 		     selected: NO];
-	[availableDice addDie: [SPDie dieWithSize: 10 andFacingValue: 10]
+	[availableDice addDie: [SPDie dieWithSize: 10 andFacingSide: 10]
 		     selected: NO];
 	return self;
 }

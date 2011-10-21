@@ -12,28 +12,61 @@
 @implementation SPDie
 
 -(id) initWithSize: (int) size
-    andFacingValue: (int) facing
+     andFacingSide: (int) facing
 {
 	if (![super init]) {
 		return nil;
 	}
 	dieSize = size;
 	numFacing = facing;
+	multiplier = 1;
+	valueOffset = 0;
 	return self;
 }
 
 +(id) dieWithSize: (int) size
-   andFacingValue: (int) facing
+    andFacingSide: (int) facing
 {
 	return ([[[SPDie alloc] initWithSize: size
-			      andFacingValue: facing] autorelease]);
+			      andFacingSide: facing] autorelease]);
+}
+
+
+-(id) initWithSize: (int) size
+     andFacingSide: (int) facing
+     andMultiplier: (int) multiplier_
+    andValueOffset: (int) offset
+{
+	if (![self initWithSize: size andFacingSide: facing]) {
+		return nil;
+	}
+	multiplier = multiplier_;
+	valueOffset = offset;
+	return self;
+}
+
++(id) dieWithSize: (int) size
+    andFacingSide: (int) facing
+    andMultiplier: (int) multiplier
+   andValueOffset: (int) offset
+{
+	SPDie* die = [[SPDie alloc] initWithSize: size
+				   andFacingSide: facing
+				   andMultiplier: multiplier
+				  andValueOffset: offset];
+	return ([die autorelease]);
 }
 
 -(id) initWithRollDie: (SPDie*) die
 {
 	int size = [die dieSize];
 	int value = (random() >> 5) % size + 1;
-	if (![self initWithSize: size andFacingValue: value]) {
+	int mult = die->multiplier;
+	int offset = die->valueOffset;
+	if (![self initWithSize: size
+		  andFacingSide: value
+		  andMultiplier: mult
+		 andValueOffset: offset]) {
 		return nil;
 	}
 	return self;
@@ -67,9 +100,21 @@
 	return numFacing;
 }
 
+-(int) value
+{
+	return (numFacing * multiplier + valueOffset);
+}
+
 -(NSString*) toString
 {
-	return ([NSString stringWithFormat: @"d%d-%d", dieSize, numFacing]);
+	if (multiplier == 1) {
+		return ([NSString stringWithFormat: @"d%d-%d",
+			 dieSize, numFacing]);
+	}
+	else {
+		return ([NSString stringWithFormat: @"d%d-%dx%d",
+			 dieSize, numFacing, multiplier]);
+	}
 }
 
 @end

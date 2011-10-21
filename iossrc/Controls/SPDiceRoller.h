@@ -21,6 +21,8 @@
 	UIButton* roll;
 	/** Button for removing dice. */
 	UIButton* remove;
+	/** Shows metadata about the last roll. */
+	UILabel* metaData;
 }
 
 @property (nonatomic, retain) SPSelectableDice* rollingDice;

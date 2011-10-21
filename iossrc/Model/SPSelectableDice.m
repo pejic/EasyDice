@@ -128,4 +128,29 @@
 	}
 }
 
+-(int) sumSelected
+{
+	int i;
+	int sum = 0;
+	for (i = 0; i < [self count]; i++) {
+		if (![self getSelectedAtIndex: i]) {
+			continue;
+		}
+		SPDie* die = [self getDieAtIndex: i];
+		sum += [die value];
+	}
+	return sum;
+}
+
+-(int) sum
+{
+	int i;
+	int sum = 0;
+	for (i = 0; i < [self count]; i++) {
+		SPDie* die = [self getDieAtIndex: i];
+		sum += [die value];
+	}
+	return sum;
+}
+
 @end

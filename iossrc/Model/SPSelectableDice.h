@@ -33,5 +33,7 @@
        atIndex: (int) i;
 -(void) rollSelected;
 -(void) removeUnselected;
+-(int) sumSelected;
+-(int) sum;
 
 @end
