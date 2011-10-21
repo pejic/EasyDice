@@ -41,7 +41,7 @@
 
 +(id) dieWithRollDie: (SPDie*) die
 {
-	return ([[[SPDie alloc] initWithRollDie: die] autorelease]);
+	return ([[[[die class] alloc] initWithRollDie: die] autorelease]);
 }
 
 -(BOOL) isEqual: (id) other
