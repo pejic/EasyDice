@@ -120,17 +120,18 @@
 	aframe.origin.x = 0;
 	aframe.origin.y = rframe.size.height;
 	aframe.size.height = rowHeight;
+	static const int buttonHeight = 48;
 	CGRect rbframe = CGRectMake(
 				    frame.size.width - 100,
-				    aframe.origin.y - 32,
+				    aframe.origin.y - buttonHeight,
 				    100,
-				    32);
+				    buttonHeight);
 	CGRect remframe = CGRectMake(
 				     0,
 				     rbframe.origin.y,
 				     100,
-				     32);
-	static const int mdvmargin = 6;
+				     buttonHeight);
+	static const int mdvmargin = 48/2 - 16;
 	static const int mdhmargin = 3;
 	CGRect mdframe = CGRectMake(
 				    remframe.origin.x + remframe.size.width
@@ -139,7 +140,7 @@
 				    rbframe.origin.x
 				      -(remframe.origin.x + remframe.size.width)
 				      - mdhmargin * 2,
-				    32 - mdvmargin * 2);
+				    buttonHeight - mdvmargin * 2);
 	
 	rollingView.frame = rframe;
 	availableView.frame = aframe;
