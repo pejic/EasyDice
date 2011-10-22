@@ -1,5 +1,7 @@
 #!/bin/sh
 
+rm -rf assets/*
+
 for i in `find renders -type f -iname d\*.png`; do
 	regular="`echo $i | sed 's/renders/assets/g'`"
 	regularselected="`echo $i | sed 's/renders/assets/g' \
@@ -42,6 +44,8 @@ convert -channel A -blur 16 \
 	roll-top@2x.png roll-selected@2x.png
 composite -compose atop roll-top.png roll-selected.png roll.png
 composite -compose atop roll-top@2x.png roll-selected@2x.png roll@2x.png
+cp roll-top.png reset.png
+cp roll-top@2x.png reset@2x.png
 rm roll-top.png roll-selected.png
 rm roll-top@2x.png roll-selected@2x.png
 

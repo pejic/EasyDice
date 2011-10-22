@@ -36,7 +36,7 @@
 
 -(void) onRemoveTouchedUpInside: (id) sender
 {
-	[rollingView.dice removeUnselected];
+	[rollingView.dice removeAllDice];
 }
 -(void) updateMetaData
 {
@@ -79,9 +79,9 @@
 		[remove addTarget: self
 			   action: @selector(onRemoveTouchedUpInside:)
 		 forControlEvents: UIControlEventTouchUpInside];
-		[remove setTitle: @"Remove"
+		[remove setTitle: @"Reset"
 			forState: UIControlStateNormal];
-		[remove setImage: [UIImage imageNamed: @"assets/remove.png"]
+		[remove setImage: [UIImage imageNamed: @"assets/reset.png"]
 			forState: UIControlStateNormal];
 		
 		metaData = [[UITextField alloc] initWithFrame: frame];

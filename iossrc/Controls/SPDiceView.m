@@ -118,6 +118,9 @@
 		CacheImage* oldcache = nil;
 		if (pos < [dieImageCache count]) {
 			oldcache = [dieImageCache objectAtIndex: pos];
+			if ([oldcache isKindOfClass: [NSNull class]]) {
+				oldcache = nil;
+			}
 		}
 		CacheImage* cache = [self imageCacheForDie: die];
 		if (oldcache == cache) {
@@ -136,7 +139,8 @@
 						 withObject: cache];
 		}
 		else if (pos < [dieImageCache count] && !cache) {
-			[dieImageCache removeObjectAtIndex: pos];
+			[dieImageCache replaceObjectAtIndex: pos
+						 withObject: [NSNull null]];
 		}
 		else {
 			assert(pos == [dieImageCache count]);
@@ -261,6 +265,7 @@ static int globalImageCacheRefCount = 0;
 	[noteCenter removeObserver: self name: @"added" object: oldDice];
 	[noteCenter removeObserver: self name: @"removed" object: oldDice];
 	[noteCenter removeObserver: self name: @"replaced" object: oldDice];
+	[noteCenter removeObserver: self name: @"reset" object: oldDice];
 	[noteCenter removeObserver: self name: @"selectedChanged"
 			    object: oldDice];
 	[oldDice release];
@@ -275,6 +280,10 @@ static int globalImageCacheRefCount = 0;
 	[noteCenter addObserver: self
 		       selector: @selector(onChangeNotification:)
 			   name: @"replaced"
+			 object: dice];
+	[noteCenter addObserver: self
+		       selector: @selector(onChangeNotification:)
+			   name: @"reset"
 			 object: dice];
 	[noteCenter addObserver: self
 		       selector: @selector(onChangeNotification:)

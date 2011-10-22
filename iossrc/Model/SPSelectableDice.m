@@ -17,9 +17,15 @@
 -(void) postNotification: (NSString*) msg
 		   index: (int) i
 {
-	NSDictionary* dict = [NSDictionary
-			      dictionaryWithObject: [NSNumber numberWithInt: i]
-			              forKey: @"index"];
+	NSDictionary* dict = nil;
+	if (index >= 0) {
+		dict =[NSDictionary
+			dictionaryWithObject: [NSNumber numberWithInt: i]
+				      forKey: @"index"];
+	}
+	else {
+		dict = [NSDictionary dictionary];
+	}
 	[[NSNotificationCenter defaultCenter]
 			postNotificationName: msg
 			              object: self
@@ -100,7 +106,8 @@
 	else {
 		[dice replaceObjectAtIndex: i
 				withObject: die];
-		[self postNotification: @"replaced" index: i];
+		[self postNotification: @"replaced"
+				 index: i];
 	}
 }
 
@@ -112,8 +119,12 @@
 			continue;
 		}
 		SPDie* die = [self getDieAtIndex: i];
-		[self setDie: [SPDie dieWithRollDie: die]
-		     atIndex: i];
+		[dice replaceObjectAtIndex: i
+				withObject: [SPDie dieWithRollDie: die]];
+	}
+	if ([self count] > 0) {
+		[self postNotification: @"reset"
+				 index: -1];
 	}
 }
 
@@ -151,6 +162,14 @@
 		sum += [die value];
 	}
 	return sum;
+}
+
+-(void) removeAllDice
+{
+	[dice removeAllObjects];
+	[selected removeAllObjects];
+	[self postNotification: @"reset"
+			 index: -1];
 }
 
 @end
