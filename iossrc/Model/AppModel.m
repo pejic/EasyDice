@@ -27,6 +27,8 @@
 	dice = [[SPSelectableDice alloc] init];
 	[dice addDie: [SPDie dieWithSize: 6 andFacingSide: 1]];
 	availableDice = [[SPSelectableDice alloc] init];
+	[availableDice addDie: [SPDie dieWithSize: 4 andFacingSide: 4]
+		     selected: NO];
 	[availableDice addDie: [SPDie dieWithSize: 6 andFacingSide: 6]
 		     selected: NO];
 	[availableDice addDie: [SPDie dieWithSize: 8 andFacingSide: 8]
