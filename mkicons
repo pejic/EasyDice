@@ -2,7 +2,9 @@
 
 cd icons
 
-FILE=iTunesArtwork.png
+rm -rf ./*
+
+FILE=../renders/iTunesArtwork.png
 
 function scaleTo {
 	convert -filter Lanczos -resize "$1" "$2" "$3";
