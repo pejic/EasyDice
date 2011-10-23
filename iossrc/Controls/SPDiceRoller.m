@@ -15,6 +15,7 @@
 -(void) onRollTouchedUpInside: (id) sender;
 -(void) onRemoveTouchedUpInside: (id) sender;
 -(void) updateMetaData;
+-(void) skinButton: (UIButton*) button;
 
 @end
 
@@ -44,6 +45,19 @@
 			 [rollingView.dice sum]];
 }
 
+-(void) skinButton: (UIButton*) button
+{
+	[button setTitleColor: [UIColor whiteColor]
+		     forState: UIControlStateNormal];
+	[button setBackgroundImage:
+		[UIImage imageNamed: @"assets/buttonNormal.png"]
+			  forState: UIControlStateNormal];
+	[button setBackgroundImage:
+		[UIImage imageNamed: @"assets/buttonHighlighted.png"]
+			  forState: UIControlStateHighlighted];
+	[button setAdjustsImageWhenHighlighted: NO];
+}
+
 @end
 
 
@@ -62,7 +76,7 @@
 				@selector(onAvailableDiePushed:die:)];
 		rollingView.selectionEnabled = YES;
 		
-		roll = [[UIButton buttonWithType: UIButtonTypeRoundedRect]
+		roll = [[UIButton buttonWithType: UIButtonTypeCustom]
 				retain];;
 		[self addSubview: roll];
 		[roll addTarget: self
@@ -70,10 +84,9 @@
 	       forControlEvents: UIControlEventTouchUpInside];
 		[roll setTitle: @"Roll"
 		      forState: UIControlStateNormal];
-		[roll setImage: [UIImage imageNamed: @"assets/roll.png"]
-		      forState: UIControlStateNormal];
+		[self skinButton: roll];
 		
-		remove = [[UIButton buttonWithType: UIButtonTypeRoundedRect]
+		remove = [[UIButton buttonWithType: UIButtonTypeCustom]
 				retain];
 		[self addSubview: remove];
 		[remove addTarget: self
@@ -81,8 +94,7 @@
 		 forControlEvents: UIControlEventTouchUpInside];
 		[remove setTitle: @"Reset"
 			forState: UIControlStateNormal];
-		[remove setImage: [UIImage imageNamed: @"assets/reset.png"]
-			forState: UIControlStateNormal];
+		[self skinButton: remove];
 		
 		metaData = [[UITextField alloc] initWithFrame: frame];
 		[self addSubview: metaData];
@@ -122,15 +134,16 @@
 	aframe.origin.y = rframe.size.height;
 	aframe.size.height = rowHeight;
 	static const int buttonHeight = 48;
+	static const int buttonWidth = 100;
 	CGRect rbframe = CGRectMake(
-				    frame.size.width - 100,
+				    frame.size.width - buttonWidth,
 				    aframe.origin.y - buttonHeight,
-				    100,
+				    buttonWidth,
 				    buttonHeight);
 	CGRect remframe = CGRectMake(
 				     0,
 				     rbframe.origin.y,
-				     100,
+				     buttonWidth,
 				     buttonHeight);
 	static const int mdvmargin = 48/2 - 16;
 	static const int mdhmargin = 3;
