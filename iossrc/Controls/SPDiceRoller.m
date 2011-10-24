@@ -121,6 +121,18 @@
 	[super dealloc];
 }
 
+-(void) setFrame: (CGRect) rect
+{
+	[super setFrame: rect];
+	[self layoutSubviews];
+}
+
+-(void) setBounds: (CGRect) rect
+{
+	[super setBounds: rect];
+	[self layoutSubviews];
+}
+
 -(void) layoutSubviews
 {
 	int rowHeight = dieDim.height + 2;
