@@ -8,6 +8,7 @@
 
 #import "EasyDiceAppDelegate.h"
 #import "Controls/SPDiceRoller.h"
+#import "Controls/SPBannerContainer.h"
 #import "Model/AppModel.h"
 
 @implementation EasyDiceAppDelegate
@@ -29,16 +30,17 @@
 	[self.window makeKeyAndVisible];
 	
 	static const int MARGIN = 15;
-	CGRect viewBounds = scBounds;
-	viewBounds.origin.y = 20 + MARGIN;
-	viewBounds.size.height -= 20 + MARGIN * 2;
-	viewBounds.origin.x = MARGIN;
-	viewBounds.size.width -= MARGIN * 2;
-	
 	SPDiceRoller* diceView = [[SPDiceRoller alloc]
-				  initWithFrame: viewBounds];
+				  initWithFrame: scBounds];
 	[diceView setDieDim: CGSizeMake(48, 48)];
-	[self.window addSubview: diceView];
+	SPBannerContainer* bannerContainer = [[SPBannerContainer alloc] init];
+	bannerContainer.view = self.window;
+	[bannerContainer viewDidLoad];
+	bannerContainer.marginTop = 20 + MARGIN;
+	bannerContainer.marginLeft = MARGIN;
+	bannerContainer.marginRight = MARGIN;
+	bannerContainer.marginBottom = MARGIN;
+	bannerContainer.childView = diceView;
 	
 	AppModel* model = [AppModel sharedAppModel];
 	

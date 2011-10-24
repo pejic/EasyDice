@@ -20,6 +20,8 @@
 		8F1E05A01450E05500727902 /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E059F1450E05500727902 /* AppModel.m */; };
 		8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05A21450E34F00727902 /* SPDiceRoller.m */; };
 		8F1E05BF145206A800727902 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 8F1E05BE145206A800727902 /* icons */; };
+		8F9BE875145606840013242F /* SPBannerContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9BE874145606840013242F /* SPBannerContainer.m */; };
+		8F9BE879145607470013242F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F9BE8771456073E0013242F /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,9 @@
 		8F1E05A11450E34F00727902 /* SPDiceRoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDiceRoller.h; sourceTree = "<group>"; };
 		8F1E05A21450E34F00727902 /* SPDiceRoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDiceRoller.m; sourceTree = "<group>"; };
 		8F1E05BE145206A800727902 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
+		8F9BE873145606840013242F /* SPBannerContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBannerContainer.h; sourceTree = "<group>"; };
+		8F9BE874145606840013242F /* SPBannerContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBannerContainer.m; sourceTree = "<group>"; };
+		8F9BE8771456073E0013242F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F9BE879145607470013242F /* iAd.framework in Frameworks */,
 				8F1E05631450D47C00727902 /* UIKit.framework in Frameworks */,
 				8F1E05651450D47C00727902 /* Foundation.framework in Frameworks */,
 				8F1E05671450D47C00727902 /* CoreGraphics.framework in Frameworks */,
@@ -84,6 +90,7 @@
 		8F1E05611450D47C00727902 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8F9BE8771456073E0013242F /* iAd.framework */,
 				8F1E05621450D47C00727902 /* UIKit.framework */,
 				8F1E05641450D47C00727902 /* Foundation.framework */,
 				8F1E05661450D47C00727902 /* CoreGraphics.framework */,
@@ -114,6 +121,8 @@
 		8F1E058F1450DA3F00727902 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				8F9BE873145606840013242F /* SPBannerContainer.h */,
+				8F9BE874145606840013242F /* SPBannerContainer.m */,
 				8F1E05911450DA3F00727902 /* SPDiceView.h */,
 				8F1E05901450DA3F00727902 /* SPDiceView.m */,
 				8F1E05A11450E34F00727902 /* SPDiceRoller.h */,
@@ -204,6 +213,7 @@
 				8F1E05991450DA3F00727902 /* SPDie.m in Sources */,
 				8F1E05A01450E05500727902 /* AppModel.m in Sources */,
 				8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */,
+				8F9BE875145606840013242F /* SPBannerContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
