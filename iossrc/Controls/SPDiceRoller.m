@@ -99,7 +99,7 @@
 		metaData = [[UITextField alloc] initWithFrame: frame];
 		[self addSubview: metaData];
 		[metaData setTextColor: [UIColor whiteColor]];
-		[metaData setContentMode: UIViewContentModeCenter];
+		[metaData setTextAlignment: UITextAlignmentCenter];
 	}
 	return self;
 }
@@ -157,7 +157,7 @@
 				     rbframe.origin.y,
 				     buttonWidth,
 				     buttonHeight);
-	static const int mdvmargin = 48/2 - 16;
+	static const int mdvmargin = 48/2 - 12;
 	static const int mdhmargin = 3;
 	CGRect mdframe = CGRectMake(
 				    remframe.origin.x + remframe.size.width
