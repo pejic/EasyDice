@@ -5,14 +5,18 @@ cd icons
 rm -rf ./*
 
 FILE=../renders/iTunesArtwork.png
+COVER=../assetssrc/iconcover.png
 
-function scaleTo {
-	convert -filter Lanczos -resize "$1" "$2" "$3";
+function mkIcon {
+	convert -filter Lanczos -resize "$1" "$2" "$3.tmp.png";
+	convert -filter Lanczos -resize "$1" "$COVER" "$3.cover.png";
+	composite -compose atop "$3.cover.png" "$3.tmp.png" "$3";
+	rm "$3.tmp.png" "$3.cover.png";
 }
 
-scaleTo "57x57" "$FILE" "Icon.png"
-scaleTo "72x72" "$FILE" "Icon-72.png"
-scaleTo "114x114" "$FILE" "Icon@2x.png"
-scaleTo "29x29" "$FILE" "Icon-Small.png"
-scaleTo "50x50" "$FILE" "Icon-Small-50.png"
-scaleTo "58x58" "$FILE" "Icon-Small@2x.png"
+mkIcon "57x57" "$FILE" "Icon.png"
+mkIcon "72x72" "$FILE" "Icon-72.png"
+mkIcon "114x114" "$FILE" "Icon@2x.png"
+mkIcon "29x29" "$FILE" "Icon-Small.png"
+mkIcon "50x50" "$FILE" "Icon-Small-50.png"
+mkIcon "58x58" "$FILE" "Icon-Small@2x.png"
