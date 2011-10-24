@@ -2,9 +2,11 @@
 
 #import "SPBannerContainer.h"
 
+static const float animationDuration = 0.5;
+
 @interface SPBannerContainer (Private)
 -(void) makeBanner;
--(void) layout;
+-(void) layout: (BOOL) animated;
 @end
 
 @implementation SPBannerContainer (Private)
@@ -32,7 +34,7 @@
 	[self.view addSubview: banner];
 }
 
--(void) layout
+-(void) layout: (BOOL) animated
 {
 	CGRect bounds = self.view.bounds;
 	CGRect bframe;
@@ -47,8 +49,13 @@
 	vframe.size = CGSizeMake(bounds.size.width - marginLeft - marginRight,
 		bounds.size.height - bsize.height - marginTop - marginBottom);
 	vframe.origin = CGPointMake(marginLeft, marginTop);
-	childView.frame = vframe;
-	banner.frame = bframe;
+
+	float duration = animated ? animationDuration : 0.0;
+	[UIView animateWithDuration: duration
+			 animations: ^{
+				childView.frame = vframe;
+				banner.frame = bframe;
+			 }];
 }
 @end
 
@@ -59,6 +66,8 @@
 	if (![super init]) {
 		return nil;
 	}
+
+	static const float animationDuration = 0.5;
 	return (self);
 }
 
@@ -85,7 +94,7 @@
 	if (childView) {
 		[self.view addSubview: childView];
 	}
-	[self layout];
+	[self layout: NO];
 }
 
 -(CGFloat) marginTop
@@ -96,7 +105,7 @@
 -(void) setMarginTop: (CGFloat) top
 {
 	marginTop = top;
-	[self layout];
+	[self layout: NO];
 }
 
 -(CGFloat) marginLeft
@@ -107,7 +116,7 @@
 -(void) setMarginLeft: (CGFloat) top
 {
 	marginLeft = top;
-	[self layout];
+	[self layout: NO];
 }
 
 -(CGFloat) marginRight
@@ -118,7 +127,7 @@
 -(void) setMarginRight: (CGFloat) top
 {
 	marginRight = top;
-	[self layout];
+	[self layout: NO];
 }
 
 -(CGFloat) marginBottom
@@ -129,18 +138,18 @@
 -(void) setMarginBottom: (CGFloat) top
 {
 	marginBottom = top;
-	[self layout];
+	[self layout: NO];
 }
 
 -(void) bannerViewDidLoadAd: (ADBannerView*) ad
 {
-	[self layout];
+	[self layout: YES];
 }
 
 -(void) bannerView: (ADBannerView*) ad
 didFailToReceiveAdWithError: (NSError*) error
 {
-	[self layout];
+	[self layout: YES];
 }
 
 -(BOOL) bannerViewActionShouldBegin: (ADBannerView*) ad
