@@ -50,6 +50,9 @@ static const float animationDuration = 0.5;
 					- marginTop - marginBottom);
 	if (bannerPosition == SPBannerContainerPositionTop) {
 		bframe.origin = CGPointMake(0, 0);
+		if (!banner.bannerLoaded) {
+			bframe.origin = CGPointMake(0, -50);
+		}
 		vframe.origin = CGPointMake(marginLeft,
 					    marginTop + bsize.height);
 	}
