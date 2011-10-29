@@ -23,20 +23,27 @@
 	CGRect scBounds = screen.bounds;
 	self.window = [[UIWindow alloc] initWithFrame: scBounds];
 	[self.window setBackgroundColor: [UIColor blackColor]];
-	UIImageView* background =[[UIImageView alloc] initWithImage:
-			[UIImage imageNamed: @"assets/background.png"]];
+	background =[[UIImageView alloc] initWithImage:
+		     [UIImage imageNamed: @"assets/background.png"]];
 	background.frame = scBounds;
 	[self.window addSubview: background];
 	[self.window makeKeyAndVisible];
 	
+	CGRect viewBounds = scBounds;
+	viewBounds.origin.y = 20;
+	viewBounds.size.height -= 20;
+
 	static const int MARGIN = 15;
 	SPDiceRoller* diceView = [[SPDiceRoller alloc]
 				  initWithFrame: scBounds];
 	[diceView setDieDim: CGSizeMake(48, 48)];
-	SPBannerContainer* bannerContainer = [[SPBannerContainer alloc] init];
-	bannerContainer.view = self.window;
+	rootView = [[UIView alloc] initWithFrame: viewBounds];
+	[self.window addSubview: rootView];
+	bannerContainer = [[SPBannerContainer alloc] init];
+	bannerContainer.bannerPosition = SPBannerContainerPositionTop;
+	bannerContainer.view = rootView;
 	[bannerContainer viewDidLoad];
-	bannerContainer.marginTop = 20 + MARGIN;
+	bannerContainer.marginTop = MARGIN;
 	bannerContainer.marginLeft = MARGIN;
 	bannerContainer.marginRight = MARGIN;
 	bannerContainer.marginBottom = MARGIN;
@@ -46,6 +53,7 @@
 	
 	diceView.rollingDice = model.dice;
 	diceView.availableDice = model.availableDice;
+	[diceView release];
 	
 	return YES;
 }
@@ -91,6 +99,9 @@
 
 - (void)dealloc
 {
+	[rootView release];
+	[background release];
+	[bannerContainer release];
 	[_window release];
 	[super dealloc];
 }

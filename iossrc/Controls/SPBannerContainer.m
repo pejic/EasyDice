@@ -45,10 +45,19 @@ static const float animationDuration = 0.5;
 				ADBannerContentSizeIdentifierPortrait];
 	}
 	bframe.size = bsize;
-	bframe.origin = CGPointMake(0, bounds.size.height - bsize.height);
 	vframe.size = CGSizeMake(bounds.size.width - marginLeft - marginRight,
-		bounds.size.height - bsize.height - marginTop - marginBottom);
-	vframe.origin = CGPointMake(marginLeft, marginTop);
+				 bounds.size.height - bsize.height
+					- marginTop - marginBottom);
+	if (bannerPosition == SPBannerContainerPositionTop) {
+		bframe.origin = CGPointMake(0, 0);
+		vframe.origin = CGPointMake(marginLeft,
+					    marginTop + bsize.height);
+	}
+	else {
+		bframe.origin = CGPointMake(0,
+					    bounds.size.height - bsize.height);
+		vframe.origin = CGPointMake(marginLeft, marginTop);
+	}
 
 	float duration = animated ? animationDuration : 0.0;
 	[UIView animateWithDuration: duration
@@ -66,13 +75,13 @@ static const float animationDuration = 0.5;
 	if (![super init]) {
 		return nil;
 	}
-
-	static const float animationDuration = 0.5;
+	bannerPosition = SPBannerContainerPositionBottom;
 	return (self);
 }
 
 -(void) dealloc
 {
+	[childView release];
 	[banner release];
 	[super dealloc];
 }
@@ -89,7 +98,9 @@ static const float animationDuration = 0.5;
 
 -(void) setChildView: (UIView*) view
 {
+	[view retain];
 	[childView removeFromSuperview];
+	[childView release];
 	childView = view;
 	if (childView) {
 		[self.view addSubview: childView];
@@ -138,6 +149,17 @@ static const float animationDuration = 0.5;
 -(void) setMarginBottom: (CGFloat) top
 {
 	marginBottom = top;
+	[self layout: NO];
+}
+
+-(SPBannerContainerPosition) bannerPosition
+{
+	return (bannerPosition);
+}
+
+-(void) setBannerPosition: (SPBannerContainerPosition) bannerPosition_
+{
+	bannerPosition = bannerPosition_;
 	[self layout: NO];
 }
 

@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SPBannerContainer;
 
 @interface EasyDiceAppDelegate : NSObject <UIApplicationDelegate> {
+	SPBannerContainer* bannerContainer;
+	UIView* rootView;
+	UIImageView* background;
 
 }
 
