@@ -38,6 +38,8 @@
 	[availableDice addDie: [SPDie dieWithSize: 10 andFacingSide: 1
 				    andMultiplier: 10 andValueOffset: -10]
 		     selected: NO];
+	[availableDice addDie: [SPDie dieWithSize: 12 andFacingSide: 12]
+		     selected: NO];
 	[availableDice addDie: [SPDie dieWithSize: 20 andFacingSide: 20]
 		     selected: NO];
 	return self;

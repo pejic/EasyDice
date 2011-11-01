@@ -15,8 +15,10 @@
 	SPDiceView* rollingView;
 	/** Shows available dice. */
 	SPDiceView* availableView;
-	/** Dimensions of a die. */
-	CGSize dieDim;
+	/** Dimensions of a die being rolled. */
+	CGSize dieDimRolling;
+	/** Dimensions of a die in the available list. */
+	CGSize dieDimAvailable;
 	/** Button for rolling dice. */
 	UIButton* roll;
 	/** Button for removing dice. */
@@ -27,6 +29,7 @@
 
 @property (nonatomic, retain) SPSelectableDice* rollingDice;
 @property (nonatomic, retain) SPSelectableDice* availableDice;
-@property (nonatomic) CGSize dieDim;
+@property (nonatomic) CGSize dieDimRolling;
+@property (nonatomic) CGSize dieDimAvailable;
 
 @end

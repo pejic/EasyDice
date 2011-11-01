@@ -135,7 +135,7 @@
 
 -(void) layoutSubviews
 {
-	int rowHeight = dieDim.height + 2;
+	int rowHeight = dieDimAvailable.height + 2;
 	CGRect frame = self.frame;
 	CGRect rframe = frame;
 	rframe.origin.x = 0;
@@ -174,9 +174,10 @@
 	remove.frame = remframe;
 	metaData.frame = mdframe;
 	
-	int numPerRow = frame.size.width / dieDim.width;
-	rollingView.dicePerRow = numPerRow;
-	availableView.dicePerRow = numPerRow;
+	int numPerRowRoll = frame.size.width / dieDimRolling.width;
+	int numPerRowAvail = frame.size.width / dieDimAvailable.width;
+	rollingView.dicePerRow = numPerRowRoll;
+	availableView.dicePerRow = numPerRowAvail;
 	
 	rollingView.rowHeight = rowHeight;
 	availableView.rowHeight = rowHeight;
@@ -202,14 +203,25 @@
 	availableView.dice = dice;
 }
 
--(CGSize) dieDim
+-(CGSize) dieDimRolling
 {
-	return dieDim;
+	return dieDimRolling;
 }
 
--(void) setDieDim: (CGSize) size
+-(void) setDieDimRolling: (CGSize) size
 {
-	dieDim = size;
+	dieDimRolling = size;
+	[self layoutSubviews];
+}
+
+-(CGSize) dieDimAvailable
+{
+	return dieDimAvailable;
+}
+
+-(void) setDieDimAvailable: (CGSize) size
+{
+	dieDimAvailable = size;
 	[self layoutSubviews];
 }
 

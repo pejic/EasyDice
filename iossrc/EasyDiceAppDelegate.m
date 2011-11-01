@@ -36,7 +36,8 @@
 	static const int MARGIN = 15;
 	SPDiceRoller* diceView = [[SPDiceRoller alloc]
 				  initWithFrame: scBounds];
-	[diceView setDieDim: CGSizeMake(48, 48)];
+	[diceView setDieDimRolling: CGSizeMake(48, 48)];
+	[diceView setDieDimAvailable: CGSizeMake(40, 48)];
 	rootView = [[UIView alloc] initWithFrame: viewBounds];
 	[self.window addSubview: rootView];
 	bannerContainer = [[SPBannerContainer alloc] init];
