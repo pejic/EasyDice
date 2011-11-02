@@ -109,6 +109,7 @@
 		[self addSubview: metaData];
 		[metaData setTextColor: [UIColor whiteColor]];
 		[metaData setTextAlignment: UITextAlignmentLeft];
+		[metaData setEnabled: NO];
 
 		help = [[UIButton buttonWithType: UIButtonTypeCustom]
 			retain];
