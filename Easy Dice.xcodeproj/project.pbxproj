@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F0996C314619A80001D29AD /* SPDiceCredits.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0996C214619A80001D29AD /* SPDiceCredits.m */; };
+		8F0996D21461AF8F001D29AD /* HidingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0996D11461AF8F001D29AD /* HidingNavigationController.m */; };
+		8F0996D51461B059001D29AD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0996D31461B04E001D29AD /* QuartzCore.framework */; };
 		8F1E05631450D47C00727902 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1E05621450D47C00727902 /* UIKit.framework */; };
 		8F1E05651450D47C00727902 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1E05641450D47C00727902 /* Foundation.framework */; };
 		8F1E05671450D47C00727902 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1E05661450D47C00727902 /* CoreGraphics.framework */; };
@@ -25,6 +28,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F0996C114619A80001D29AD /* SPDiceCredits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDiceCredits.h; sourceTree = "<group>"; };
+		8F0996C214619A80001D29AD /* SPDiceCredits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDiceCredits.m; sourceTree = "<group>"; };
+		8F0996D01461AF8E001D29AD /* HidingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HidingNavigationController.h; sourceTree = "<group>"; };
+		8F0996D11461AF8F001D29AD /* HidingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HidingNavigationController.m; sourceTree = "<group>"; };
+		8F0996D31461B04E001D29AD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8F1E055E1450D47C00727902 /* Easy Dice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Easy Dice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F1E05621450D47C00727902 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F1E05641450D47C00727902 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -59,6 +67,7 @@
 				8F9BE879145607470013242F /* iAd.framework in Frameworks */,
 				8F1E05631450D47C00727902 /* UIKit.framework in Frameworks */,
 				8F1E05651450D47C00727902 /* Foundation.framework in Frameworks */,
+				8F0996D51461B059001D29AD /* QuartzCore.framework in Frameworks */,
 				8F1E05671450D47C00727902 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +102,7 @@
 				8F9BE8771456073E0013242F /* iAd.framework */,
 				8F1E05621450D47C00727902 /* UIKit.framework */,
 				8F1E05641450D47C00727902 /* Foundation.framework */,
+				8F0996D31461B04E001D29AD /* QuartzCore.framework */,
 				8F1E05661450D47C00727902 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
@@ -121,12 +131,16 @@
 		8F1E058F1450DA3F00727902 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				8F0996D01461AF8E001D29AD /* HidingNavigationController.h */,
+				8F0996D11461AF8F001D29AD /* HidingNavigationController.m */,
 				8F9BE873145606840013242F /* SPBannerContainer.h */,
 				8F9BE874145606840013242F /* SPBannerContainer.m */,
 				8F1E05911450DA3F00727902 /* SPDiceView.h */,
 				8F1E05901450DA3F00727902 /* SPDiceView.m */,
 				8F1E05A11450E34F00727902 /* SPDiceRoller.h */,
 				8F1E05A21450E34F00727902 /* SPDiceRoller.m */,
+				8F0996C114619A80001D29AD /* SPDiceCredits.h */,
+				8F0996C214619A80001D29AD /* SPDiceCredits.m */,
 			);
 			name = Controls;
 			path = iossrc/Controls;
@@ -214,6 +228,8 @@
 				8F1E05A01450E05500727902 /* AppModel.m in Sources */,
 				8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */,
 				8F9BE875145606840013242F /* SPBannerContainer.m in Sources */,
+				8F0996C314619A80001D29AD /* SPDiceCredits.m in Sources */,
+				8F0996D21461AF8F001D29AD /* HidingNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,11 +11,15 @@
 
 @interface EasyDiceAppDelegate : NSObject <UIApplicationDelegate> {
 	SPBannerContainer* bannerContainer;
+	UIViewController* credits;
 	UIView* rootView;
 	UIImageView* background;
+	UINavigationController* navController;
 
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+
+- (IBAction) onHelp: (id) sender;
 
 @end

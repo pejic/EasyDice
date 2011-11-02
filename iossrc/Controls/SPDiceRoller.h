@@ -25,11 +25,16 @@
 	UIButton* remove;
 	/** Shows metadata about the last roll. */
 	UILabel* metaData;
+	/** Help button. */
+	UIButton* help;
+	/** Help delegate. */
+	id helpDelegate;
 }
 
 @property (nonatomic, retain) SPSelectableDice* rollingDice;
 @property (nonatomic, retain) SPSelectableDice* availableDice;
 @property (nonatomic) CGSize dieDimRolling;
 @property (nonatomic) CGSize dieDimAvailable;
+@property (nonatomic, assign) id helpDelegate;
 
 @end

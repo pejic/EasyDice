@@ -9,6 +9,8 @@
 #import "EasyDiceAppDelegate.h"
 #import "Controls/SPDiceRoller.h"
 #import "Controls/SPBannerContainer.h"
+#import "Controls/SPDiceCredits.h"
+#import "Controls/HidingNavigationController.h"
 #import "Model/AppModel.h"
 
 @implementation EasyDiceAppDelegate
@@ -28,35 +30,54 @@
 	background.frame = scBounds;
 	[self.window addSubview: background];
 	[self.window makeKeyAndVisible];
-	
+
 	CGRect viewBounds = scBounds;
 	viewBounds.origin.y = 20;
 	viewBounds.size.height -= 20;
 
-	static const int MARGIN = 15;
 	SPDiceRoller* diceView = [[SPDiceRoller alloc]
 				  initWithFrame: scBounds];
 	[diceView setDieDimRolling: CGSizeMake(48, 48)];
 	[diceView setDieDimAvailable: CGSizeMake(40, 48)];
-	rootView = [[UIView alloc] initWithFrame: viewBounds];
-	[self.window addSubview: rootView];
+	rootView = [[UIView alloc] initWithFrame: scBounds];
+	UIViewController* diceViewController = [[UIViewController alloc] init];
+	diceViewController.title = @"Easy Dice";
+	diceViewController.view = diceView;
+
+	navController = [[HidingNavigationController alloc]
+			 initWithRootViewController: diceViewController];
+	[diceViewController release];
+
 	bannerContainer = [[SPBannerContainer alloc] init];
-	bannerContainer.bannerPosition = SPBannerContainerPositionTop;
+	bannerContainer.bannerPosition = SPBannerContainerPositionBottom;
 	bannerContainer.view = rootView;
 	[bannerContainer viewDidLoad];
-	bannerContainer.marginTop = MARGIN;
-	bannerContainer.marginLeft = MARGIN;
-	bannerContainer.marginRight = MARGIN;
-	bannerContainer.marginBottom = MARGIN;
-	bannerContainer.childView = diceView;
-	
+	bannerContainer.marginTop = 20;
+	bannerContainer.marginLeft = 0;
+	bannerContainer.marginRight = 0;
+	bannerContainer.marginBottom = 0;
+	bannerContainer.childView = navController.view;
+
+	SPDiceCredits* creditsView = [[SPDiceCredits alloc]
+				      initWithFrame: viewBounds];
+	credits = [[UIViewController alloc] init];
+	credits.title = @"Easy Dice Info";
+	credits.view = creditsView;
+	[self.window addSubview: rootView];
+
 	AppModel* model = [AppModel sharedAppModel];
-	
+
 	diceView.rollingDice = model.dice;
 	diceView.availableDice = model.availableDice;
+	diceView.helpDelegate = self;
 	[diceView release];
-	
+
 	return YES;
+}
+
+- (IBAction) onHelp: (id) sender
+{
+	[navController pushViewController: credits animated: YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -103,6 +124,8 @@
 	[rootView release];
 	[background release];
 	[bannerContainer release];
+	[credits release];
+	[navController release];
 	[_window release];
 	[super dealloc];
 }

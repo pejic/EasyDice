@@ -14,6 +14,7 @@
 			 die: (NSNumber*) pos;
 -(void) onRollTouchedUpInside: (id) sender;
 -(void) onRemoveTouchedUpInside: (id) sender;
+-(void) onHelpTouchedUpInside: (id) sender;
 -(void) updateMetaData;
 -(void) skinButton: (UIButton*) button;
 
@@ -39,6 +40,12 @@
 {
 	[rollingView.dice removeAllDice];
 }
+
+-(void) onHelpTouchedUpInside: (id) sender
+{
+	[helpDelegate performSelector: @selector(onHelp:) withObject: self];
+}
+
 -(void) updateMetaData
 {
 	metaData.text = [NSString stringWithFormat: @"Sum: %d",
@@ -63,6 +70,8 @@
 
 @implementation SPDiceRoller
 
+@synthesize  helpDelegate;
+
 - (id)initWithFrame:(CGRect)frame
 {
 	self = [super initWithFrame:frame];
@@ -77,7 +86,7 @@
 		rollingView.selectionEnabled = YES;
 		
 		roll = [[UIButton buttonWithType: UIButtonTypeCustom]
-				retain];;
+				retain];
 		[self addSubview: roll];
 		[roll addTarget: self
 			 action: @selector(onRollTouchedUpInside:)
@@ -99,7 +108,19 @@
 		metaData = [[UITextField alloc] initWithFrame: frame];
 		[self addSubview: metaData];
 		[metaData setTextColor: [UIColor whiteColor]];
-		[metaData setTextAlignment: UITextAlignmentCenter];
+		[metaData setTextAlignment: UITextAlignmentLeft];
+
+		help = [[UIButton buttonWithType: UIButtonTypeCustom]
+			retain];
+		[self addSubview: help];
+		[help addTarget: self
+			 action: @selector(onHelpTouchedUpInside:)
+	       forControlEvents: UIControlEventTouchUpInside];
+		[help setTitle: @""
+		      forState: UIControlStateNormal];
+		[help setBackgroundImage:
+		 [UIImage imageNamed: @"assets/questionMark.png"]
+			    forState: UIControlStateNormal];
 	}
 	return self;
 }
@@ -135,47 +156,89 @@
 
 -(void) layoutSubviews
 {
-	int rowHeight = dieDimAvailable.height + 2;
-	CGRect frame = self.frame;
-	CGRect rframe = frame;
-	rframe.origin.x = 0;
-	rframe.origin.y = 0;
-	rframe.size.height -= rowHeight;
-	CGRect aframe = frame;
-	aframe.origin.x = 0;
-	aframe.origin.y = rframe.size.height;
-	aframe.size.height = rowHeight;
+	static const int MARGIN = 15;
+	static const int MARGIN_TOP = -5;
 	static const int buttonHeight = 48;
 	static const int buttonWidth = 100;
+	static const int hWidth = 30;
+	static const int hHeight = 30;
+	static const int hMarginHoriz = 5;
+	static const int hMarginVert = 0;
+	int rowHeight = dieDimAvailable.height + 4;
+	static const int statusBarHeight = 24;
+	static const int statusMargin = 3;
+	CGRect frame = self.frame;
+	int height = frame.size.height;
+	int width = frame.size.width;
+	CGRect rframe = CGRectMake(MARGIN,
+				   MARGIN + MARGIN_TOP,
+				   width
+					- MARGIN * 2,
+				   height
+					- rowHeight
+					- statusBarHeight
+					- buttonHeight
+					- MARGIN*2
+					- MARGIN_TOP);
+	CGRect aframe = CGRectMake(MARGIN,
+				   height
+					- statusBarHeight
+					- rowHeight
+					- MARGIN,
+				   width
+					- MARGIN * 2,
+				   rowHeight);
 	CGRect rbframe = CGRectMake(
-				    frame.size.width - buttonWidth,
-				    aframe.origin.y - buttonHeight,
+				    width - buttonWidth - MARGIN,
+				    height
+					- statusBarHeight
+					- rowHeight
+					- buttonHeight
+					- MARGIN,
 				    buttonWidth,
 				    buttonHeight);
 	CGRect remframe = CGRectMake(
-				     0,
-				     rbframe.origin.y,
+				     MARGIN,
+				     height
+					- statusBarHeight
+					- rowHeight
+					- buttonHeight
+					- MARGIN,
 				     buttonWidth,
 				     buttonHeight);
-	static const int mdvmargin = 48/2 - 12;
-	static const int mdhmargin = 3;
 	CGRect mdframe = CGRectMake(
-				    remframe.origin.x + remframe.size.width
-				      + mdhmargin,
-				    remframe.origin.y + mdvmargin,
-				    rbframe.origin.x
-				      -(remframe.origin.x + remframe.size.width)
-				      - mdhmargin * 2,
-				    buttonHeight - mdvmargin * 2);
+				    MARGIN,
+				    height
+					- statusBarHeight
+					+ statusMargin
+					- MARGIN,
+				    width
+					- hWidth
+					- MARGIN * 2,
+				    statusBarHeight
+					- statusMargin);
+	CGRect hframe = CGRectMake(width
+					- hWidth
+					- hMarginHoriz
+					- MARGIN,
+				   height
+					- statusBarHeight
+					+ hMarginVert
+					- MARGIN,
+				   hWidth,
+				   hHeight);
 	
 	rollingView.frame = rframe;
 	availableView.frame = aframe;
 	roll.frame = rbframe;
 	remove.frame = remframe;
 	metaData.frame = mdframe;
+	help.frame = hframe;
 	
-	int numPerRowRoll = frame.size.width / dieDimRolling.width;
-	int numPerRowAvail = frame.size.width / dieDimAvailable.width;
+	int numPerRowRoll = (frame.size.width - MARGIN * 2)
+		/ dieDimRolling.width;
+	int numPerRowAvail = (frame.size.width - MARGIN * 2)
+		/ dieDimAvailable.width;
 	rollingView.dicePerRow = numPerRowRoll;
 	availableView.dicePerRow = numPerRowAvail;
 	

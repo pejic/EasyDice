@@ -150,12 +150,12 @@
 					    img.size.width, img.size.height);
 		selview.bounds = CGRectMake(0, 0,
 					    sel.size.width, sel.size.height);
-		int row = pos % dicePerRow;
-		int col = pos / dicePerRow;
+		int col = pos % dicePerRow;
+		int row = pos / dicePerRow;
 		float width = self.bounds.size.width;
 		CGPoint center = CGPointMake(
-					     (width/dicePerRow)*(row+0.5),
-					     (rowHeight)*(col + 0.5));
+					(int) ((width/dicePerRow)*(col+0.5)),
+					(int) ((rowHeight)*(row + 0.5)));
 		imgview.center = center;
 		selview.center = center;
 	}
@@ -361,6 +361,11 @@ static int globalImageCacheRefCount = 0;
 {
 	touchUpInsideTarget = target;
 	touchUpInsideAction = action;
+}
+
+-(void) layoutSubviews
+{
+	[self updateDice];
 }
 
 @end
