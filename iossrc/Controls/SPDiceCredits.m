@@ -35,7 +35,8 @@
 
 		creditsTitle.text = @"Credits";
 		credits.text =
-			@"\u00A9 2011 Slobodan Pejic, Pure Ego Games";
+			@"Slobodan Pejic, Philip Royer\n"
+			"\u00A9 2011 Pure Ego Games";
 		helpTitle.text = @"Help";
 		help.text =
 			@"1. To roll the dice at the top push the roll"
@@ -44,9 +45,9 @@
 			"2. To add different dice, push the dice at"
 			" the bottom.\n"
 			"3. To clear all dice, push the reset button.\n"
-			"4. To reroll only some dice, touch the dice you"
-			" do not want to roll at the top, then push the"
-			" roll button.\n"
+			"4. To change which dice are rolled, touch the"
+			" dice at the top.   This will toggle the red"
+			" border.\n"
 		;
 
 		[self addSubview: creditsTitle];
@@ -72,7 +73,7 @@
 	CGFloat titleHeight = 20;
 	CGFloat helpHeight = 200;
 	CGFloat sectionMargin = 20;
-	CGFloat creditsHeight = 32;
+	CGFloat creditsHeight = 50;
 	CGFloat width = frame.size.width;
 	CGFloat margin = 20;
 	CGRect ctframe = CGRectMake(margin,

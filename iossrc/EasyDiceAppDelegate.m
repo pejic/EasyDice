@@ -61,7 +61,7 @@
 	SPDiceCredits* creditsView = [[SPDiceCredits alloc]
 				      initWithFrame: viewBounds];
 	credits = [[UIViewController alloc] init];
-	credits.title = @"Easy Dice Info";
+	credits.title = @"Help and Credits";
 	credits.view = creditsView;
 	[self.window addSubview: rootView];
 
