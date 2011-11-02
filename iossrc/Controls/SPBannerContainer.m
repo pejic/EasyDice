@@ -12,26 +12,30 @@ static const float animationDuration = 0.5;
 @implementation SPBannerContainer (Private)
 -(void) makeBanner
 {
-	NSString* contentSize = nil;
-	if (ADBannerContentSizeIdentifierPortrait != nil) {
-		contentSize = ADBannerContentSizeIdentifierPortrait;
-	}
-	else {
-		contentSize = ADBannerContentSizeIdentifier320x50;
-	}
-	CGRect frame;
-	frame.size = [ADBannerView sizeFromBannerContentSizeIdentifier:
-		ADBannerContentSizeIdentifierPortrait];
-	frame.origin = CGPointMake(0, CGRectGetMaxY(self.view.bounds));
 
-	banner = [[ADBannerView alloc] initWithFrame: frame];
-	banner.delegate = self;
-	banner.autoresizingMask = UIViewAutoresizingFlexibleWidth
-		| UIViewAutoresizingFlexibleHeight
-		| UIViewAutoresizingFlexibleTopMargin;
-	banner.requiredContentSizeIdentifiers =
+	static NSString* const bannerClass = @"ADBannerView";
+	if (NSClassFromString(bannerClass) != nil) {
+		NSString* contentSize = nil;
+		if (ADBannerContentSizeIdentifierPortrait != nil) {
+			contentSize = ADBannerContentSizeIdentifierPortrait;
+		}
+		else {
+			contentSize = ADBannerContentSizeIdentifier320x50;
+		}
+		CGRect frame;
+		frame.size = [ADBannerView sizeFromBannerContentSizeIdentifier:
+			      ADBannerContentSizeIdentifierPortrait];
+		frame.origin = CGPointMake(0, CGRectGetMaxY(self.view.bounds));
+
+		banner = [[ADBannerView alloc] initWithFrame: frame];
+		banner.delegate = self;
+		banner.autoresizingMask = UIViewAutoresizingFlexibleWidth
+				| UIViewAutoresizingFlexibleHeight
+				| UIViewAutoresizingFlexibleTopMargin;
+		banner.requiredContentSizeIdentifiers =
 		[NSSet setWithObjects: contentSize, nil];
-	[self.view addSubview: banner];
+		[self.view addSubview: banner];
+	}
 }
 
 -(void) layout: (BOOL) animated
@@ -40,7 +44,7 @@ static const float animationDuration = 0.5;
 	CGRect bframe;
 	CGRect vframe;
 	CGSize bsize = CGSizeMake(0, 0);
-	if (banner.bannerLoaded) {
+	if (banner != nil && banner.bannerLoaded) {
 		bsize = [ADBannerView sizeFromBannerContentSizeIdentifier:
 				ADBannerContentSizeIdentifierPortrait];
 	}
@@ -50,7 +54,7 @@ static const float animationDuration = 0.5;
 					- marginTop - marginBottom);
 	if (bannerPosition == SPBannerContainerPositionTop) {
 		bframe.origin = CGPointMake(0, 0);
-		if (!banner.bannerLoaded) {
+		if (!(banner != nil && banner.bannerLoaded)) {
 			bframe.origin = CGPointMake(0, -50);
 		}
 		vframe.origin = CGPointMake(marginLeft,
@@ -66,7 +70,9 @@ static const float animationDuration = 0.5;
 	[UIView animateWithDuration: duration
 			 animations: ^{
 				childView.frame = vframe;
-				banner.frame = bframe;
+				 if (banner != nil) {
+					 banner.frame = bframe;
+				 }
 			 }];
 }
 @end
