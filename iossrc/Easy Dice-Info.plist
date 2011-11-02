@@ -14,6 +14,10 @@
 	<array>
 		<string>icons/Icon.png</string>
 		<string>icons/Icon@2x.png</string>
+		<string>icons/Icon-Small@2x.png</string>
+		<string>icons/Icon-Small-50.png</string>
+		<string>icons/Icon-72.png</string>
+		<string>icons/Icon-Small.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>ca.pureego.${PRODUCT_NAME:rfc1034identifier}</string>
@@ -31,11 +35,11 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>UIPrerenderedIcon</key>
-	<true/>
 </dict>
 </plist>
