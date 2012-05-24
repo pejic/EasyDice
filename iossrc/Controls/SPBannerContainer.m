@@ -7,24 +7,21 @@ static const float animationDuration = 0.5;
 @interface SPBannerContainer (Private)
 -(void) makeBanner;
 -(void) layout: (BOOL) animated;
++(NSString *)bannerPortrait;
++(NSString *)bannerLandscape;
++(BOOL)useDeprecated;
 @end
 
 @implementation SPBannerContainer (Private)
 -(void) makeBanner
 {
-
 	static NSString* const bannerClass = @"ADBannerView";
 	if (NSClassFromString(bannerClass) != nil) {
 		NSString* contentSize = nil;
-		if (ADBannerContentSizeIdentifierPortrait != nil) {
-			contentSize = ADBannerContentSizeIdentifierPortrait;
-		}
-		else {
-			contentSize = ADBannerContentSizeIdentifier320x50;
-		}
+		contentSize = [SPBannerContainer bannerPortrait];
 		CGRect frame;
 		frame.size = [ADBannerView sizeFromBannerContentSizeIdentifier:
-			      ADBannerContentSizeIdentifierPortrait];
+			      contentSize];
 		frame.origin = CGPointMake(0, CGRectGetMaxY(self.view.bounds));
 
 		banner = [[ADBannerView alloc] initWithFrame: frame];
@@ -46,7 +43,7 @@ static const float animationDuration = 0.5;
 	CGSize bsize = CGSizeMake(0, 0);
 	if (banner != nil && banner.bannerLoaded) {
 		bsize = [ADBannerView sizeFromBannerContentSizeIdentifier:
-				ADBannerContentSizeIdentifierPortrait];
+				[SPBannerContainer bannerPortrait]];
 	}
 	bframe.size = bsize;
 	vframe.size = CGSizeMake(bounds.size.width - marginLeft - marginRight,
@@ -74,6 +71,42 @@ static const float animationDuration = 0.5;
 					 banner.frame = bframe;
 				 }
 			 }];
+}
+
++(NSString *)bannerPortrait
+{
+	if ([SPBannerContainer useDeprecated]) {
+		return ADBannerContentSizeIdentifier320x50;
+	}
+	else {
+		return ADBannerContentSizeIdentifierPortrait;
+	}
+}
+
++(NSString *)bannerLandscape
+{
+	if ([SPBannerContainer useDeprecated]) {
+		return ADBannerContentSizeIdentifier480x32;
+	}
+	else {
+		return ADBannerContentSizeIdentifierLandscape;
+	}
+}
+
++ (BOOL)useDeprecated
+{
+	BOOL useDeprecated = NO;
+	NSString *devVersion = [[UIDevice currentDevice] systemVersion];
+	NSArray *devVersions = [devVersion componentsSeparatedByString:@"."];
+	int major = [[devVersions objectAtIndex:0] intValue];
+	int minor = 0;
+	if ([devVersions count] > 1) {
+		minor = [[devVersions objectAtIndex:1] intValue];
+	}
+	if (major < 4 || (major == 4 && minor < 2)) {
+		useDeprecated = YES;
+	}
+	return useDeprecated;
 }
 @end
 
