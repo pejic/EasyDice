@@ -41,7 +41,7 @@
 		creditsTitle.text = @"Credits";
 		credits.text =
 			@"Slobodan Pejic, Philip Royer\n"
-			"\u00A9 2011 Pure Ego Games";
+			"\u00A9 2011-2012 Pure Ego Games";
 		helpTitle.text = @"Help";
 		help.text =
 			@"1. To roll the dice at the top push the roll"
