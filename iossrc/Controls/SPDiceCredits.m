@@ -7,6 +7,7 @@
 //
 
 #import "SPDiceCredits.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation SPDiceCredits
@@ -22,16 +23,20 @@
 
 		creditsTitle.textColor = [UIColor whiteColor];
 		creditsTitle.enabled = NO;
+		creditsTitle.textAlignment = UITextAlignmentCenter;
 		credits.textColor = [UIColor whiteColor];
 		credits.backgroundColor = [UIColor colorWithWhite: 0 alpha: 0.3];
 		credits.font = [UIFont fontWithName: help.font.fontName size: 14];
 		credits.editable = NO;
+		credits.layer.cornerRadius = 12;
 		helpTitle.textColor = [UIColor whiteColor];
 		helpTitle.enabled = NO;
+		helpTitle.textAlignment = UITextAlignmentCenter;
 		help.textColor = [UIColor whiteColor];
 		help.backgroundColor = [UIColor colorWithWhite: 0 alpha: 0.3];
 		help.font = [UIFont fontWithName: help.font.fontName size: 14];
 		help.editable = NO;
+		help.layer.cornerRadius = 12;
 
 		creditsTitle.text = @"Credits";
 		credits.text =
@@ -49,11 +54,19 @@
 			" dice at the top.   This will toggle the red"
 			" border.\n"
 		;
+		background =[[UIImageView alloc] initWithImage:
+			     [UIImage imageNamed: @"assets/background.png"]];
+		CGRect bgFrame;
+		bgFrame.origin = CGPointMake(0, 0);
+		bgFrame.size = frame.size;
+		background.frame = bgFrame;
 
+		[self addSubview: background];
 		[self addSubview: creditsTitle];
 		[self addSubview: credits];
 		[self addSubview: helpTitle];
 		[self addSubview: help];
+		self.backgroundColor = [UIColor darkGrayColor];
 	}
 	return self;
 }
@@ -72,10 +85,11 @@
 	CGRect frame = self.frame;
 	CGFloat titleHeight = 20;
 	CGFloat helpHeight = 200;
-	CGFloat sectionMargin = 20;
+	CGFloat sectionMargin = 34;
 	CGFloat creditsHeight = 50;
 	CGFloat width = frame.size.width;
 	CGFloat margin = 20;
+	CGFloat titlePaddingBottom = 8;
 	CGRect ctframe = CGRectMake(margin,
 				    margin
 					+ helpHeight
@@ -89,7 +103,8 @@
 					+ helpHeight
 					+ sectionMargin
 					+ titleHeight
-					+ titleHeight,
+					+ titleHeight
+					+ titlePaddingBottom,
 				   width
 					- margin*2,
 				   creditsHeight);
@@ -100,7 +115,8 @@
 				    titleHeight);
 	CGRect hframe = CGRectMake(margin,
 				   margin
-					+ titleHeight,
+				        + titleHeight
+				        + titlePaddingBottom,
 				   width
 					- margin*2,
 				   helpHeight);
@@ -116,6 +132,7 @@
 	[credits release];
 	[helpTitle release];
 	[help release];
+	[background release];
 	[super dealloc];
 }
 

@@ -32,6 +32,7 @@
 		8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05A21450E34F00727902 /* SPDiceRoller.m */; };
 		8F9BE875145606840013242F /* SPBannerContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9BE874145606840013242F /* SPBannerContainer.m */; };
 		8F9BE879145607470013242F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F9BE8771456073E0013242F /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8FD3F453156DFC240024013A /* SPModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3F452156DFC240024013A /* SPModalViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,8 @@
 		8F9BE873145606840013242F /* SPBannerContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBannerContainer.h; sourceTree = "<group>"; };
 		8F9BE874145606840013242F /* SPBannerContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBannerContainer.m; sourceTree = "<group>"; };
 		8F9BE8771456073E0013242F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		8FD3F451156DFC240024013A /* SPModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPModalViewController.h; sourceTree = "<group>"; };
+		8FD3F452156DFC240024013A /* SPModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPModalViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +173,8 @@
 				8F1E05A21450E34F00727902 /* SPDiceRoller.m */,
 				8F0996C114619A80001D29AD /* SPDiceCredits.h */,
 				8F0996C214619A80001D29AD /* SPDiceCredits.m */,
+				8FD3F451156DFC240024013A /* SPModalViewController.h */,
+				8FD3F452156DFC240024013A /* SPModalViewController.m */,
 			);
 			name = Controls;
 			path = iossrc/Controls;
@@ -266,6 +271,7 @@
 				8F9BE875145606840013242F /* SPBannerContainer.m in Sources */,
 				8F0996C314619A80001D29AD /* SPDiceCredits.m in Sources */,
 				8F0996D21461AF8F001D29AD /* HidingNavigationController.m in Sources */,
+				8FD3F453156DFC240024013A /* SPModalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

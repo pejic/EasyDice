@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SPModalViewController.h"
 @class SPBannerContainer;
 
-@interface EasyDiceAppDelegate : NSObject <UIApplicationDelegate> {
+@interface EasyDiceAppDelegate : NSObject
+	<UIApplicationDelegate, SPModalViewControllerDelegate>
+{
 	SPBannerContainer* bannerContainer;
 	UIViewController* credits;
 	UIView* rootView;
 	UIImageView* background;
-	UINavigationController* navController;
-
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

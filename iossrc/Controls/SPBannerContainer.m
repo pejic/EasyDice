@@ -32,6 +32,7 @@ static const float animationDuration = 0.5;
 		banner.requiredContentSizeIdentifiers =
 		[NSSet setWithObjects: contentSize, nil];
 		[self.view addSubview: banner];
+		[self layout:NO];
 	}
 }
 
@@ -64,13 +65,21 @@ static const float animationDuration = 0.5;
 	}
 
 	float duration = animated ? animationDuration : 0.0;
-	[UIView animateWithDuration: duration
-			 animations: ^{
-				childView.frame = vframe;
-				 if (banner != nil) {
-					 banner.frame = bframe;
-				 }
-			 }];
+	if (animated) {
+		[UIView animateWithDuration: duration
+				 animations: ^{
+					childView.frame = vframe;
+					 if (banner != nil) {
+						 banner.frame = bframe;
+					 }
+				 }];
+	}
+	else {
+		childView.frame = vframe;
+		if (banner != nil) {
+			banner.frame = bframe;
+		}
+	}
 }
 
 +(NSString *)bannerPortrait
@@ -132,7 +141,6 @@ static const float animationDuration = 0.5;
 {
 	[self makeBanner];
 }
-
 -(UIView*) childView
 {
 	return (childView);

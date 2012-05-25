@@ -31,35 +31,28 @@
 	[self.window addSubview: background];
 	[self.window makeKeyAndVisible];
 
-	CGRect viewBounds = scBounds;
-	viewBounds.origin.y = 20;
-	viewBounds.size.height -= 20;
+	CGRect viewFrame = scBounds;
+	viewFrame.origin.y = 20;
+	viewFrame.size.height -= 20;
 
 	SPDiceRoller* diceView = [[SPDiceRoller alloc]
 				  initWithFrame: scBounds];
 	[diceView setDieDimRolling: CGSizeMake(48, 48)];
 	[diceView setDieDimAvailable: CGSizeMake(40, 48)];
-	rootView = [[UIView alloc] initWithFrame: scBounds];
-	UIViewController* diceViewController = [[UIViewController alloc] init];
-	diceViewController.title = @"Easy Dice";
-	diceViewController.view = diceView;
-
-	navController = [[HidingNavigationController alloc]
-			 initWithRootViewController: diceViewController];
-	[diceViewController release];
+	rootView = [[UIView alloc] initWithFrame: viewFrame];
 
 	bannerContainer = [[SPBannerContainer alloc] init];
 	bannerContainer.bannerPosition = SPBannerContainerPositionBottom;
 	bannerContainer.view = rootView;
-	[bannerContainer viewDidLoad];
 	bannerContainer.marginTop = 20;
 	bannerContainer.marginLeft = 0;
 	bannerContainer.marginRight = 0;
 	bannerContainer.marginBottom = 0;
-	bannerContainer.childView = navController.view;
+	bannerContainer.childView = diceView;
+	[bannerContainer viewDidLoad];
 
 	SPDiceCredits* creditsView = [[SPDiceCredits alloc]
-				      initWithFrame: viewBounds];
+				      initWithFrame: viewFrame];
 	credits = [[UIViewController alloc] init];
 	credits.title = @"Help and Credits";
 	credits.view = creditsView;
@@ -75,9 +68,22 @@
 	return YES;
 }
 
+- (void)onModalDone:(SPModalViewController *)sender
+{
+	[bannerContainer dismissModalViewControllerAnimated:YES];
+}
+
 - (IBAction) onHelp: (id) sender
 {
-	[navController pushViewController: credits animated: YES];
+	SPModalViewController *vc = [[SPModalViewController alloc] init];
+	[vc loadView];
+	vc.modalView = credits.view;
+	vc.title = credits.title;
+	vc.delegate = self;
+	[vc viewDidLoad];
+	[bannerContainer presentModalViewController:vc
+					   animated:YES];
+	[vc release];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -125,7 +131,6 @@
 	[background release];
 	[bannerContainer release];
 	[credits release];
-	[navController release];
 	[_window release];
 	[super dealloc];
 }

@@ -18,6 +18,8 @@
 	UITextField* helpTitle;
 	/** TextView for the help. */
 	UITextView* help;
+	/** Background image view. */
+	UIImageView* background;
 
 }
 

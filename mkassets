@@ -21,7 +21,7 @@ for i in `find renders -type f -iname d\*.png`; do
 	convert -channel A -blur 16 \
 		-channel RGB -modulate 0,0 \
 		-channel R -brightness-contrast 100 \
-		-channel A -gamma 2 \
+		-channel A -gamma 4 \
 		-channel A -brightness-contrast 25,50 \
 		"$twotime" "$twotimeselected"
 done
