@@ -2,6 +2,8 @@
 
 rm -rf assets/*
 
+mkdir -p assets
+
 for i in `find renders -type f -iname d\*.png`; do
 	regular="`echo $i | sed 's/renders/assets/g'`"
 	regularselected="`echo $i | sed 's/renders/assets/g' \

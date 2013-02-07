@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p icons
+
 cd icons
 
 rm -rf ./*
