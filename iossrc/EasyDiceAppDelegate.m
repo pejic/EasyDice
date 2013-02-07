@@ -21,6 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Override point for customization after application launch.
+	srandom(time(NULL));
 	UIScreen* screen = [UIScreen mainScreen];
 	CGRect scBounds = screen.bounds;
 	self.window = [[UIWindow alloc] initWithFrame: scBounds];
