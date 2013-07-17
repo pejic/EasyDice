@@ -33,7 +33,7 @@
 -(id) initWithImage: (UIImage*) image_
 	andSelected: (UIImage*) selected_
 {
-	if (![super init]) {
+	if (!(self = [super init])) {
 		return nil;
 	}
 	image = [image_ retain];

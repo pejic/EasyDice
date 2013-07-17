@@ -14,7 +14,7 @@
 -(id) initWithSize: (int) size
      andFacingSide: (int) facing
 {
-	if (![super init]) {
+	if (!(self = [super init])) {
 		return nil;
 	}
 	dieSize = size;
@@ -37,7 +37,7 @@
      andMultiplier: (int) multiplier_
     andValueOffset: (int) offset
 {
-	if (![self initWithSize: size andFacingSide: facing]) {
+	if (!(self = [self initWithSize: size andFacingSide: facing])) {
 		return nil;
 	}
 	multiplier = multiplier_;
@@ -63,10 +63,11 @@
 	int value = (random() >> 5) % size + 1;
 	int mult = die->multiplier;
 	int offset = die->valueOffset;
-	if (![self initWithSize: size
-		  andFacingSide: value
-		  andMultiplier: mult
-		 andValueOffset: offset]) {
+	if (!(self = [self initWithSize: size
+	                  andFacingSide: value
+	                  andMultiplier: mult
+	                 andValueOffset: offset]))
+	{
 		return nil;
 	}
 	return self;

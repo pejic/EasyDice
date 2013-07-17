@@ -23,7 +23,8 @@
 	srandom(time(NULL));
 	UIScreen* screen = [UIScreen mainScreen];
 	CGRect scBounds = screen.bounds;
-	self.window = [[UIWindow alloc] initWithFrame: scBounds];
+	UIWindow *window = [[UIWindow alloc] initWithFrame: scBounds];
+	self.window = window;
 	[self.window setBackgroundColor: [UIColor blackColor]];
 	background =[[UIImageView alloc] initWithImage:
 		     [UIImage imageNamed: @"assets/background.png"]];
@@ -61,6 +62,7 @@
 
 	[diceView release];
 	[creditsView release];
+	[window release];
 
 	return YES;
 }

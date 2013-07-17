@@ -21,7 +21,7 @@
 
 -(id) init
 {
-	if (![super init]) {
+	if (!(self = [super init])) {
 		return nil;
 	}
 	dice = [[SPSelectableDice alloc] init];
