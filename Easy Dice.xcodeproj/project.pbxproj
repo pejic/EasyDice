@@ -30,8 +30,6 @@
 		8F1E05991450DA3F00727902 /* SPDie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05951450DA3F00727902 /* SPDie.m */; };
 		8F1E05A01450E05500727902 /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E059F1450E05500727902 /* AppModel.m */; };
 		8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05A21450E34F00727902 /* SPDiceRoller.m */; };
-		8F9BE875145606840013242F /* SPBannerContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9BE874145606840013242F /* SPBannerContainer.m */; };
-		8F9BE879145607470013242F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F9BE8771456073E0013242F /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8FD3F453156DFC240024013A /* SPModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3F452156DFC240024013A /* SPModalViewController.m */; };
 		8FEE1BDA179634630072A289 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE1BD9179634630072A289 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
@@ -70,8 +68,6 @@
 		8F1E059F1450E05500727902 /* AppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppModel.m; sourceTree = "<group>"; };
 		8F1E05A11450E34F00727902 /* SPDiceRoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDiceRoller.h; sourceTree = "<group>"; };
 		8F1E05A21450E34F00727902 /* SPDiceRoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDiceRoller.m; sourceTree = "<group>"; };
-		8F9BE873145606840013242F /* SPBannerContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBannerContainer.h; sourceTree = "<group>"; };
-		8F9BE874145606840013242F /* SPBannerContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBannerContainer.m; sourceTree = "<group>"; };
 		8F9BE8771456073E0013242F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		8FD3F451156DFC240024013A /* SPModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPModalViewController.h; sourceTree = "<group>"; };
 		8FD3F452156DFC240024013A /* SPModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPModalViewController.m; sourceTree = "<group>"; };
@@ -83,7 +79,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F9BE879145607470013242F /* iAd.framework in Frameworks */,
 				8F1E05631450D47C00727902 /* UIKit.framework in Frameworks */,
 				8F1E05651450D47C00727902 /* Foundation.framework in Frameworks */,
 				8F0996D51461B059001D29AD /* QuartzCore.framework in Frameworks */,
@@ -168,8 +163,6 @@
 			children = (
 				8F0996D01461AF8E001D29AD /* HidingNavigationController.h */,
 				8F0996D11461AF8F001D29AD /* HidingNavigationController.m */,
-				8F9BE873145606840013242F /* SPBannerContainer.h */,
-				8F9BE874145606840013242F /* SPBannerContainer.m */,
 				8F1E05911450DA3F00727902 /* SPDiceView.h */,
 				8F1E05901450DA3F00727902 /* SPDiceView.m */,
 				8F1E05A11450E34F00727902 /* SPDiceRoller.h */,
@@ -272,7 +265,6 @@
 				8F1E05991450DA3F00727902 /* SPDie.m in Sources */,
 				8F1E05A01450E05500727902 /* AppModel.m in Sources */,
 				8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */,
-				8F9BE875145606840013242F /* SPBannerContainer.m in Sources */,
 				8F0996C314619A80001D29AD /* SPDiceCredits.m in Sources */,
 				8F0996D21461AF8F001D29AD /* HidingNavigationController.m in Sources */,
 				8FD3F453156DFC240024013A /* SPModalViewController.m in Sources */,

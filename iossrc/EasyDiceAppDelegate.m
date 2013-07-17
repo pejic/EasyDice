@@ -8,7 +8,6 @@
 
 #import "EasyDiceAppDelegate.h"
 #import "Controls/SPDiceRoller.h"
-#import "Controls/SPBannerContainer.h"
 #import "Controls/SPDiceCredits.h"
 #import "Controls/HidingNavigationController.h"
 #import "Model/AppModel.h"
@@ -40,38 +39,36 @@
 				  initWithFrame: scBounds];
 	[diceView setDieDimRolling: CGSizeMake(48, 48)];
 	[diceView setDieDimAvailable: CGSizeMake(40, 48)];
-	rootView = [[UIView alloc] initWithFrame: viewFrame];
-
-	bannerContainer = [[SPBannerContainer alloc] init];
-	bannerContainer.bannerPosition = SPBannerContainerPositionBottom;
-	bannerContainer.view = rootView;
-	bannerContainer.marginTop = 20;
-	bannerContainer.marginLeft = 0;
-	bannerContainer.marginRight = 0;
-	bannerContainer.marginBottom = 0;
-	bannerContainer.childView = diceView;
-	[bannerContainer viewDidLoad];
 
 	SPDiceCredits* creditsView = [[SPDiceCredits alloc]
 				      initWithFrame: viewFrame];
 	credits = [[UIViewController alloc] init];
 	credits.title = @"Help and Credits";
 	credits.view = creditsView;
-	[self.window addSubview: rootView];
 
 	AppModel* model = [AppModel sharedAppModel];
 
 	diceView.rollingDice = model.dice;
 	diceView.availableDice = model.availableDice;
 	diceView.helpDelegate = self;
+
+	dice = [[UIViewController alloc] init];
+	dice.view = diceView;
+	[dice viewDidLoad];
+
+	[self.window addSubview: diceView];
+	[self.window setRootViewController: dice];
+
 	[diceView release];
+	[creditsView release];
 
 	return YES;
 }
 
 - (void)onModalDone:(SPModalViewController *)sender
 {
-	[bannerContainer dismissModalViewControllerAnimated:YES];
+	[dice dismissViewControllerAnimated:YES
+	                         completion:nil];
 }
 
 - (IBAction) onHelp: (id) sender
@@ -82,8 +79,9 @@
 	vc.title = credits.title;
 	vc.delegate = self;
 	[vc viewDidLoad];
-	[bannerContainer presentModalViewController:vc
-					   animated:YES];
+	[dice presentViewController:vc
+	                   animated:YES
+	                 completion:nil];
 	[vc release];
 }
 
@@ -130,7 +128,7 @@
 {
 	[rootView release];
 	[background release];
-	[bannerContainer release];
+	[dice release];
 	[credits release];
 	[_window release];
 	[super dealloc];

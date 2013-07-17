@@ -13,7 +13,7 @@
 @interface EasyDiceAppDelegate : NSObject
 	<UIApplicationDelegate, SPModalViewControllerDelegate>
 {
-	SPBannerContainer* bannerContainer;
+	UIViewController* dice;
 	UIViewController* credits;
 	UIView* rootView;
 	UIImageView* background;
