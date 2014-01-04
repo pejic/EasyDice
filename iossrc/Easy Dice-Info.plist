@@ -16,6 +16,7 @@
 		<string>Icon-Small-50.png</string>
 		<string>Icon-72.png</string>
 		<string>Icon-Small.png</string>
+		<string>Icon-120@2x.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>net.pejici.easy-dice</string>

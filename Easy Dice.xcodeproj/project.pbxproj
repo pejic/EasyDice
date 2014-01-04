@@ -32,6 +32,7 @@
 		8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05A21450E34F00727902 /* SPDiceRoller.m */; };
 		8FD3F453156DFC240024013A /* SPModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3F452156DFC240024013A /* SPModalViewController.m */; };
 		8FD9538E1877CB5700B187FF /* iOS6View.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD9538D1877CB5700B187FF /* iOS6View.m */; };
+		8FD953901878910400B187FF /* Icon-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FD9538F1878910400B187FF /* Icon-120@2x.png */; };
 		8FEE1BDA179634630072A289 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE1BD9179634630072A289 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		8FD3F452156DFC240024013A /* SPModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPModalViewController.m; sourceTree = "<group>"; };
 		8FD9538C1877CB5700B187FF /* iOS6View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOS6View.h; sourceTree = "<group>"; };
 		8FD9538D1877CB5700B187FF /* iOS6View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOS6View.m; sourceTree = "<group>"; };
+		8FD9538F1878910400B187FF /* Icon-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-120@2x.png"; path = "icons/Icon-120@2x.png"; sourceTree = "<group>"; };
 		8FEE1BD9179634630072A289 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "assetssrc/Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 		8F0996DA1461E16F001D29AD /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				8FD9538F1878910400B187FF /* Icon-120@2x.png */,
 				8F0996DB1461E17E001D29AD /* Icon-72.png */,
 				8F0996DC1461E17E001D29AD /* Icon-Small-50.png */,
 				8F0996DD1461E17E001D29AD /* Icon-Small.png */,
@@ -249,6 +252,7 @@
 				8F0996D81461D32D001D29AD /* Default.png in Resources */,
 				8F0996D91461D32D001D29AD /* Default@2x.png in Resources */,
 				8F0996E11461E17E001D29AD /* Icon-72.png in Resources */,
+				8FD953901878910400B187FF /* Icon-120@2x.png in Resources */,
 				8F0996E21461E17E001D29AD /* Icon-Small-50.png in Resources */,
 				8F0996E31461E17E001D29AD /* Icon-Small.png in Resources */,
 				8F0996E41461E17E001D29AD /* Icon-Small@2x.png in Resources */,
