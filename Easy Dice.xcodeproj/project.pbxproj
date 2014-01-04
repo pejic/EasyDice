@@ -31,6 +31,7 @@
 		8F1E05A01450E05500727902 /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E059F1450E05500727902 /* AppModel.m */; };
 		8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E05A21450E34F00727902 /* SPDiceRoller.m */; };
 		8FD3F453156DFC240024013A /* SPModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3F452156DFC240024013A /* SPModalViewController.m */; };
+		8FD9538E1877CB5700B187FF /* iOS6View.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD9538D1877CB5700B187FF /* iOS6View.m */; };
 		8FEE1BDA179634630072A289 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE1BD9179634630072A289 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,8 @@
 		8F9BE8771456073E0013242F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		8FD3F451156DFC240024013A /* SPModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPModalViewController.h; sourceTree = "<group>"; };
 		8FD3F452156DFC240024013A /* SPModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPModalViewController.m; sourceTree = "<group>"; };
+		8FD9538C1877CB5700B187FF /* iOS6View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOS6View.h; sourceTree = "<group>"; };
+		8FD9538D1877CB5700B187FF /* iOS6View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOS6View.m; sourceTree = "<group>"; };
 		8FEE1BD9179634630072A289 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "assetssrc/Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +174,8 @@
 				8F0996C214619A80001D29AD /* SPDiceCredits.m */,
 				8FD3F451156DFC240024013A /* SPModalViewController.h */,
 				8FD3F452156DFC240024013A /* SPModalViewController.m */,
+				8FD9538C1877CB5700B187FF /* iOS6View.h */,
+				8FD9538D1877CB5700B187FF /* iOS6View.m */,
 			);
 			name = Controls;
 			path = iossrc/Controls;
@@ -215,6 +220,8 @@
 /* Begin PBXProject section */
 		8F1E05551450D47C00727902 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 8F1E05581450D47C00727902 /* Build configuration list for PBXProject "Easy Dice" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -265,6 +272,7 @@
 				8F1E05991450DA3F00727902 /* SPDie.m in Sources */,
 				8F1E05A01450E05500727902 /* AppModel.m in Sources */,
 				8F1E05A31450E34F00727902 /* SPDiceRoller.m in Sources */,
+				8FD9538E1877CB5700B187FF /* iOS6View.m in Sources */,
 				8F0996C314619A80001D29AD /* SPDiceCredits.m in Sources */,
 				8F0996D21461AF8F001D29AD /* HidingNavigationController.m in Sources */,
 				8FD3F453156DFC240024013A /* SPModalViewController.m in Sources */,
@@ -288,13 +296,12 @@
 		8F1E05771450D47D00727902 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -306,10 +313,9 @@
 		8F1E05781450D47D00727902 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

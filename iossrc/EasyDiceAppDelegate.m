@@ -11,6 +11,7 @@
 #import "Controls/SPDiceCredits.h"
 #import "Controls/HidingNavigationController.h"
 #import "Model/AppModel.h"
+#import "iOS6View.h"
 
 @implementation EasyDiceAppDelegate
 
@@ -20,7 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Override point for customization after application launch.
-	srandom(time(NULL));
+	srandom((int)time(NULL));
 	UIScreen* screen = [UIScreen mainScreen];
 	CGRect scBounds = screen.bounds;
 	UIWindow *window = [[UIWindow alloc] initWithFrame: scBounds];
@@ -46,18 +47,20 @@
 	credits = [[UIViewController alloc] init];
 	credits.title = @"Help and Credits";
 	credits.view = creditsView;
+	[credits viewDidLoad];
 
 	AppModel* model = [AppModel sharedAppModel];
 
 	diceView.rollingDice = model.dice;
 	diceView.availableDice = model.availableDice;
 	diceView.helpDelegate = self;
+	UIView *rootView = [[[iOS6View alloc] initWithView:diceView] autorelease];
 
 	dice = [[UIViewController alloc] init];
-	dice.view = diceView;
+	dice.view = rootView;
 	[dice viewDidLoad];
 
-	[self.window addSubview: diceView];
+	[self.window addSubview:rootView];
 	[self.window setRootViewController: dice];
 
 	[diceView release];
@@ -128,7 +131,6 @@
 
 - (void)dealloc
 {
-	[rootView release];
 	[background release];
 	[dice release];
 	[credits release];

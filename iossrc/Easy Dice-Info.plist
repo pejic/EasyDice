@@ -18,9 +18,13 @@
 		<string>Icon-Small.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>ca.pureego.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>net.pejici.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>

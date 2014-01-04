@@ -7,8 +7,11 @@
 //
 
 #import "SPModalViewController.h"
+#import "iOS6View.h"
 
-@implementation SPModalViewController
+@implementation SPModalViewController {
+	UIView *view;
+}
 
 @synthesize navBar = _navBar;
 @synthesize modalView = _modalView;
@@ -16,6 +19,7 @@
 
 - (void)dealloc
 {
+	[view release];
 	self.navBar = nil;
 	self.modalView = nil;
 	self.delegate = nil;
@@ -51,8 +55,9 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
-	self.view = [[[UIView alloc] init] autorelease];
-	self.view.frame = CGRectMake(0, 0, 320, 460);
+	view = [[[UIView alloc] init] autorelease];
+	view.frame = CGRectMake(0, 0, 320, 460);
+	self.view = [[[iOS6View alloc] initWithView:view] autorelease];
 	self.navBar = [[[UINavigationBar alloc]
 			initWithFrame:CGRectMake(0, 0, 320, 44)] autorelease];
 	self.navBar.barStyle = UIBarStyleBlackTranslucent;
@@ -61,7 +66,7 @@
 			       animated:NO];
 	[item release];
 	item = nil;
-	[self.view addSubview:self.navBar];
+	[view addSubview:self.navBar];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -78,7 +83,7 @@
 	[done release];
 	done = nil;
     
-	[self.view addSubview:self.modalView];
+	[view addSubview:self.modalView];
 	self.modalView.frame = CGRectMake(0, 44, 320, 416);
 }
 

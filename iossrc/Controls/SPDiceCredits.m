@@ -40,8 +40,7 @@
 
 		creditsTitle.text = @"Credits";
 		credits.text =
-			@"Slobodan Pejic, Philip Royer\n"
-			"\u00A9 2011-2012 Pure Ego Games";
+			@"\u00A9 2011-2013 Slobodan Pejic\n";
 		helpTitle.text = @"Help";
 		help.text =
 			@"1. To roll the dice at the top push the roll"
@@ -86,7 +85,7 @@
 	CGFloat titleHeight = 20;
 	CGFloat helpHeight = 200;
 	CGFloat sectionMargin = 34;
-	CGFloat creditsHeight = 50;
+	CGFloat creditsHeight = 36;
 	CGFloat width = frame.size.width;
 	CGFloat margin = 20;
 	CGFloat titlePaddingBottom = 8;
