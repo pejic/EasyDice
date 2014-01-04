@@ -40,7 +40,7 @@
 
 		creditsTitle.text = @"Credits";
 		credits.text =
-			@"\u00A9 2011-2013 Slobodan Pejic\n";
+			@"\u00A9 2011-2014 Slobodan Pejic\n";
 		helpTitle.text = @"Help";
 		help.text =
 			@"1. To roll the dice at the top push the roll"
