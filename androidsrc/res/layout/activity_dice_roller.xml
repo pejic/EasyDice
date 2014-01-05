@@ -10,11 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DiceRollerActivity" >
 
-    <net.pejici.easydice.view.DieView
-        android:id="@+id/dieView1"
+    <GridView
+        android:id="@+id/dice_grid"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="5" />
+        android:layout_weight="5"
+        android:columnWidth="88dp"
+        android:gravity="center"
+        android:numColumns="auto_fit" />
 
     <LinearLayout
         android:id="@+id/LinearLayout2"
@@ -50,9 +53,11 @@
 
     </LinearLayout>
 
-    <net.pejici.easydice.view.DieView
-        android:id="@+id/view1"
+    <GridView
+        android:id="@+id/dice_buttons_grid"
         android:layout_width="wrap_content"
-        android:layout_height="76dp" />
+        android:layout_height="76dp"
+        android:columnWidth="88dp"
+        android:numColumns="auto_fit" />
 
 </LinearLayout>

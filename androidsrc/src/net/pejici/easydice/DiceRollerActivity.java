@@ -1,8 +1,11 @@
 package net.pejici.easydice;
 
+import net.pejici.easydice.adapter.DieViewArrayAdapter;
+import net.pejici.easydice.model.Die;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.GridView;
 
 public class DiceRollerActivity extends Activity {
 
@@ -10,6 +13,10 @@ public class DiceRollerActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dice_roller);
+		GridView buttonGrid = (GridView) findViewById(R.id.dice_buttons_grid);
+		DieViewArrayAdapter<Die> adapter = new DieViewArrayAdapter<Die>(
+				this, 0, Die.allLargestSizeDice());
+		buttonGrid.setAdapter(adapter);
 	}
 
 	@Override
