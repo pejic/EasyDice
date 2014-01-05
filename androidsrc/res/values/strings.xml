@@ -6,5 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="reset_button_text">Reset</string>
     <string name="roll_button_text">Roll</string>
+    <string name="hand_sum_format_text">Adds to %1$s</string>
+    <string name="hand_sum_no_dice_text">Please select some dice to roll them.</string>
 
 </resources>

@@ -4,6 +4,7 @@ import net.pejici.easydice.adapter.DieViewArrayAdapter;
 import net.pejici.easydice.adapter.DieViewDieHandAdapter;
 import net.pejici.easydice.model.Die;
 import net.pejici.easydice.model.DieHand;
+import net.pejici.easydice.view.DieSumTextView;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -26,8 +27,15 @@ public class DiceRollerActivity extends Activity {
 		setContentView(R.layout.activity_dice_roller);
 		setupDiceButtons();
 		setupDiceHand();
+		setupDiceSum();
 		setupResetButton();
 		setupRollButton();
+	}
+
+	private void setupDiceSum() {
+		DieSumTextView view = (DieSumTextView)
+				findViewById(R.id.hand_sum_text_view);
+		view.setDieHand(hand);
 	}
 
 	private void setupDiceHand() {

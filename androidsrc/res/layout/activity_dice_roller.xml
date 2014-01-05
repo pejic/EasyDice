@@ -18,6 +18,13 @@
         android:gravity="center"
         android:numColumns="auto_fit" />
 
+    <net.pejici.easydice.view.DieSumTextView
+        android:id="@+id/hand_sum_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <LinearLayout
         android:id="@+id/LinearLayout2"
         android:layout_width="match_parent"
