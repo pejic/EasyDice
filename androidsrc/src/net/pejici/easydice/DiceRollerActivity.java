@@ -1,6 +1,5 @@
 package net.pejici.easydice;
 
-import net.pejici.easydice.view.DieView;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;

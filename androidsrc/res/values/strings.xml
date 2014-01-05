@@ -4,5 +4,7 @@
     <string name="app_name">Easy Dice</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="reset_button_text">Reset</string>
+    <string name="roll_button_text">Roll</string>
 
 </resources>

@@ -2,7 +2,6 @@ package net.pejici.easydice.view;
 
 import java.util.Locale;
 
-import net.pejici.easydice.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

@@ -13,7 +13,7 @@
     <net.pejici.easydice.view.DieView
         android:id="@+id/dieView1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dip"
         android:layout_weight="5" />
 
     <LinearLayout
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_weight="50"
-            android:text="Reset" />
+            android:text="@string/reset_button_text" />
 
         <Space
             android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_weight="50"
-            android:text="Roll" />
+            android:text="@string/roll_button_text" />
 
     </LinearLayout>
 
