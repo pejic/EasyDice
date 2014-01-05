@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Easy Dice</string>
+    <string name="reset_button_text">briši</string>
+    <string name="roll_button_text">baci kockice</string>
+    <string name="hand_sum_format_text">Suma %1$s.</string>
+    <string name="hand_sum_no_dice_text">Izaberite kockice.</string>
+</resources>
