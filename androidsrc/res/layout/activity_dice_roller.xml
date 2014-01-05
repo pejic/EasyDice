@@ -21,17 +21,19 @@
 
     <LinearLayout
         android:id="@+id/LinearLayout2"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/reset_button"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
             android:layout_weight="50"
+            android:minHeight="@dimen/big_button_min_height"
             android:text="@string/reset_button_text" />
 
         <Space
@@ -45,10 +47,10 @@
 
         <Button
             android:id="@+id/roll_button"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_weight="50"
+            android:minHeight="@dimen/big_button_min_height"
             android:text="@string/roll_button_text" />
 
     </LinearLayout>
