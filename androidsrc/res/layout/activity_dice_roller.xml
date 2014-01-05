@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -15,7 +14,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="5"
-        android:columnWidth="68dp"
+        android:columnWidth="58dp"
         android:gravity="center"
         android:numColumns="auto_fit" />
 
@@ -59,7 +58,7 @@
         android:id="@+id/dice_buttons_grid"
         android:layout_width="wrap_content"
         android:layout_height="96dp"
-        android:columnWidth="68dp"
+        android:columnWidth="58dp"
         android:numColumns="auto_fit" />
 
 </LinearLayout>
