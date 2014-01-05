@@ -5,3 +5,5 @@ gen/
 .settings/org.eclipse.jdt.core.prefs
 res/drawable-*/d*_00*.png
 res/drawable-*/d*_10x00*.png
+res/drawable-*/ic_launcher.png
+res/drawable-*/logo.png
