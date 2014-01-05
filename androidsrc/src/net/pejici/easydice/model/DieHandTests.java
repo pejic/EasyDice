@@ -8,16 +8,16 @@ public class DieHandTests extends TestCase {
 
 	public void testAddDie() {
 		DieHand hand = new DieHand();
-		hand.addDie(new Die(6, 20));
+		hand.addDie(new Die(6, 2));
 		List<Die> dice = hand.getDice();
 		assertEquals(1, dice.size());
-		assertEquals(new Die(6, 20), dice.get(0));
+		assertEquals(new Die(6, 2), dice.get(0));
 	}
 
 	public void testClear() {
 		DieHand hand = new DieHand();
-		hand.addDie(new Die(6, 20));
-		hand.addDie(new Die(6, 20));
+		hand.addDie(new Die(6, 2));
+		hand.addDie(new Die(6, 2));
 		hand.clear();
 		assertTrue(hand.getDice().isEmpty());
 	}
@@ -55,5 +55,38 @@ public class DieHandTests extends TestCase {
 		List<Die> dice = hand.getDice();
 		assertEquals(1, dice.size());
 		assertSame(die.rolledDie, dice.get(0));
+	}
+
+	public void testSumEmpty() {
+		DieHand hand = new DieHand();
+		assertEquals(0, hand.sum());
+	}
+
+	public void testSum1() {
+		Die die1 = new Die(6, 2);
+		DieHand hand = new DieHand();
+		hand.addDie(die1);
+		assertEquals(2, hand.sum());
+	}
+
+	public void testSum100_1() {
+		DieHand hand = new DieHand();
+		hand.addDie(new Die(10, 1)); // "1"
+		hand.addDie(new Die(10, 1, 10, -10)); // "00"
+		assertEquals(1, hand.sum());
+	}
+
+	public void testSum100_100() {
+		DieHand hand = new DieHand();
+		hand.addDie(new Die(10, 10)); // "10"
+		hand.addDie(new Die(10, 10, 10, -10)); // "90"
+		assertEquals(100, hand.sum());
+	}
+
+	public void testSum100_99() {
+		DieHand hand = new DieHand();
+		hand.addDie(new Die(10, 9)); // "10"
+		hand.addDie(new Die(10, 10, 10, -10)); // "90"
+		assertEquals(99, hand.sum());
 	}
 }

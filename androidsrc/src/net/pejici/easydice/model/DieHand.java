@@ -33,7 +33,11 @@ public class DieHand extends Observable {
 		notifyObservers();
 	}
 
-	public Number sum() {
-		return 0;
+	public int sum() {
+		int sum = 0;
+		for (Die die : dice) {
+			sum += die.value();
+		}
+		return sum;
 	}
 }

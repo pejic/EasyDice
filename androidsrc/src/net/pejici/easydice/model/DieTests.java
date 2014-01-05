@@ -94,5 +94,4 @@ public class DieTests extends TestCase {
 	public void testValueMult10_10() {
 		assertEquals(90, new Die(10, 10, 10, -10).value());
 	}
-
 }
