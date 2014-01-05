@@ -15,7 +15,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="5"
-        android:columnWidth="88dp"
+        android:columnWidth="68dp"
         android:gravity="center"
         android:numColumns="auto_fit" />
 
@@ -27,7 +27,7 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/reset_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -44,7 +44,7 @@
             android:layout_height="match_parent" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/roll_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -56,8 +56,8 @@
     <GridView
         android:id="@+id/dice_buttons_grid"
         android:layout_width="wrap_content"
-        android:layout_height="76dp"
-        android:columnWidth="88dp"
+        android:layout_height="96dp"
+        android:columnWidth="68dp"
         android:numColumns="auto_fit" />
 
 </LinearLayout>

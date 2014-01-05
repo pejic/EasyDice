@@ -2,6 +2,7 @@ package net.pejici.easydice.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Die {
 
@@ -26,6 +27,20 @@ public class Die {
 	@Override
 	public String toString() {
 		return number + "/d" + size;
+	}
+
+	public Die roll() {
+		Random r = getRandom();
+		int newNumber = r.nextInt(size) + 1;
+		return new Die(size, newNumber, multiplier);
+	}
+
+	static private Random random;
+	static private Random getRandom() {
+		if (null == random) {
+			random = new Random();
+		}
+		return random;
 	}
 
 	static public List<Die> allLargestSizeDice() {
