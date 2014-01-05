@@ -17,10 +17,11 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:actionBarStyle">@style/AppTheme.ActionBarStyle</item>
         <item name="android:actionMenuTextColor">#ffffff</item>
+        <item name="android:windowBackground">@drawable/activity_background</item>
     </style>
 
 	<style name="AppTheme.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
-	    <item name="android:background">#b01b12</item>
+	    <item name="android:background">@drawable/actionbar_background</item>
 		<item name="android:titleTextStyle">@style/AppTheme.ActionBar.TitleTextStyle</item>
 	</style>
 
