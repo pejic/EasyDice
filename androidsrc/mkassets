@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function renderOneIcon {
+	normal="`echo $1 | sed s/-/_/g \
+		| sed 's/..\/renders/res\/drawable-'"$2"'/g'`"
+	selected="`echo $normal | sed 's/.png/_sel.png/g'`"
+	convert -resize "$3"x -filter Lanczos "$1" "$normal"
+	convert -channel A -blur $4 \
+		-channel RGB -modulate 0,0 \
+		-channel R -brightness-contrast 100 \
+		-channel A -gamma 2 \
+		-channel A -brightness-contrast 25,50 \
+		"$normal" "$selected"
+}
+
+for i in `find ../renders -maxdepth 1 -type f -iname d\*.png`; do
+	renderOneIcon "$i" "ldpi" 66 6
+	renderOneIcon "$i" "mdpi" 88 8
+	renderOneIcon "$i" "hdpi" 132 12
+	renderOneIcon "$i" "xhdpi" 176 16
+	renderOneIcon "$i" "xxhdpi" 220 20
+done
+
+

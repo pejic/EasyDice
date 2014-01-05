@@ -1,0 +1,4 @@
+#!/bin/sh
+
+find res/ -type f -name d\*_00\*.png -exec rm \{\} \;
+find res/ -type f -name d\*_10x00\*.png -exec rm \{\} \;
