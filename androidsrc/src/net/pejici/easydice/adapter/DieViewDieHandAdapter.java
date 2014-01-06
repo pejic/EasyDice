@@ -1,7 +1,6 @@
 package net.pejici.easydice.adapter;
 import static net.pejici.androidutil.LayoutUtil.dpToPx;
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
