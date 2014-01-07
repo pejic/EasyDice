@@ -89,4 +89,53 @@ public class DieHandTests extends TestCase {
 		hand.addDie(new Die(10, 10, 10, -10)); // "90"
 		assertEquals(99, hand.sum());
 	}
+
+	public void testDefaultSelection() {
+		DieHand hand = new DieHand();
+		hand.addDie(new Die(6, 2));
+		assertFalse(hand.isSelected(0));
+	}
+
+	public void testSetSelected() {
+		DieHand hand = new DieHand();
+		hand.addDie(new Die(6, 2));
+		hand.addDie(new Die(6, 2));
+		hand.addDie(new Die(6, 3));
+		hand.setSelected(1, true);
+		assertFalse(hand.isSelected(0));
+		assertTrue(hand.isSelected(1));
+		assertFalse(hand.isSelected(2));
+	}
+
+	public void testRollSelectedOne() {
+		DieHand hand = new DieHand();
+		MockDie die1 = new MockDie(6, 2);
+		MockDie die2 = new MockDie(6, 3);
+		MockDie die3 = new MockDie(6, 4);
+		hand.addDie(die1);
+		hand.addDie(die2);
+		hand.addDie(die3);
+		hand.setSelected(1, true);
+		hand.roll();
+		assertTrue(die1.rollCalls == 0);
+		assertTrue(die2.rollCalls >= 1);
+		assertTrue(die3.rollCalls == 0);
+	}
+
+	public void testRollSelectedAll() {
+		DieHand hand = new DieHand();
+		MockDie die1 = new MockDie(6, 2);
+		MockDie die2 = new MockDie(6, 3);
+		MockDie die3 = new MockDie(6, 4);
+		hand.addDie(die1);
+		hand.addDie(die2);
+		hand.addDie(die3);
+		hand.setSelected(0, true);
+		hand.setSelected(1, true);
+		hand.setSelected(2, true);
+		hand.roll();
+		assertTrue(die1.rollCalls >= 1);
+		assertTrue(die2.rollCalls >= 1);
+		assertTrue(die3.rollCalls >= 1);
+	}
 }

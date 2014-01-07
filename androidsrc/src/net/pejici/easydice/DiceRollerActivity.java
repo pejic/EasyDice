@@ -5,6 +5,7 @@ import net.pejici.easydice.adapter.DieViewDieHandAdapter;
 import net.pejici.easydice.model.Die;
 import net.pejici.easydice.model.DieHand;
 import net.pejici.easydice.view.DieSumTextView;
+import net.pejici.easydice.view.DieView;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -42,6 +43,15 @@ public class DiceRollerActivity extends Activity {
 		GridView grid = (GridView) findViewById(R.id.dice_grid);
 		handAdapter = new DieViewDieHandAdapter(this, hand);
 		grid.setAdapter(handAdapter);
+		OnItemClickListener cl = new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				DieView dieView = (DieView)view;
+				hand.setSelected(position, !dieView.getSelected());
+			}
+		};
+		grid.setOnItemClickListener(cl);
 	}
 
 	private void setupDiceButtons() {

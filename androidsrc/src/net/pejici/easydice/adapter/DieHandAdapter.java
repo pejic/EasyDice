@@ -42,6 +42,10 @@ public abstract class DieHandAdapter extends DataSetObservable
 		return hand.getDice().get(position);
 	}
 
+	public boolean getSelected(int position) {
+		return hand.isSelected(position);
+	}
+
 	@Override
 	public long getItemId(int position) {
 		return position;

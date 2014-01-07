@@ -57,13 +57,11 @@ public class DieViewArrayAdapter<T> extends ArrayAdapter<T> {
 		}
 		DieView dieView = (DieView) convertView;
 		if (null == dieView) {
-			dieView = new DieView(getContext(), die);
+			dieView = new DieView(getContext());
 			int px = dpToPx(dieView, 66);
 			dieView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, px));
 		}
-		else {
-			dieView.setDie(die);
-		}
+		dieView.setDie(die);
 		return dieView;
 	}
 

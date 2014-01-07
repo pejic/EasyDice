@@ -18,19 +18,19 @@ public class DieViewDieHandAdapter extends DieHandAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		Die die = (Die) getItem(position);
+		Die die = getDie(position);
+		boolean selected = getSelected(position);
 		if (null == die) {
 			return null;
 		}
 		DieView dieView = (DieView) convertView;
 		if (null == dieView) {
-			dieView = new DieView(getContext(), die);
+			dieView = new DieView(getContext());
 			int px = dpToPx(dieView, 66);
 			dieView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, px));
 		}
-		else {
-			dieView.setDie(die);
-		}
+		dieView.setDie(die);
+		dieView.setSelected(selected);
 		return dieView;
 	}
 
