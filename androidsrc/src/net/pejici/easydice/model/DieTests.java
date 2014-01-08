@@ -1,5 +1,14 @@
 package net.pejici.easydice.model;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.Writer;
+
+import android.util.JsonReader;
+import android.util.JsonWriter;
 import junit.framework.TestCase;
 
 public class DieTests extends TestCase {
@@ -93,5 +102,24 @@ public class DieTests extends TestCase {
 
 	public void testValueMult10_10() {
 		assertEquals(90, new Die(10, 10, 10, -10).value());
+	}
+
+	private void serializeAndEquals(Die d1) throws IOException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		Writer out = new PrintWriter(baos);
+		d1.serialize(new JsonWriter(out));
+		out.flush();
+		ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+		InputStreamReader rd = new InputStreamReader(bais);
+		Die d2 = new Die(new JsonReader(rd));
+		assertEquals(d1, d2);
+	}
+
+	public void testJson() throws IOException {
+		serializeAndEquals(new Die(6, 2));
+	}
+
+	public void testJsonMultiplier() throws IOException {
+		serializeAndEquals(new Die(6, 2, 10, -10));
 	}
 }

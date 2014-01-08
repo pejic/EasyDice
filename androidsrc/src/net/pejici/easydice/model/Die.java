@@ -1,10 +1,19 @@
 package net.pejici.easydice.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import android.util.JsonReader;
+import android.util.JsonWriter;
+
 public class Die {
+
+	public static final String sizeKey = "size";
+	public static final String numberKey = "number";
+	public static final String multiplierKey = "multiplier";
+	public static final String offsetKey = "offset";
 
 	public final int size;
 	public final int number;
@@ -27,6 +36,24 @@ public class Die {
 		this.multiplier = multiplier;
 		this.offset = offset;
 		testIllegalState();
+	}
+
+	private JsonReader nextName(JsonReader json, String key)
+			throws IOException {
+		if (!json.nextName().equals(key)) {
+			throw new IllegalArgumentException(key + " not found in json.");
+		}
+		return json;
+	}
+
+	public Die(JsonReader json) throws IOException {
+		super();
+		json.beginObject();
+		this.size = nextName(json, sizeKey).nextInt();
+		this.number = nextName(json, numberKey).nextInt();
+		this.multiplier = nextName(json, multiplierKey).nextInt();
+		this.offset = nextName(json, offsetKey).nextInt();
+		json.endObject();
 	}
 
 	private void testIllegalState() {
@@ -74,6 +101,15 @@ public class Die {
 					&& this.offset == right.offset;
 		}
 		return false;
+	}
+
+	public void serialize(JsonWriter json) throws IOException {
+		json.beginObject();
+		json.name(sizeKey).value(size);
+		json.name(numberKey).value(number);
+		json.name(multiplierKey).value(multiplier);
+		json.name(offsetKey).value(offset);
+		json.endObject();
 	}
 
 	static private Random random;

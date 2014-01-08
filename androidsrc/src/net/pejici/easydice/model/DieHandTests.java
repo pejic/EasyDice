@@ -1,6 +1,15 @@
 package net.pejici.easydice.model;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.List;
+
+import android.util.JsonReader;
+import android.util.JsonWriter;
 
 import junit.framework.TestCase;
 
@@ -191,5 +200,29 @@ public class DieHandTests extends TestCase {
 		h2.addDie(new Die(6, 3));
 		assertFalse(h1.equals(h2));
 		assertFalse(h2.equals(h1));
+	}
+
+	private void serializeAndEquals(DieHand h1) throws IOException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		Writer out = new PrintWriter(baos);
+		h1.serialize(new JsonWriter(out));
+		out.flush();
+		ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+		InputStreamReader rd = new InputStreamReader(bais);
+		DieHand h2 = new DieHand(new JsonReader(rd));
+		assertEquals(h1, h2);
+	}
+
+	public void testJson() throws IOException {
+		DieHand h1 = new DieHand();
+		h1.addDie(new Die(6, 3));
+		h1.addDie(new Die(10, 3, 10, -10));
+		h1.addDie(new Die(6, 3));
+		serializeAndEquals(h1);
+	}
+
+	public void testJsonEmpty() throws IOException {
+		DieHand h1 = new DieHand();
+		serializeAndEquals(h1);
 	}
 }
