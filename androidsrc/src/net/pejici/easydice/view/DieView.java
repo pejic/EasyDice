@@ -56,7 +56,7 @@ public class DieView extends View {
 			return String.format(Locale.US, "d%dx%d_%04d",
 					Integer.valueOf(die.size),
 					Integer.valueOf(die.multiplier),
-					Integer.valueOf(die.number));
+					Integer.valueOf((die.number-2)%die.multiplier+1));
 		}
 	}
 
