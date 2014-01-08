@@ -138,4 +138,58 @@ public class DieHandTests extends TestCase {
 		assertTrue(die2.rollCalls >= 1);
 		assertTrue(die3.rollCalls >= 1);
 	}
+
+	public void testEqualsEmpty() {
+		DieHand h1 = new DieHand();
+		DieHand h2 = new DieHand();
+		assertTrue(h1.equals(h2));
+		assertTrue(h2.equals(h1));
+	}
+
+	public void testUnequalsEmpty() {
+		DieHand h1 = new DieHand();
+		h1.addDie(new Die(6, 2));
+		DieHand h2 = new DieHand();
+		assertFalse(h1.equals(h2));
+		assertFalse(h2.equals(h1));
+	}
+
+	public void testEquals() {
+		DieHand h1 = new DieHand();
+		h1.addDie(new Die(6, 2));
+		DieHand h2 = new DieHand();
+		h2.addDie(new Die(6, 2));
+		assertTrue(h1.equals(h2));
+		assertTrue(h2.equals(h1));
+	}
+
+	public void testUnequalsSameNumber() {
+		DieHand h1 = new DieHand();
+		h1.addDie(new Die(6, 2));
+		DieHand h2 = new DieHand();
+		h2.addDie(new Die(6, 3));
+		assertFalse(h1.equals(h2));
+		assertFalse(h2.equals(h1));
+	}
+
+	public void testUnequalsMore() {
+		DieHand h1 = new DieHand();
+		h1.addDie(new Die(6, 2));
+		DieHand h2 = new DieHand();
+		h2.addDie(new Die(6, 2));
+		h2.addDie(new Die(6, 3));
+		assertFalse(h1.equals(h2));
+		assertFalse(h2.equals(h1));
+	}
+
+	public void testUnequalsDisordered() {
+		DieHand h1 = new DieHand();
+		h1.addDie(new Die(6, 3));
+		h1.addDie(new Die(6, 2));
+		DieHand h2 = new DieHand();
+		h2.addDie(new Die(6, 2));
+		h2.addDie(new Die(6, 3));
+		assertFalse(h1.equals(h2));
+		assertFalse(h2.equals(h1));
+	}
 }

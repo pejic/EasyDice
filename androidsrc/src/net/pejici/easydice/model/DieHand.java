@@ -19,6 +19,15 @@ public class DieHand extends Observable {
 			sDie.selected = this.selected;
 			return sDie;
 		}
+		@Override
+		public boolean equals(Object o) {
+			if (o instanceof SelectableDie) {
+				SelectableDie right = (SelectableDie)o;
+				return (this.selected == right.selected
+						&& this.die.equals(right.die));
+			}
+			return false;
+		}
 	}
 
 	private List<SelectableDie> dice = new ArrayList<SelectableDie>();
@@ -77,5 +86,14 @@ public class DieHand extends Observable {
 			sum += die.die.value();
 		}
 		return sum;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof DieHand) {
+			DieHand right = (DieHand) o;
+			return this.dice.equals(right.dice);
+		}
+		return false;
 	}
 }

@@ -53,10 +53,14 @@ public class DieView extends View {
 					Integer.valueOf(die.number));
 		}
 		else {
+			int number = die.number-1;
+			if (number < 1) {
+				number += die.multiplier;
+			}
 			return String.format(Locale.US, "d%dx%d_%04d",
 					Integer.valueOf(die.size),
 					Integer.valueOf(die.multiplier),
-					Integer.valueOf((die.number-2)%die.multiplier+1));
+					Integer.valueOf(number));
 		}
 	}
 
