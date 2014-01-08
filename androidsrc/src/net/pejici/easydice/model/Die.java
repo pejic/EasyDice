@@ -60,6 +60,11 @@ public class Die {
 	}
 
 	@Override
+	public int hashCode() {
+		return number * 307 + this.size * 211 + this.offset *23 + multiplier;
+	}
+
+	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Die) {
 			Die right = (Die) o;

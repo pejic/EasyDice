@@ -20,6 +20,10 @@ public class DieHand extends Observable {
 			return sDie;
 		}
 		@Override
+		public int hashCode() {
+			return die.hashCode() + (selected ? 1 : 1337);
+		}
+		@Override
 		public boolean equals(Object o) {
 			if (o instanceof SelectableDie) {
 				SelectableDie right = (SelectableDie)o;
@@ -86,6 +90,15 @@ public class DieHand extends Observable {
 			sum += die.die.value();
 		}
 		return sum;
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		for (SelectableDie die : dice) {
+			hash += die.hashCode();
+		}
+		return hash;
 	}
 
 	@Override
