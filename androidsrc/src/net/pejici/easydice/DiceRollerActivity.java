@@ -1,5 +1,10 @@
 package net.pejici.easydice;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import net.pejici.easydice.adapter.DieViewArrayAdapter;
 import net.pejici.easydice.adapter.DieViewDieHandAdapter;
 import net.pejici.easydice.model.Die;
@@ -8,6 +13,9 @@ import net.pejici.easydice.view.DieSumTextView;
 import net.pejici.easydice.view.DieView;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.JsonReader;
+import android.util.JsonWriter;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,7 +32,7 @@ public class DiceRollerActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		hand = new DieHand();
+		loadHand();
 		setContentView(R.layout.activity_dice_roller);
 		setupDiceButtons();
 		setupDiceHand();
@@ -92,11 +100,68 @@ public class DiceRollerActivity extends Activity {
 		rollButton.setOnClickListener(cl);
 	}
 
+	private File handFile() {
+		File filesDir = this.getFilesDir();
+		File handFile = new File(filesDir, "hand.json");
+		return handFile;
+	}
+
+	private void loadHand() {
+		File handFile = handFile();
+		if (handFile.isFile()) {
+			try {
+				FileReader fileReader = new FileReader(handFile);
+				JsonReader json = new JsonReader(fileReader);
+				hand = new DieHand(json);
+			}
+			catch (IOException e) {
+				Log.d("DiceRollerActivity", e.toString());
+				hand = new DieHand();
+			}
+			catch (IllegalStateException e) {
+				Log.d("DiceRollerActivity", e.toString());
+				hand = new DieHand();
+			}
+		}
+		else {
+			hand = new DieHand();
+		}
+	}
+
+	private void saveHand() {
+		File handFile = handFile();
+		boolean success = false;
+		try {
+			FileWriter fileWriter = new FileWriter(handFile);
+			JsonWriter json = new JsonWriter(fileWriter);
+			hand.serialize(json);
+			json.close();
+			success = true;
+		}
+		catch (IOException e) {
+			Log.d("DiceRollerActivity", e.toString());
+		}
+		catch (IllegalStateException e) {
+			Log.d("DiceRollerActivity", e.toString());
+		}
+		finally {
+			if (!success) {
+				handFile().delete();
+			}
+		}
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.dice_roller, menu);
 		return true;
+	}
+
+	@Override
+	protected void onPause() {
+		saveHand();
+		super.onPause();
 	}
 
 }

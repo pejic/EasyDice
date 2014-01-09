@@ -41,7 +41,7 @@ public class Die {
 	private JsonReader nextName(JsonReader json, String key)
 			throws IOException {
 		if (!json.nextName().equals(key)) {
-			throw new IllegalArgumentException(key + " not found in json.");
+			throw new IllegalStateException(key + " expected in json.");
 		}
 		return json;
 	}

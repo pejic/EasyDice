@@ -13,6 +13,14 @@ public class DieHand extends Observable {
 
 	public static final String diceKey = "dice";
 
+	private static JsonReader nextName(JsonReader json, String key)
+			throws IOException {
+		if (!json.nextName().equals(key)) {
+			throw new IllegalStateException(key + " expected in json.");
+		}
+		return json;
+	}
+
 	private static class SelectableDie {
 		public static final String dieKey = "die";
 		public static final String selectedKey = "selected";
@@ -24,18 +32,11 @@ public class DieHand extends Observable {
 			this.selected = false;
 		}
 
-		private JsonReader nextName(JsonReader json, String key)
-				throws IOException {
-			if (!json.nextName().equals(key)) {
-				throw new IllegalArgumentException(key + " not found in json.");
-			}
-			return json;
-		}
-
 		public SelectableDie(JsonReader json) throws IOException {
 			json.beginObject();
-			this.die = new Die(nextName(json, dieKey));
-			this.selected = nextName(json, selectedKey).nextBoolean();
+			this.die = new Die(DieHand.nextName(json, dieKey));
+			this.selected = DieHand.nextName(json, selectedKey).nextBoolean();
+			json.endObject();
 		}
 
 		public SelectableDie roll() {
@@ -70,6 +71,7 @@ public class DieHand extends Observable {
 
 	private List<SelectableDie> dice = new ArrayList<SelectableDie>();
 
+
 	public DieHand() {
 		super();
 	}
@@ -77,9 +79,12 @@ public class DieHand extends Observable {
 	public DieHand(JsonReader json) throws IOException {
 		super();
 		json.beginObject();
+		nextName(json, "dice");
+		json.beginArray();
 		while (json.peek() != JsonToken.END_ARRAY) {
 			dice.add(new SelectableDie(json));
 		}
+		json.endArray();
 		json.endObject();
 	}
 
@@ -157,7 +162,7 @@ public class DieHand extends Observable {
 		return false;
 	}
 
-	void serialize(JsonWriter json) throws IOException {
+	public void serialize(JsonWriter json) throws IOException {
 		json.beginObject();
 		json.name(diceKey);
 		json.beginArray();
