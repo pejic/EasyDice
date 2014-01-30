@@ -6,5 +6,11 @@
     <string name="roll_button_text">Roll</string>
     <string name="hand_sum_format_text">Adds to %1$s</string>
     <string name="hand_sum_no_dice_text">Please select some dice to roll them.</string>
+    <string name="title_activity_about">About Easy Dice</string>
+    <string name="action_about">About</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="copyright_heading_text">Copyright</string>
+    <string name="copyright_notice_text">© 2011–2014 Slobodan Pejić (slobo@pejici.net)</string>
+    <string name="licence_heading_text">Licence</string>
 
 </resources>

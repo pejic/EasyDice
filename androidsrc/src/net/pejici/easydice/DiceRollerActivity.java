@@ -30,10 +30,12 @@ import net.pejici.easydice.view.DieSumTextView;
 import net.pejici.easydice.view.DieView;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.util.JsonReader;
 import android.util.JsonWriter;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -181,4 +183,15 @@ public class DiceRollerActivity extends Activity {
 		super.onPause();
 	}
 
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		if (item.getItemId() == R.id.action_about) {
+			Intent intent = new Intent(this, AboutActivity.class);
+			startActivity(intent);
+			return true;
+		}
+		else {
+			return super.onMenuItemSelected(featureId, item);
+		}
+	}
 }
