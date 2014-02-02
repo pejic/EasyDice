@@ -1,6 +1,7 @@
 #!/bin/bash
 
 function renderOneIcon {
+	mkdir -p "res/drawable-$2"
 	normal="`echo $1 | sed s/-/_/g \
 		| sed 's/..\/renders/res\/drawable-'"$2"'/g'`"
 	selected="`echo $normal | sed 's/.png/_sel.png/g'`"
