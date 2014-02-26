@@ -29,8 +29,8 @@ public class AppModel {
 	static public AppModel getInstance(Context context) {
 		if (instance == null) {
 			instance = new AppModel();
-			instance.load();
 			filesDir = context.getFilesDir();
+			instance.load();
 		}
 		return instance;
 	}

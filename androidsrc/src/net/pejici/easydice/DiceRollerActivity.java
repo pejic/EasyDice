@@ -18,6 +18,7 @@
 package net.pejici.easydice;
 
 import net.pejici.easydice.model.AppModel;
+import net.pejici.easydice.model.DieHandList;
 import net.pejici.easydice.pageradapter.DieHandListAdapter;
 import android.os.Bundle;
 import android.content.Intent;
@@ -54,7 +55,14 @@ public class DiceRollerActivity extends FragmentActivity {
 
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		if (item.getItemId() == R.id.action_about) {
+		if (item.getItemId() == R.id.action_add_hand) {
+			AppModel model = AppModel.getInstance(this);
+			DieHandList list = model.getHandList();
+			ViewPager pager = (ViewPager) findViewById(R.id.pager);
+			list.make(pager.getCurrentItem()+1);
+			return true;
+		}
+		else if (item.getItemId() == R.id.action_about) {
 			Intent intent = new Intent(this, AboutActivity.class);
 			startActivity(intent);
 			return true;

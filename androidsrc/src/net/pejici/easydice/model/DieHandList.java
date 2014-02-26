@@ -40,7 +40,7 @@ public class DieHandList extends Observable {
 		}
 		json.beginArray();
 		while (json.peek() != JsonToken.END_ARRAY) {
-			new DieHand(json);
+			hands.add(new DieHand(json));
 		}
 		json.endArray();
 	}

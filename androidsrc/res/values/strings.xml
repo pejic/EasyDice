@@ -12,5 +12,6 @@
     <string name="copyright_heading_text">Copyright</string>
     <string name="copyright_notice_text">© 2011–2014 Slobodan Pejić (slobo@pejici.net)</string>
     <string name="licence_heading_text">Licence</string>
+    <string name="action_add_hand">Add</string>
 
 </resources>
