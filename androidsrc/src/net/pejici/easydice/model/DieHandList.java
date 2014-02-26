@@ -22,6 +22,13 @@ public class DieHandList extends Observable {
 	}
 
 	/**
+	 * Initializes with a single hand object.
+	 */
+	public DieHandList(DieHand dieHand) {
+		this.hands.add(dieHand);
+	}
+
+	/**
 	 * Loads from a serialized json.
 	 * @param json The JsonReader for this object.
 	 * @throws IOException 
@@ -43,7 +50,7 @@ public class DieHandList extends Observable {
 	 * @param index The index at which the die hand will be inserted.
 	 * @return The newly created die hand.
 	 */
-	void make(int index) {
+	public void make(int index) {
 		DieHand hand = new DieHand();
 		hands.add(index, hand);
 		setChanged();
@@ -54,7 +61,7 @@ public class DieHandList extends Observable {
 	 * Gets the hand at the given index.
 	 * @return The hand.
 	 */
-	DieHand get(int index) {
+	public DieHand get(int index) {
 		return hands.get(index);
 	}
 
@@ -63,7 +70,7 @@ public class DieHandList extends Observable {
 	 * @param index The index at which to remove the hand from.
 	 * @return The hand removed.
 	 */
-	void remove(int index) {
+	public void remove(int index) {
 		hands.remove(index);
 		setChanged();
 		notifyObservers();
@@ -72,7 +79,7 @@ public class DieHandList extends Observable {
 	/**
 	 * Returns the number of hands.
 	 */
-	int size() {
+	public int size() {
 		return hands.size();
 	}
 
@@ -80,7 +87,7 @@ public class DieHandList extends Observable {
 	 * Writes the list out as json.
 	 * @throws IOException 
 	 */
-	void serialize(JsonWriter json) throws IOException {
+	public void serialize(JsonWriter json) throws IOException {
 		json.beginObject();
 		json.name("hands");
 		json.beginArray();

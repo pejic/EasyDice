@@ -16,6 +16,14 @@ public class DieHandListTests extends TestCase implements Observer {
 		list = new DieHandList();
 	}
 
+	public void testInitWithHand() {
+		DieHand hand = new DieHand();
+		hand.addDie(new Die(6, 2));
+		list = new DieHandList(hand);
+		assertEquals(1, list.size());
+		assertEquals(hand, list.get(0));
+	}
+
 	public void testMake() {
 		startObserving();
 		list.make(0);

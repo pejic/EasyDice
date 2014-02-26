@@ -17,157 +17,26 @@
  */
 package net.pejici.easydice;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import net.pejici.easydice.adapter.DieViewArrayAdapter;
-import net.pejici.easydice.adapter.DieViewDieHandAdapter;
-import net.pejici.easydice.model.Die;
-import net.pejici.easydice.model.DieHand;
-import net.pejici.easydice.view.DieSumTextView;
-import net.pejici.easydice.view.DieView;
+import net.pejici.easydice.model.AppModel;
+import net.pejici.easydice.pageradapter.DieHandListAdapter;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
-import android.util.JsonReader;
-import android.util.JsonWriter;
-import android.util.Log;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class DiceRollerActivity extends Activity {
-
-	DieHand hand;
-	DieViewDieHandAdapter handAdapter;
+public class DiceRollerActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		loadHand();
+		AppModel model = AppModel.getInstance(this); // loads if not loaded
 		setContentView(R.layout.activity_dice_roller);
-		setupDiceButtons();
-		setupDiceHand();
-		setupDiceSum();
-		setupResetButton();
-		setupRollButton();
-	}
-
-	private void setupDiceSum() {
-		DieSumTextView view = (DieSumTextView)
-				findViewById(R.id.hand_sum_text_view);
-		view.setDieHand(hand);
-	}
-
-	private void setupDiceHand() {
-		GridView grid = (GridView) findViewById(R.id.dice_grid);
-		handAdapter = new DieViewDieHandAdapter(this, hand);
-		grid.setAdapter(handAdapter);
-		OnItemClickListener cl = new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				DieView dieView = (DieView)view;
-				hand.setSelected(position, !dieView.getSelected());
-			}
-		};
-		grid.setOnItemClickListener(cl);
-	}
-
-	private void setupDiceButtons() {
-		GridView buttonGrid = (GridView) findViewById(R.id.dice_buttons_grid);
-		DieViewArrayAdapter<Die> adapter = new DieViewArrayAdapter<Die>(
-				this, 0, Die.allLargestSizeDice());
-		buttonGrid.setAdapter(adapter);
-		OnItemClickListener cl = new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View dieView,
-					int position, long id) {
-				Die die = (Die) parent.getAdapter().getItem(position);
-				hand.addDie(die);
-			}
-		};
-		buttonGrid.setOnItemClickListener(cl);
-	}
-
-	private void setupResetButton() {
-		Button resetButton = (Button) findViewById(R.id.reset_button);
-		OnClickListener cl = new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				hand.clear();
-			}
-		};
-		resetButton.setOnClickListener(cl);
-	}
-
-	private void setupRollButton() {
-		Button rollButton = (Button) findViewById(R.id.roll_button);
-		OnClickListener cl = new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				hand.roll();
-			}
-		};
-		rollButton.setOnClickListener(cl);
-	}
-
-	private File handFile() {
-		File filesDir = this.getFilesDir();
-		File handFile = new File(filesDir, "hand.json");
-		return handFile;
-	}
-
-	private void loadHand() {
-		File handFile = handFile();
-		if (handFile.isFile()) {
-			try {
-				FileReader fileReader = new FileReader(handFile);
-				JsonReader json = new JsonReader(fileReader);
-				hand = new DieHand(json);
-			}
-			catch (IOException e) {
-				Log.d("DiceRollerActivity", e.toString());
-				hand = new DieHand();
-			}
-			catch (IllegalStateException e) {
-				Log.d("DiceRollerActivity", e.toString());
-				hand = new DieHand();
-			}
-		}
-		else {
-			hand = new DieHand();
-		}
-	}
-
-	private void saveHand() {
-		File handFile = handFile();
-		boolean success = false;
-		try {
-			FileWriter fileWriter = new FileWriter(handFile);
-			JsonWriter json = new JsonWriter(fileWriter);
-			hand.serialize(json);
-			json.close();
-			success = true;
-		}
-		catch (IOException e) {
-			Log.d("DiceRollerActivity", e.toString());
-		}
-		catch (IllegalStateException e) {
-			Log.d("DiceRollerActivity", e.toString());
-		}
-		finally {
-			if (!success) {
-				handFile().delete();
-			}
-		}
+		ViewPager pager = (ViewPager) findViewById(R.id.pager);
+		DieHandListAdapter adapter = new DieHandListAdapter(
+				getSupportFragmentManager(), model.getHandList());
+		pager.setAdapter(adapter);
 	}
 
 	@Override
@@ -179,7 +48,7 @@ public class DiceRollerActivity extends Activity {
 
 	@Override
 	protected void onPause() {
-		saveHand();
+		AppModel.getInstance(this).save();
 		super.onPause();
 	}
 
