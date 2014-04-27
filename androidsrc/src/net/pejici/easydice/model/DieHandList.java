@@ -3,7 +3,8 @@ package net.pejici.easydice.model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
+
+import net.pejici.java.WeakObservable;
 
 import android.util.JsonReader;
 import android.util.JsonToken;
@@ -14,7 +15,7 @@ import android.util.JsonWriter;
  * @author slobo
  *
  */
-public class DieHandList extends Observable {
+public class DieHandList extends WeakObservable {
 
 	private List<DieHand> hands = new ArrayList<DieHand>();
 
