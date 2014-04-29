@@ -47,6 +47,14 @@ public class DiceRollerFragment extends Fragment {
 		// TODO Auto-generated constructor stub
 	}
 
+	static public DiceRollerFragment instantiate(int position) {
+		DiceRollerFragment frag = new DiceRollerFragment();
+		Bundle bundle = new Bundle();
+		bundle.putInt(DiceRollerFragment.ARGS_HAND, position);
+		frag.setArguments(bundle);
+		return frag;
+	}
+
 	private void loadHand() {
 		int i = getArguments().getInt(ARGS_HAND);
 		AppModel model = AppModel.getInstance(getActivity());
@@ -124,6 +132,16 @@ public class DiceRollerFragment extends Fragment {
 		setupResetButton(rootView);
 		setupRollButton(rootView);
 		return rootView;
+	}
+
+	/**
+	 * Returns the hand that is being shown by this fragment.  The pager
+	 * adapter will use this to determine the position of the fragment
+	 * especially after an update to the {@link DieHandList}.
+	 * @return {@link DieHand} object being shown by this fragment.
+	 */
+	public DieHand getHand() {
+		return hand;
 	};
 
 }

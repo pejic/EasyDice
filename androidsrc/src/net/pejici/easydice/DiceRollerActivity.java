@@ -53,13 +53,31 @@ public class DiceRollerActivity extends FragmentActivity {
 		super.onPause();
 	}
 
+	private DieHandList getDieHandList() {
+		AppModel model = AppModel.getInstance(this);
+		DieHandList list = model.getHandList();
+		return list;
+	}
+
+	private ViewPager getViewPager() {
+		ViewPager pager = (ViewPager) findViewById(R.id.pager);
+		return pager;
+	}
+
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		if (item.getItemId() == R.id.action_add_hand) {
-			AppModel model = AppModel.getInstance(this);
-			DieHandList list = model.getHandList();
-			ViewPager pager = (ViewPager) findViewById(R.id.pager);
-			list.make(pager.getCurrentItem()+1);
+			int count = getViewPager().getAdapter().getCount();
+			if (count > 0) {
+				getDieHandList().make(getViewPager().getCurrentItem()+1);
+			}
+			else {
+				getDieHandList().make(0);
+			}
+			return true;
+		}
+		else if (item.getItemId() == R.id.action_remove_hand) {
+			getDieHandList().remove(getViewPager().getCurrentItem());
 			return true;
 		}
 		else if (item.getItemId() == R.id.action_about) {

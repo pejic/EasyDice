@@ -3,6 +3,9 @@
     <item android:id="@+id/action_add_hand"
         android:title="@string/action_add_hand"
         android:showAsAction="always" />
+    <item android:id="@+id/action_remove_hand"
+        android:title="@string/action_remove_hand"
+        android:showAsAction="always" />
     <item
         android:id="@+id/action_about"
         android:orderInCategory="100"

@@ -123,6 +123,14 @@ public class DieHandListTests extends TestCase implements Observer {
 		}
 	}
 
+	public void testIndexOf() {
+		list.make(0);
+		list.make(1);
+		DieHand hand1 = list.get(1);
+		int index = list.indexOfIdentical(hand1);
+		assertEquals(1, index);
+	}
+
 	public void testRemoveNegative() {
 		try {
 			list.remove(-1);

@@ -102,6 +102,19 @@ public class DieHandList extends WeakObservable {
 	}
 
 	/**
+	 * Returns the index of the given hand.
+	 */
+	public int indexOfIdentical(DieHand hand) {
+		int i = 0;
+		for (i = 0; i < hands.size(); i++) {
+			if (hands.get(i) == hand) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/**
 	 * Writes the list out as json.
 	 * @throws IOException 
 	 */

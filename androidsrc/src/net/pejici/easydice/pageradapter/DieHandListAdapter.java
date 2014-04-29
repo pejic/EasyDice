@@ -17,19 +17,29 @@
  */
 package net.pejici.easydice.pageradapter;
 
+import java.io.ObjectInputStream.GetField;
+import java.util.Observable;
+import java.util.Observer;
+
 import net.pejici.easydice.fragment.DiceRollerFragment;
+import net.pejici.easydice.model.DieHand;
 import net.pejici.easydice.model.DieHandList;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
-public class DieHandListAdapter extends FragmentStatePagerAdapter {
+public class DieHandListAdapter
+	extends FragmentStatePagerAdapter
+	implements Observer
+{
 	DieHandList list = null;
 
 	public DieHandListAdapter(FragmentManager fm, DieHandList list) {
 		super(fm);
 		this.list = list;
+		this.list.addObserver(this);
 	}
 
 	@Override
@@ -39,16 +49,22 @@ public class DieHandListAdapter extends FragmentStatePagerAdapter {
 
 	@Override
 	public Fragment getItem(int position) {
-		DiceRollerFragment frag = new DiceRollerFragment();
-		Bundle bundle = new Bundle();
-		bundle.putInt(DiceRollerFragment.ARGS_HAND, position);
-		frag.setArguments(bundle);
-		return frag;
+		return DiceRollerFragment.instantiate(position);
+	}
+
+	@Override
+	public int getItemPosition(Object object) {
+		return POSITION_NONE;
 	}
 
 	@Override
 	public int getCount() {
 		return list.size();
+	}
+
+	@Override
+	public void update(Observable observable, Object data) {
+		this.notifyDataSetChanged();
 	}
 
 }
