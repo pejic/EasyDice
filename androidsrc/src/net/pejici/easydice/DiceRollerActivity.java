@@ -67,7 +67,7 @@ public class DiceRollerActivity extends FragmentActivity {
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		if (item.getItemId() == R.id.action_add_hand) {
-			int count = getViewPager().getAdapter().getCount();
+			int count = getDieHandList().size();
 			if (count > 0) {
 				getDieHandList().make(getViewPager().getCurrentItem()+1);
 			}
@@ -77,7 +77,13 @@ public class DiceRollerActivity extends FragmentActivity {
 			return true;
 		}
 		else if (item.getItemId() == R.id.action_remove_hand) {
-			getDieHandList().remove(getViewPager().getCurrentItem());
+			int count = getDieHandList().size();
+			if (count > 0) {
+				getDieHandList().remove(getViewPager().getCurrentItem());
+			}
+			else {
+				// TODO: show some message, but for now at least don't crash.
+			}
 			return true;
 		}
 		else if (item.getItemId() == R.id.action_about) {
