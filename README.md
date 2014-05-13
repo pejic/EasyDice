@@ -26,16 +26,16 @@ The build process has a number of steps due to assets being rendered.  However
 assets need only be rendered once, and rescaled per app.
 
 To render assets using blender run the render script.
-
-  $ ./render.sh
+  
+     $ ./render.sh
 
 This will undoubtedly take some time.  You will find many new files in the
 render/ directory.  These are the high resolution renders that will be rescaled
 to get the assets that apps will actually incorporate.  To build the android
 assets run mkassets.sh from the androidsrc directory.
 
-  $ cd androidsrc
-  $ ./mkassets.sh
+     $ cd androidsrc
+     $ ./mkassets.sh
 
 At this point you can build the Android project in the usual ways.
 
