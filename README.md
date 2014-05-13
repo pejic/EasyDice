@@ -1,4 +1,4 @@
-
+```
      _/_/_/_/                                    _/_/_/    _/
     _/          _/_/_/    _/_/_/  _/    _/      _/    _/        _/_/_/    _/_/
    _/_/_/    _/    _/  _/_/      _/    _/      _/    _/  _/  _/        _/_/_/_/
@@ -6,6 +6,7 @@
  _/_/_/_/    _/_/_/  _/_/_/      _/_/_/      _/_/_/    _/    _/_/_/    _/_/_/
                                     _/
                                _/_/_/
+```
 
 # Easy Dice
 
@@ -41,7 +42,7 @@ At this point you can build the Android project in the usual ways.
 
 ## Copyright & Licence
 
-Copyright (c) Slobodan Pejic 2011, 2012, 2013, 2014
+Copyright (c) Slobodan Pejic 2011-2014
 
 This software is licenced under the GNU General Public Licence.  See
 [LICENCE.txt](LICENCE.txt) for more details.  The artwork falls under the same
@@ -49,8 +50,8 @@ licence.
 
 Please note that there some assets (since removed) in past versions that are
 not licensed under the GPL and may not be reproduced.  In particular the
-following files Default.png (PureEgo logo), Default@2x.png (PureEgo logo), and
-Default-568h@2x.png (PureEgo logo) are not under the GPLv3.  These offending
-files have been removed since commit ff706e4dad45b2210fb3b2969fd94cd47d24fcdc.
+following files ```Default.png``` (PureEgo logo), ```Default@2x.png``` (PureEgo logo), and
+```Default-568h@2x.png``` (PureEgo logo) are not under the GPLv3.  These offending
+files have been removed since commit ```ff706e4dad45b2210fb3b2969fd94cd47d24fcdc```.
 
 
