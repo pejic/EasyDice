@@ -28,6 +28,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.util.AttributeSet;
+import android.util.LruCache;
 import android.view.View;
 
 import static net.pejici.androidutil.LayoutUtil.*;
@@ -38,6 +39,14 @@ public class DieView extends View {
 	private Bitmap image;
 	private Bitmap selectedImage;
 	private boolean selected = false;
+
+	static final private BitmapCache cache = new BitmapCache(12*1024*1024);
+
+	static private class BitmapCache extends LruCache<String, Bitmap> {
+		public BitmapCache(int maxSize) {
+			super(maxSize);
+		}
+	}
 
 	public DieView(Context context) {
 		super(context);
@@ -86,8 +95,13 @@ public class DieView extends View {
 	}
 
 	private Bitmap makeBitmap(String filename) {
-		int resId = getResources().getIdentifier(filename, "drawable", "net.pejici.easydice");
-		return BitmapFactory.decodeResource(getResources(), resId);
+		Bitmap bitmap = cache.get(filename);
+		if (null == bitmap) {
+			int resId = getResources().getIdentifier(filename, "drawable", "net.pejici.easydice");
+			bitmap = BitmapFactory.decodeResource(getResources(), resId);
+			cache.put(filename, bitmap);
+		}
+		return bitmap;
 	}
 
 	public void setDie(Die die) {
