@@ -17,27 +17,28 @@
  */
 package net.pejici.easydice.pageradapter;
 
-import java.io.ObjectInputStream.GetField;
 import java.util.Observable;
 import java.util.Observer;
 
-import net.pejici.easydice.fragment.DiceRollerFragment;
 import net.pejici.easydice.model.DieHand;
 import net.pejici.easydice.model.DieHandList;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import net.pejici.easydice.view.DiceRollerView;
+import android.content.Context;
+import android.support.v4.view.PagerAdapter;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 
 public class DieHandListAdapter
-	extends FragmentStatePagerAdapter
+	extends PagerAdapter
 	implements Observer
 {
 	DieHandList list = null;
+	Context ctx;
 
-	public DieHandListAdapter(FragmentManager fm, DieHandList list) {
-		super(fm);
+	public DieHandListAdapter(Context ctx, DieHandList list) {
+		super();
+		this.ctx = ctx;
 		this.list = list;
 		this.list.addObserver(this);
 	}
@@ -48,13 +49,13 @@ public class DieHandListAdapter
 	}
 
 	@Override
-	public Fragment getItem(int position) {
-		return DiceRollerFragment.instantiate(position);
-	}
-
-	@Override
-	public int getItemPosition(Object object) {
-		return POSITION_NONE;
+	public Object instantiateItem(ViewGroup container, int position) {
+		DiceRollerView view =
+				DiceRollerView.instantiate(ctx);
+		DieHand h = list.get(position);
+		view.setHand(h);
+		container.addView(view);
+		return view;
 	}
 
 	@Override
@@ -63,7 +64,44 @@ public class DieHandListAdapter
 	}
 
 	@Override
+	public void destroyItem(ViewGroup container, int position, Object object) {
+		DiceRollerView view = (DiceRollerView)object;
+		container.removeView(view);
+	}
+
+	@Override
+	public boolean isViewFromObject(View view, Object viewObj) {
+		return (view == viewObj);
+	}
+
+//	@Override
+//	public Fragment getItem(int position) {
+//		DiceRollerFragment f = null;
+//		DieHand h = list.get(position);
+//		if ((f = frags.get(h)) == null) {
+//			Log.d(logName(), "getItem("+position+") exists");
+//			f = DiceRollerFragment.instantiate(position);
+//			frags.put(h, f);
+//		}
+//		else {
+//			Log.d(logName(), "getItem("+position+") new");
+//		}
+//		return f;
+//	}
+
+//	@Override
+//	public int getItemPosition(Object object) {
+//		DiceRollerFragment view = (DiceRollerFragment)object;
+//		return list.indexOfIdentical(view.getHand());
+//	}
+
+	private String logName() {
+		return this.getClass().getCanonicalName().toString();
+	}
+
+	@Override
 	public void update(Observable observable, Object data) {
+		Log.d(logName(), "update()");
 		this.notifyDataSetChanged();
 	}
 

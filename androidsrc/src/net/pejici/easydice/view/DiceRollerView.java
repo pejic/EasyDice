@@ -15,61 +15,78 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.pejici.easydice.fragment;
+package net.pejici.easydice.view;
 
 import net.pejici.easydice.R;
 import net.pejici.easydice.adapter.DieViewArrayAdapter;
 import net.pejici.easydice.adapter.DieViewDieHandAdapter;
-import net.pejici.easydice.model.AppModel;
 import net.pejici.easydice.model.Die;
 import net.pejici.easydice.model.DieHand;
-import net.pejici.easydice.view.DieSumTextView;
-import net.pejici.easydice.view.DieView;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.content.Context;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class DiceRollerFragment extends Fragment {
+public class DiceRollerView extends LinearLayout {
 
 	DieHand hand;
 	DieViewDieHandAdapter handAdapter;
 
 	public static final String ARGS_HAND = "hand";
 
-	public DiceRollerFragment() {
-		// TODO Auto-generated constructor stub
+	public DiceRollerView(Context ctx) {
+		this(ctx, null);
 	}
 
-	static public DiceRollerFragment instantiate(int position) {
-		DiceRollerFragment frag = new DiceRollerFragment();
-		Bundle bundle = new Bundle();
-		bundle.putInt(DiceRollerFragment.ARGS_HAND, position);
-		frag.setArguments(bundle);
-		return frag;
+	public DiceRollerView(Context ctx, AttributeSet attrs) {
+		this(ctx, attrs, 0);
 	}
 
-	private void loadHand() {
-		int i = getArguments().getInt(ARGS_HAND);
-		AppModel model = AppModel.getInstance(getActivity());
-		hand = model.getHandList().get(i);
+	public DiceRollerView(Context ctx, AttributeSet attrs, int style) {
+		super(ctx, attrs, style);
 	}
 
-	private void setupDiceSum(View rootView) {
+	/**
+	 * Use this constructor to inflate the view from xml.
+	 * @param ctx Usual context getting passed around.
+	 * @param hand The die hand to initialize with.
+	 * @return
+	 */
+	static public DiceRollerView instantiate(Context ctx) {
+		LayoutInflater inflater = (LayoutInflater)ctx.getSystemService
+			      (Context.LAYOUT_INFLATER_SERVICE);
+		DiceRollerView v = (DiceRollerView)
+				inflater.inflate(R.layout.fragment_dice_roller, null);
+		return v;
+	}
+
+	/**
+	 * Set the die hand to another one.  View should be reusable.
+	 * @param hand The die hand to set.
+	 */
+	public void setHand(DieHand hand) {
+		this.hand = hand;
+		setupDiceButtons();
+		setupDiceHand();
+		setupDiceSum();
+		setupResetButton();
+		setupRollButton();
+	}
+
+	private void setupDiceSum() {
 		DieSumTextView view = (DieSumTextView)
-				rootView.findViewById(R.id.hand_sum_text_view);
+				this.findViewById(R.id.hand_sum_text_view);
 		view.setDieHand(hand);
 	}
 
-	private void setupDiceHand(View rootView) {
-		GridView grid = (GridView) rootView.findViewById(R.id.dice_grid);
-		handAdapter = new DieViewDieHandAdapter(this.getActivity(), hand);
+	private void setupDiceHand() {
+		GridView grid = (GridView) findViewById(R.id.dice_grid);
+		handAdapter = new DieViewDieHandAdapter(this.getContext(), hand);
 		grid.setAdapter(handAdapter);
 		OnItemClickListener cl = new OnItemClickListener() {
 			@Override
@@ -82,10 +99,10 @@ public class DiceRollerFragment extends Fragment {
 		grid.setOnItemClickListener(cl);
 	}
 
-	private void setupDiceButtons(View rootView) {
-		GridView buttonGrid = (GridView) rootView.findViewById(R.id.dice_buttons_grid);
+	private void setupDiceButtons() {
+		GridView buttonGrid = (GridView) findViewById(R.id.dice_buttons_grid);
 		DieViewArrayAdapter<Die> adapter = new DieViewArrayAdapter<Die>(
-				this.getActivity(), 0, Die.allLargestSizeDice());
+				getContext(), 0, Die.allLargestSizeDice());
 		buttonGrid.setAdapter(adapter);
 		OnItemClickListener cl = new OnItemClickListener() {
 			@Override
@@ -98,8 +115,8 @@ public class DiceRollerFragment extends Fragment {
 		buttonGrid.setOnItemClickListener(cl);
 	}
 
-	private void setupResetButton(View rootView) {
-		Button resetButton = (Button) rootView.findViewById(R.id.reset_button);
+	private void setupResetButton() {
+		Button resetButton = (Button) findViewById(R.id.reset_button);
 		OnClickListener cl = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -109,8 +126,8 @@ public class DiceRollerFragment extends Fragment {
 		resetButton.setOnClickListener(cl);
 	}
 
-	private void setupRollButton(View rootView) {
-		Button rollButton = (Button) rootView.findViewById(R.id.roll_button);
+	private void setupRollButton() {
+		Button rollButton = (Button) findViewById(R.id.roll_button);
 		OnClickListener cl = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -118,20 +135,6 @@ public class DiceRollerFragment extends Fragment {
 			}
 		};
 		rollButton.setOnClickListener(cl);
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_dice_roller,
-				container, false);
-		loadHand();
-		setupDiceButtons(rootView);
-		setupDiceHand(rootView);
-		setupDiceSum(rootView);
-		setupResetButton(rootView);
-		setupRollButton(rootView);
-		return rootView;
 	}
 
 	/**

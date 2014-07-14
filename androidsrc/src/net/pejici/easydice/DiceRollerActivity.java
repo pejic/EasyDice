@@ -36,7 +36,7 @@ public class DiceRollerActivity extends FragmentActivity {
 		setContentView(R.layout.activity_dice_roller);
 		ViewPager pager = (ViewPager) findViewById(R.id.pager);
 		DieHandListAdapter adapter = new DieHandListAdapter(
-				getSupportFragmentManager(), model.getHandList());
+				this, model.getHandList());
 		pager.setAdapter(adapter);
 	}
 

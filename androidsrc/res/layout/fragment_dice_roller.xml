@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<net.pejici.easydice.view.DiceRollerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
@@ -58,7 +58,6 @@
             android:layout_weight="50"
             android:minHeight="@dimen/big_button_min_height"
             android:text="@string/roll_button_text" />
-
     </LinearLayout>
 
     <GridView
@@ -68,4 +67,4 @@
         android:columnWidth="58dp"
         android:numColumns="auto_fit" />
 
-</LinearLayout>
+</net.pejici.easydice.view.DiceRollerView>
