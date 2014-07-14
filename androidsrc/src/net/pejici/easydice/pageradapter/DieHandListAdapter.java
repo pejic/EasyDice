@@ -54,7 +54,6 @@ public class DieHandListAdapter
 	private int nViews = 0;
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
-		Log.d(logName(), "instantiateItem(," + position + ")");
 		DiceRollerView view;
 		if (queue.size() > 0) {
 			view = queue.remove(0);
@@ -62,12 +61,10 @@ public class DieHandListAdapter
 		else {
 			view = DiceRollerView.instantiate(ctx);
 			nViews++;
-			Log.d(logName(), "nViews: " + nViews);
 		}
 		DieHand h = list.get(position);
 		view.setHand(h);
 		container.addView(view);
-		Log.d(logName(), "hand " + h);
 		return view;
 	}
 
@@ -103,7 +100,6 @@ public class DieHandListAdapter
 
 	@Override
 	public void update(Observable observable, Object data) {
-		Log.d(logName(), "update()");
 		this.notifyDataSetChanged();
 	}
 
