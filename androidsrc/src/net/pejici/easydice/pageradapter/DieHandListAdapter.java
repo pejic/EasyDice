@@ -17,6 +17,8 @@
  */
 package net.pejici.easydice.pageradapter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -34,6 +36,7 @@ public class DieHandListAdapter
 	implements Observer
 {
 	DieHandList list = null;
+	List<DiceRollerView> queue = new ArrayList<DiceRollerView>();
 	Context ctx;
 
 	public DieHandListAdapter(Context ctx, DieHandList list) {
@@ -48,13 +51,23 @@ public class DieHandListAdapter
 		return String.valueOf(position);
 	}
 
+	private int nViews = 0;
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
-		DiceRollerView view =
-				DiceRollerView.instantiate(ctx);
+		Log.d(logName(), "instantiateItem(," + position + ")");
+		DiceRollerView view;
+		if (queue.size() > 0) {
+			view = queue.remove(0);
+		}
+		else {
+			view = DiceRollerView.instantiate(ctx);
+			nViews++;
+			Log.d(logName(), "nViews: " + nViews);
+		}
 		DieHand h = list.get(position);
 		view.setHand(h);
 		container.addView(view);
+		Log.d(logName(), "hand " + h);
 		return view;
 	}
 
@@ -67,11 +80,21 @@ public class DieHandListAdapter
 	public void destroyItem(ViewGroup container, int position, Object object) {
 		DiceRollerView view = (DiceRollerView)object;
 		container.removeView(view);
+		queue.add(view);
 	}
 
 	@Override
 	public boolean isViewFromObject(View view, Object viewObj) {
 		return (view == viewObj);
+	}
+
+	@Override
+	public int getItemPosition(Object object) {
+		if (queue.contains(object)) {
+			return POSITION_NONE;
+		}
+		DiceRollerView view = (DiceRollerView)object;
+		return list.indexOfIdentical(view.getHand());
 	}
 
 //	@Override
