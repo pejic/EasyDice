@@ -97,27 +97,6 @@ public class DieHandListAdapter
 		return list.indexOfIdentical(view.getHand());
 	}
 
-//	@Override
-//	public Fragment getItem(int position) {
-//		DiceRollerFragment f = null;
-//		DieHand h = list.get(position);
-//		if ((f = frags.get(h)) == null) {
-//			Log.d(logName(), "getItem("+position+") exists");
-//			f = DiceRollerFragment.instantiate(position);
-//			frags.put(h, f);
-//		}
-//		else {
-//			Log.d(logName(), "getItem("+position+") new");
-//		}
-//		return f;
-//	}
-
-//	@Override
-//	public int getItemPosition(Object object) {
-//		DiceRollerFragment view = (DiceRollerFragment)object;
-//		return list.indexOfIdentical(view.getHand());
-//	}
-
 	private String logName() {
 		return this.getClass().getCanonicalName().toString();
 	}
