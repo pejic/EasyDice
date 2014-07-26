@@ -62,6 +62,7 @@ public class DiceRollerView extends LinearLayout {
 			      (Context.LAYOUT_INFLATER_SERVICE);
 		DiceRollerView v = (DiceRollerView)
 				inflater.inflate(R.layout.fragment_dice_roller, null);
+		v.setupDiceButtonsAdapter();
 		return v;
 	}
 
@@ -86,54 +87,83 @@ public class DiceRollerView extends LinearLayout {
 
 	private void setupDiceHand() {
 		GridView grid = (GridView) findViewById(R.id.dice_grid);
-		handAdapter = new DieViewDieHandAdapter(this.getContext(), hand);
+		OnItemClickListener cl;
+		if (null != hand) {
+			handAdapter = new DieViewDieHandAdapter(this.getContext(), hand);
+			cl = new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					DieView dieView = (DieView)view;
+					hand.setSelected(position, !dieView.getSelected());
+				}
+			};
+		}
+		else {
+			handAdapter = null;
+			cl = null;
+		}
 		grid.setAdapter(handAdapter);
-		OnItemClickListener cl = new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				DieView dieView = (DieView)view;
-				hand.setSelected(position, !dieView.getSelected());
-			}
-		};
 		grid.setOnItemClickListener(cl);
 	}
 
-	private void setupDiceButtons() {
+	private void setupDiceButtonsAdapter() {
 		GridView buttonGrid = (GridView) findViewById(R.id.dice_buttons_grid);
 		DieViewArrayAdapter<Die> adapter = new DieViewArrayAdapter<Die>(
 				getContext(), 0, Die.allLargestSizeDice());
 		buttonGrid.setAdapter(adapter);
-		OnItemClickListener cl = new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View dieView,
-					int position, long id) {
-				Die die = (Die) parent.getAdapter().getItem(position);
-				hand.addDie(die);
-			}
-		};
+	}
+
+	private void setupDiceButtons() {
+		GridView buttonGrid = (GridView) findViewById(R.id.dice_buttons_grid);
+		OnItemClickListener cl;
+		if (hand != null) {
+			cl = new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View dieView,
+						int position, long id) {
+					Die die = (Die) parent.getAdapter().getItem(position);
+					hand.addDie(die);
+				}
+			};
+		}
+		else {
+			cl = null;
+		}
 		buttonGrid.setOnItemClickListener(cl);
 	}
 
 	private void setupResetButton() {
 		Button resetButton = (Button) findViewById(R.id.reset_button);
-		OnClickListener cl = new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				hand.clear();
-			}
-		};
+		OnClickListener cl;
+		if (hand != null) {
+			cl = new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					hand.clear();
+				}
+			};
+		}
+		else {
+			cl = null;
+		}
 		resetButton.setOnClickListener(cl);
 	}
 
 	private void setupRollButton() {
 		Button rollButton = (Button) findViewById(R.id.roll_button);
-		OnClickListener cl = new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				hand.roll();
-			}
-		};
+		OnClickListener cl;
+		if (hand != null) {
+			cl = new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					hand.roll();
+				}
+			};
+		}
+		else {
+			cl = null;
+		}
 		rollButton.setOnClickListener(cl);
 	}
 

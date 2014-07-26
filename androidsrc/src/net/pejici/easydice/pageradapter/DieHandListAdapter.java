@@ -27,7 +27,6 @@ import net.pejici.easydice.model.DieHandList;
 import net.pejici.easydice.view.DiceRollerView;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -38,6 +37,15 @@ public class DieHandListAdapter
 	DieHandList list = null;
 	List<DiceRollerView> queue = new ArrayList<DiceRollerView>();
 	Context ctx;
+
+	static class DieViewModelPair {
+		final DiceRollerView view;
+		final DieHand model;
+		DieViewModelPair(DiceRollerView view, DieHand model) {
+			this.view = view;
+			this.model = model;
+		}
+	}
 
 	public DieHandListAdapter(Context ctx, DieHandList list) {
 		super();
@@ -51,7 +59,6 @@ public class DieHandListAdapter
 		return String.valueOf(position);
 	}
 
-	private int nViews = 0;
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 		DiceRollerView view;
@@ -60,42 +67,44 @@ public class DieHandListAdapter
 		}
 		else {
 			view = DiceRollerView.instantiate(ctx);
-			nViews++;
 		}
 		DieHand h = list.get(position);
 		view.setHand(h);
 		container.addView(view);
-		return view;
+		return new DieViewModelPair(view, h);
 	}
 
 	@Override
 	public int getCount() {
-		return list.size();
+		int size = list.size();
+		return size;
 	}
 
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {
-		DiceRollerView view = (DiceRollerView)object;
-		container.removeView(view);
-		queue.add(view);
+		DieViewModelPair p = (DieViewModelPair)object;
+		p.view.setHand(null);
+		queue.add(p.view);
+		container.removeView(p.view);
 	}
 
 	@Override
-	public boolean isViewFromObject(View view, Object viewObj) {
-		return (view == viewObj);
+	public boolean isViewFromObject(View view, Object object) {
+		DieViewModelPair p = (DieViewModelPair)object;
+		return (view == p.view);
 	}
 
 	@Override
 	public int getItemPosition(Object object) {
+		DieViewModelPair p = (DieViewModelPair)object;
 		if (queue.contains(object)) {
 			return POSITION_NONE;
 		}
-		DiceRollerView view = (DiceRollerView)object;
-		return list.indexOfIdentical(view.getHand());
-	}
-
-	private String logName() {
-		return this.getClass().getCanonicalName().toString();
+		int position = list.indexOfIdentical(p.model);
+		if (position < 0) {
+			return POSITION_NONE;
+		}
+		return position;
 	}
 
 	@Override

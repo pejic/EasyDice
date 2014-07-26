@@ -43,8 +43,13 @@ public class DieSumTextView extends TextView implements Observer {
 	}
 
 	public void setDieHand(DieHand hand) {
+		if (null != this.hand){
+			this.hand.deleteObserver(this);
+		}
 		this.hand = hand;
-		hand.addObserver(this);
+		if (null != hand) {
+			this.hand.addObserver(this);
+		}
 		updateLabels();
 	}
 
