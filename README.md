@@ -1,4 +1,4 @@
-
+```
      _/_/_/_/                                    _/_/_/    _/
     _/          _/_/_/    _/_/_/  _/    _/      _/    _/        _/_/_/    _/_/
    _/_/_/    _/    _/  _/_/      _/    _/      _/    _/  _/  _/        _/_/_/_/
@@ -6,6 +6,7 @@
  _/_/_/_/    _/_/_/  _/_/_/      _/_/_/      _/_/_/    _/    _/_/_/    _/_/_/
                                     _/
                                _/_/_/
+```
 
 # Easy Dice
 
@@ -26,22 +27,22 @@ The build process has a number of steps due to assets being rendered.  However
 assets need only be rendered once, and rescaled per app.
 
 To render assets using blender run the render script.
-
-  $ ./render.sh
+  
+     $ ./render.sh
 
 This will undoubtedly take some time.  You will find many new files in the
 render/ directory.  These are the high resolution renders that will be rescaled
 to get the assets that apps will actually incorporate.  To build the android
 assets run mkassets.sh from the androidsrc directory.
 
-  $ cd androidsrc
-  $ ./mkassets.sh
+     $ cd androidsrc
+     $ ./mkassets.sh
 
 At this point you can build the Android project in the usual ways.
 
 ## Copyright & Licence
 
-Copyright (c) Slobodan Pejic 2011, 2012, 2013, 2014
+Copyright (c) Slobodan Pejic 2011-2014
 
 This software is licenced under the GNU General Public Licence.  See
 [LICENCE.txt](LICENCE.txt) for more details.  The artwork falls under the same
@@ -49,8 +50,8 @@ licence.
 
 Please note that there some assets (since removed) in past versions that are
 not licensed under the GPL and may not be reproduced.  In particular the
-following files Default.png (PureEgo logo), Default@2x.png (PureEgo logo), and
-Default-568h@2x.png (PureEgo logo) are not under the GPLv3.  These offending
-files have been removed since commit ff706e4dad45b2210fb3b2969fd94cd47d24fcdc.
+following files ```Default.png``` (PureEgo logo), ```Default@2x.png``` (PureEgo logo), and
+```Default-568h@2x.png``` (PureEgo logo) are not under the GPLv3.  These offending
+files have been removed since commit ```ff706e4dad45b2210fb3b2969fd94cd47d24fcdc```.
 
 
