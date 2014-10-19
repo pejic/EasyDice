@@ -146,6 +146,7 @@ public class Die {
 		dice.add(new Die(10, 1, 10, -10));
 		dice.add(new Die(12, 12));
 		dice.add(new Die(20, 20));
+		dice.add(new Die(30, 30));
 		return dice;
 	}
 
