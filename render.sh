@@ -27,6 +27,7 @@ renderDie "d10" "10"
 renderDie "d10x10" "10"
 renderDie "d12" "12"
 renderDie "d20" "20"
+renderDie "d30" "30"
 
 renderScene "Icon" "iTunesArtwork"
 renderScene "IconAndroid" "ic_launcher"
