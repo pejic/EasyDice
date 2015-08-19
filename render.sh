@@ -21,6 +21,7 @@ function renderScene {
 }
 
 renderDie "d6" "6"
+renderDie "d2" "2"
 renderDie "d4" "4"
 renderDie "d8" "8"
 renderDie "d10" "10"

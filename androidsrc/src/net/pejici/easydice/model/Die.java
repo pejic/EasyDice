@@ -139,6 +139,7 @@ public class Die {
 
 	static public List<Die> allLargestSizeDice() {
 		List<Die> dice = new ArrayList<Die>();
+		dice.add(new Die(2,2));
 		dice.add(new Die(4,4));
 		dice.add(new Die(6,6));
 		dice.add(new Die(8,8));
