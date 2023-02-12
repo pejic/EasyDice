@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+/app/src/main/res/drawable-*/d[0-9]*.webp
+/app/src/main/res/drawable-*/logo.webp
+/app/src/main/res/mipmap-*/ic_launcher.webp
