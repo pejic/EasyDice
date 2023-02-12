@@ -6,3 +6,6 @@ renders/
 ._*
 Easy Dice.xcodeproj/
 iTunesArtwork-covered.png
+
+/third_party/blender-2.79-linux-glibc219-x86_64*
+/third_party/blender-2.79-linux-glibc219-x86_64/**
