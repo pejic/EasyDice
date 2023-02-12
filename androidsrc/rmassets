@@ -1,6 +1,0 @@
-#!/bin/sh
-
-find res/ -type f -name d\*_00\*.png -exec rm \{\} \;
-find res/ -type f -name d\*_10x00\*.png -exec rm \{\} \;
-find res/ -type f -name logo.png -exec rm \{\} \;
-find res/ -type f -name ic_launcher.png -exec rm \{\} \;

@@ -4,6 +4,7 @@
 
 DICEFILE="assetssrc/dice.blend"
 OUTDIR="renders/"
+BLENDER="./third_party/blender-2.79-linux-glibc219-x86_64/blender"
 
 function ensureBlender {
 	if [[ ! -f "${BLENDER}" ]]; then
@@ -24,17 +25,17 @@ function ensureBlender {
 
 function renderDie {
 	echo "Render Die $1 $2"
-	blender -b "$DICEFILE" \
+	"${BLENDER}" -b "${DICEFILE}" \
 		-S Dice."$1" \
-		-x 1 -o "$OUTDIR""$1"- -F PNG -s 1 -e "$2" -a
+		-x 1 -o "${OUTDIR}""$1"- -F PNG -s 1 -e "$2" -a
 }
 
 function renderScene {
 	echo "Render Scene $1 $2"
-	blender -b "$DICEFILE" \
+	"${BLENDER}" -b "${DICEFILE}" \
 		-S "$1" \
-		-x 0 -o "$OUTDIR""$2".png -f 1 -F PNG
-	mv "$OUTDIR""$2".png0001 "$OUTDIR""$2".png
+		-x 0 -o "${OUTDIR}""$2".png -f 1 -F PNG
+	mv "${OUTDIR}""$2".png0001 "${OUTDIR}""$2".png
 }
 
 ensureBlender || exit 1

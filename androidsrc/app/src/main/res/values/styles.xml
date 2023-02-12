@@ -1,0 +1,13 @@
+<resources>
+
+	<style name="AppTheme.ActionBarStyle" parent="@android:style/Widget.ActionBar">
+	    <item name="android:background">@drawable/actionbar_background</item>
+        <item name="android:colorPrimary">@color/primary_on_color</item>
+		<item name="android:titleTextStyle">@style/AppTheme.ActionBar.TitleTextStyle</item>
+	</style>
+
+	<style name="AppTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Material.Title">
+		<item name="android:textColor">@color/primary_on_color</item>
+	</style>
+
+</resources>

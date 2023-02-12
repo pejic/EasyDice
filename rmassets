@@ -1,0 +1,8 @@
+#!/bin/sh
+
+RES_PATH="androidsrc/app/src/main/res/"
+
+find "${RES_PATH}" -type f -name d\*_00\*.webp -exec rm \{\} \;
+find "${RES_PATH}" -type f -name d\*_10x00\*.webp -exec rm \{\} \;
+find "${RES_PATH}" -type f -name logo.webp -exec rm \{\} \;
+find "${RES_PATH}" -type f -name ic_launcher.webp -exec rm \{\} \;

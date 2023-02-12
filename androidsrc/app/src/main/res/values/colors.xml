@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_actionbar_background_color">#b01b12</color>
+    <color name="primary_actionbar_background_color_dark">#5F0702</color>
+    <color name="primary_pagerbar_background_color">#a02616</color>
+    <color name="primary_on_color">#FFFFFF</color>
+</resources>
