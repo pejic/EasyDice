@@ -89,6 +89,13 @@ public class DiceRollerActivity extends FragmentActivity {
 		}
 		else if (item.getItemId() == R.id.action_about) {
 			Intent intent = new Intent(this, AboutActivity.class);
+			AboutActivity.prepareIntent(intent, AboutActivity.Type.About);
+			startActivity(intent);
+			return true;
+		}
+		else if (item.getItemId() == R.id.action_open_source) {
+			Intent intent = new Intent(this, AboutActivity.class);
+			AboutActivity.prepareIntent(intent, AboutActivity.Type.OpenSource);
 			startActivity(intent);
 			return true;
 		}

@@ -6,12 +6,13 @@
     <string name="roll_button_text">Roll</string>
     <string name="hand_sum_format_text">Adds to %1$s</string>
     <string name="hand_sum_no_dice_text">Please select some dice to roll them.</string>
-    <string name="title_activity_about">About Easy Dice</string>
+    <string name="about_activity_title">About Easy Dice</string>
     <string name="action_about">About</string>
     <string name="copyright_heading_text">Copyright</string>
-    <string name="copyright_notice_text" translatable="false">© 2011–2023 Slobodan Pejić (slobo@slobo.me)</string>
+    <string name="copyright_notice_text" translatable="false">© 2011–2023 Slobodan Pejić (slobo@slobo.me)\nhttps://github.com/pejic/EasyDice</string>
     <string name="licence_heading_text">Licence</string>
     <string name="action_add_hand">Add</string>
     <string name="action_remove_hand">Remove</string>
+    <string name="open_source_title" translatable="false">Open Source</string>
 
 </resources>

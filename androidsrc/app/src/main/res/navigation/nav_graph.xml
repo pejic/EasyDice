@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/SecondFragment"
         android:name="net.pejici.easydice.SecondFragment"
-        android:label="@string/title_activity_about"
+        android:label="@string/about_activity_title"
         tools:layout="@layout/activity_about">
 
         <action
