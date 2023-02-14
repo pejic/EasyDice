@@ -31,22 +31,22 @@ renderOneIcon "drawable" "renders/logo.png" "ldpi" 24
 renderOneIcon "drawable" "renders/logo.png" "mdpi" 32
 renderOneIcon "drawable" "renders/logo.png" "hdpi" 48
 renderOneIcon "drawable" "renders/logo.png" "xhdpi" 64
-renderOneIcon "drawable" "renders/logo.png" "xxhdpi" 88
-renderOneIcon "drawable" "renders/logo.png" "xxhdpi" 128
+renderOneIcon "drawable" "renders/logo.png" "xxhdpi" 96
+renderOneIcon "drawable" "renders/logo.png" "xxxhdpi" 128
 
-renderOneIcon "mipmap" "renders/ic_launcher.png" "ldpi" 36
-renderOneIcon "mipmap" "renders/ic_launcher.png" "mdpi" 48
-renderOneIcon "mipmap" "renders/ic_launcher.png" "hdpi" 72
-renderOneIcon "mipmap" "renders/ic_launcher.png" "xhdpi" 96
-renderOneIcon "mipmap" "renders/ic_launcher.png" "xxhdpi" 120
-renderOneIcon "mipmap" "renders/ic_launcher.png" "xxxhdpi" 192
+renderOneIcon "mipmap" "renders/ic_launcher.png" "ldpi" 81
+renderOneIcon "mipmap" "renders/ic_launcher.png" "mdpi" 108
+renderOneIcon "mipmap" "renders/ic_launcher.png" "hdpi" 162
+renderOneIcon "mipmap" "renders/ic_launcher.png" "xhdpi" 216
+renderOneIcon "mipmap" "renders/ic_launcher.png" "xxhdpi" 324
+renderOneIcon "mipmap" "renders/ic_launcher.png" "xxxhdpi" 640
 
 for i in `find renders -maxdepth 1 -type f -iname d\*.png`; do
 	renderOneIcon "drawable" "$i" "ldpi" 66 6
 	renderOneIcon "drawable" "$i" "mdpi" 88 8
 	renderOneIcon "drawable" "$i" "hdpi" 132 12
 	renderOneIcon "drawable" "$i" "xhdpi" 176 16
-	renderOneIcon "drawable" "$i" "xxhdpi" 220 20
+	renderOneIcon "drawable" "$i" "xxhdpi" 264 24
 	renderOneIcon "drawable" "$i" "xxxhdpi" 352 32
 done
 
