@@ -8,6 +8,12 @@ function renderOneIcon {
 	local dpi="$3"
 	local size="$4"
 	local blur="$5"
+
+	local quality=50
+	if [[ ( "${dpi}" = "mdpi" ) || ( "${dpi}" = "ldpi" ) ]]; then
+		quality=80
+	fi
+	echo "quality = ${quality}"
 	
 	mkdir -p "${RES_PATH}${asset_type}-${dpi}"
 	local normal=$(echo "${asset}" \
@@ -16,13 +22,21 @@ function renderOneIcon {
 		| sed "s#renders#${RES_PATH}${asset_type}-${dpi}#g")
 	local selected=$(echo $normal | sed 's/\.webp/_sel.webp/g')
 	echo "$@"
-	convert -resize "${size}"x -filter Lanczos "${asset}" "$normal"
+	convert -resize "${size}"x \
+		-filter Lanczos "${asset}" \
+		-quality "${quality}" \
+		-define webp:lossless=false \
+		-define webp:alpha-quality="${quality}" \
+		"$normal"
 	if [ -n "${blur}" ]; then
 		convert -channel A -blur "${blur}" \
 			-channel RGB -modulate 0,0 \
 			-channel R -brightness-contrast 100 \
 			-channel A -gamma 2 \
 			-channel A -brightness-contrast 25,50 \
+			-quality "${quality}" \
+			-define webp:lossless=false \
+			-define webp:alpha-quality="${quality}" \
 			"$normal" "$selected"
 	fi
 }
